@@ -1,0 +1,27 @@
+# Only the raw ingest corpus is shipped-out. data/raw/ contains shapefiles,
+# India OSM PBF (multi-GB), and nested git repos — pipeline-time only.
+# data/processed/*.json is kept so /mockup/f/[pincode] can keep reading it.
+data/raw/
+data/processed/*_batch_*.jsonl
+data/processed/scores_raw.json
+data/processed/scores_with_percentiles.json
+
+# Ingest + scoring pipeline + seed scripts run locally, not on the deploy.
+scripts/
+
+# Handbook is author reference, not app assets.
+handbook/
+
+# Docs are internal.
+docs/
+
+# Convex skills tooling / codegen config kept out of the deploy archive.
+.claude/
+
+# Build artefacts
+.next/
+out/
+
+# Local env
+.env*.local
+.env.production.tmp
