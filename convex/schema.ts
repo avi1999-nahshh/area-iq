@@ -91,6 +91,9 @@ export default defineSchema({
     atm_count: v.number(),
     bus_stop_count: v.number(),
     five_minute_city_score: v.number(), // 0-10
+    cafe_count: v.optional(v.number()),
+    restaurant_count: v.optional(v.number()),
+    bar_count: v.optional(v.number()),
   }).index("by_pincode", ["pincode"]),
 
   // ── transit ──────────────────────────────────────────
@@ -190,6 +193,9 @@ export default defineSchema({
     district: v.optional(v.string()),
     state: v.optional(v.string()),
     metro_city: v.optional(v.string()),
+    // superlative claims
+    superlative_label: v.optional(v.string()),
+    superlative_scope: v.optional(v.string()),
   })
     .index("by_pincode", ["pincode"])
     .index("by_overall_score", ["overall_score"])
@@ -213,5 +219,6 @@ export default defineSchema({
     state: v.string(),
     facts: v.array(v.string()), // exactly 3
     generated_at: v.number(),
+    narrative: v.optional(v.string()),
   }).index("by_district", ["district"]),
 });

@@ -3,6 +3,21 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces), serif;
+
+  /* AreaIQ palette */
+  --color-black:        #0A0A0A;
+  --color-bone:         #FDFCF7;
+  --color-yellow:       #F5C518;
+  --color-yellow-deep:  #DCA800;
+  --color-ink:          #0A0A0A;
+  --color-yellow-light: #FFF9E6;
+  --color-warm-gray:    #F5F5F0;
+}
+
+/* Serif utility — Fraunces display font */
+.font-serif {
+  font-family: var(--font-fraunces), serif;
 }
 
 html {
@@ -12,6 +27,23 @@ html {
 body {
   background: #fdfcf7;
   color: #1a1a18;
+}
+
+/* Score bar — amber yellow */
+.score-bar {
+  background: #F5C518;
+}
+
+/* Drop cap for life-here section */
+.drop-cap::first-letter {
+  font-family: var(--font-fraunces), serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 0.8;
+  float: left;
+  margin-right: 0.1em;
+  margin-top: 0.05em;
+  color: #0A0A0A;
 }
 
 /* Skip to content — accessibility */
