@@ -40,6 +40,22 @@ export default function MockupIndex() {
       swatches: ["#F7F3EC", "#1A1A18", "#2E7C7B"],
       href: "/mockup/d",
     },
+    {
+      letter: "E",
+      title: "Civic Brief",
+      tagline: "A × D, with the map as frontispiece",
+      desc: "Hybrid. A's editorial luxury (oatmeal, ochre, oversized gutter numeral, Instrument Serif hero, drop cap essay) fused with D's analyst density (classification ribbon, small-multiples strip, ranks ladder, findings). Wide map band between hero and essay.",
+      swatches: ["#FAF6EE", "#1A2633", "#C88A1F", "#B84B3A"],
+      href: "/mockup/e",
+    },
+    {
+      letter: "F",
+      title: "Civic Brief · Mobile",
+      tagline: "E, stripped for screenshot virality",
+      desc: "Phone-first rework of E. Big hero, one stat tension (99 vs 7), map frontispiece, six-dimension bar list, pull quote, distinction badge, share CTA. Ranks ladder, representative, methodology colophon — all cut.",
+      swatches: ["#FAF6EE", "#1A2633", "#C88A1F", "#B84B3A"],
+      href: "/mockup/f",
+    },
   ];
 
   return (

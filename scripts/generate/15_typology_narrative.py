@@ -192,6 +192,16 @@ with open(LOCAL_OUT, "wb") as fout:
 
 # ── Parse + merge into trivia.json ─────────────────────────────────────────
 # Build lookup: norm_key -> narrative
+# IMPORTANT: Vertex batch output rows are NOT guaranteed to preserve input
+# order. Match each response to its district via the echoed prompt text
+# (`request.contents[0].parts[0].text`), not the line index. Falling back to
+# positional matching silently corrupted ~1078/1079 narratives in the first run.
+import re as _re
+PROMPT_RE = _re.compile(r"Given (.+?), ([^,]+?) [—–-]")
+# (raw_d, raw_s) index for exact-substring fallback when districts/states
+# themselves contain commas (e.g. "Dadra & Nagar Haveli, Valsad").
+index_by_raw = {(raw_d, raw_s): key for key, raw_d, raw_s in index_map}
+
 narrative_map = {}
 with open(LOCAL_OUT) as f:
     lines = [ln for ln in f if ln.strip()]
@@ -199,9 +209,14 @@ with open(LOCAL_OUT) as f:
 if len(lines) != len(index_map):
     print(f"Warning: result count {len(lines)} != submitted {len(index_map)}")
 
-for i, line in enumerate(lines):
+parse_fail = 0
+for line in lines:
     try:
         rec   = json.loads(line)
+        req   = rec.get("request") or {}
+        prompt_parts = ((req.get("contents") or [{}])[0].get("parts") or [{}])
+        prompt_text  = prompt_parts[0].get("text", "") if prompt_parts else ""
+
         resp  = rec.get("response") or {}
         cands = resp.get("candidates") or []
         if not cands:
@@ -214,13 +229,28 @@ for i, line in enumerate(lines):
         narrative = obj.get("narrative", "").strip()
         if not narrative:
             continue
-        key = index_map[i][0] if i < len(index_map) else None
-        if key:
-            narrative_map[key] = narrative
-    except Exception as e:
-        print(f"  parse error line {i}: {e}")
 
-print(f"Parsed {len(narrative_map)} narratives from batch output")
+        # Primary: regex-extract (d, s) from the echoed prompt.
+        m = PROMPT_RE.search(prompt_text)
+        key = None
+        if m:
+            key = (normalize(m.group(1).strip()), normalize(m.group(2).strip()))
+
+        # Fallback: scan submitted (raw_d, raw_s) pairs for an exact "Given d, s "
+        # substring in the prompt (handles composite-comma districts).
+        if key is None or key not in index_by_raw.values():
+            for (raw_d, raw_s), k in index_by_raw.items():
+                if f"Given {raw_d}, {raw_s} " in prompt_text:
+                    key = k
+                    break
+
+        if key:
+            narrative_map.setdefault(key, narrative)
+    except Exception as e:
+        parse_fail += 1
+        print(f"  parse error: {e}")
+
+print(f"Parsed {len(narrative_map)} narratives from batch output (errors: {parse_fail})")
 
 # Merge narrative into each trivia record
 added = 0

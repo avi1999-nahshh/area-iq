@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { computeVerdict, type AreaLite } from "./verdict";
 
 // Dynamically load MiniMap to avoid SSR hydration issues with Leaflet
 const MiniMap = dynamic(
@@ -11,167 +12,14 @@ const MiniMap = dynamic(
 
 // ─── types ────────────────────────────────────────────────────────────────────
 
-type AreaData = {
-  pincode: {
-    pincode: string; name: string; district: string; state: string;
-    lat?: number; lng?: number;
-  };
-  airQuality?: { aqi?: number; pm25?: number } | null;
-  safety?: { crime_rate_per_lakh?: number } | null;
-  infrastructure?: { five_minute_city_score?: number } | null;
-  property?: {
-    city_rent_median_2bhk?: number;
-    rent_match_level?: string;
-    rent_matched_locality?: string;
-  } | null;
-  scores?: {
-    air_quality_score?: number; safety_score?: number; infrastructure_score?: number;
-    transit_score?: number; cleanliness_score?: number; property_score?: number;
-    overall_score?: number; tier?: string;
-    archetype_name?: string; archetype_emoji?: string;
-  } | null;
-  archetype?: { name?: string; tagline?: string; emoji?: string } | null;
+type AreaData = AreaLite & {
+  pincode: AreaLite["pincode"] & { lat?: number; lng?: number };
   trivia?: { facts?: string[] } | null;
 };
 
 interface Props {
   a: AreaData;
   b: AreaData;
-}
-
-// ─── verdict logic ────────────────────────────────────────────────────────────
-
-type DimKey = "safety" | "air" | "lifestyle" | "connectivity" | "affordability";
-
-interface VerdictResult {
-  winnerData: AreaData;
-  loserData: AreaData;
-  category: DimKey;
-  categoryLabel: string;
-  delta: number;
-  body: string;
-  topPickFor: string;
-}
-
-function computeVerdict(a: AreaData, b: AreaData): VerdictResult {
-  const sa = a.scores ?? {};
-  const sb = b.scores ?? {};
-
-  // Dimension scores: [dimKey, dimLabel, scoreA, scoreB, higherIsBetter]
-  const dims: [DimKey, string, number, number, boolean][] = [
-    ["safety",        "safety",       sa.safety_score ?? 50,       sb.safety_score ?? 50,       true],
-    ["air",           "air quality",  sa.air_quality_score ?? 50,  sb.air_quality_score ?? 50,  true],
-    // lifestyle = avg of infra + cleanliness
-    ["lifestyle",     "lifestyle",
-      ((sa.infrastructure_score ?? 50) + (sa.cleanliness_score ?? 50)) / 2,
-      ((sb.infrastructure_score ?? 50) + (sb.cleanliness_score ?? 50)) / 2,
-      true],
-    ["connectivity",  "connectivity", sa.transit_score ?? 50,      sb.transit_score ?? 50,      true],
-    // affordability: lower property_score = more affordable (inverted)
-    ["affordability", "affordability",
-      100 - (sa.property_score ?? 50),
-      100 - (sb.property_score ?? 50),
-      true],
-  ];
-
-  // Count wins per area and track the dimension with widest delta
-  let aWins = 0;
-  let bWins = 0;
-  let maxDelta = -1;
-  let decisiveDim = dims[0];
-
-  for (const dim of dims) {
-    const [, , scoreA, scoreB] = dim;
-    const delta = Math.abs(scoreA - scoreB);
-    if (scoreA > scoreB) aWins++;
-    else if (scoreB > scoreA) bWins++;
-    if (delta > maxDelta) {
-      maxDelta = delta;
-      decisiveDim = dim;
-    }
-  }
-
-  const [category, categoryLabel, dimScoreA, dimScoreB] = decisiveDim;
-  const winnerData = dimScoreA >= dimScoreB ? a : b;
-  const loserData  = dimScoreA >= dimScoreB ? b : a;
-  const delta      = Math.abs(dimScoreA - dimScoreB);
-
-  // Overall winner by most dim wins
-  const overallWinner = aWins >= bWins ? a : b;
-  const overallLoser  = aWins >= bWins ? b : a;
-
-  // Find loser's strongest dim for the body copy
-  const loserScores  = overallLoser.scores ?? {};
-  const loserDims: [string, number][] = [
-    ["safety",       loserScores.safety_score ?? 50],
-    ["air quality",  loserScores.air_quality_score ?? 50],
-    ["transit",      loserScores.transit_score ?? 50],
-    ["infrastructure", loserScores.infrastructure_score ?? 50],
-    ["cleanliness",  loserScores.cleanliness_score ?? 50],
-  ];
-  const loserStrongest = loserDims.sort((x, y) => y[1] - x[1])[0][0];
-
-  // Winner's second-best advantage (for body copy variety)
-  const winnerScores = overallWinner.scores ?? {};
-  const winnerDims: [string, number][] = [
-    ["safety",       winnerScores.safety_score ?? 50],
-    ["air quality",  winnerScores.air_quality_score ?? 50],
-    ["transit",      winnerScores.transit_score ?? 50],
-    ["infrastructure", winnerScores.infrastructure_score ?? 50],
-    ["cleanliness",  winnerScores.cleanliness_score ?? 50],
-  ];
-  const winnerTop2 = winnerDims.sort((x, y) => y[1] - x[1]).slice(0, 2);
-  const secondAdvantage = winnerTop2[1]?.[0] ?? winnerTop2[0][0];
-
-  // Concrete numbers for body
-  const rentA = a.property?.city_rent_median_2bhk;
-  const rentB = b.property?.city_rent_median_2bhk;
-  const rentWinner = overallWinner === a ? rentA : rentB;
-  const rentLoser  = overallWinner === a ? rentB : rentA;
-  const rentLine = (rentWinner && rentLoser)
-    ? ` Rent runs ₹${Math.round(rentWinner / 1000)}k vs ₹${Math.round(rentLoser / 1000)}k (2BHK median).`
-    : "";
-
-  const body =
-    `While ${overallLoser.pincode.name} offers a superior ${loserStrongest}, ` +
-    `${overallWinner.pincode.name} leads significantly on ${categoryLabel} ` +
-    `and offers stronger ${secondAdvantage}.${rentLine} ` +
-    `The overall edge goes to ${overallWinner.pincode.name} across ${aWins >= bWins ? aWins : bWins} of 5 dimensions.`;
-
-  // Top pick audience based on winner's archetype
-  const topPickFor = deriveAudience(overallWinner);
-
-  return { winnerData: overallWinner, loserData: overallLoser, category, categoryLabel, delta: Math.round(delta), body, topPickFor };
-}
-
-function deriveAudience(data: AreaData): string {
-  const tier = data.scores?.tier ?? "";
-  const archetypeName = (data.scores?.archetype_name ?? data.archetype?.name ?? "").toLowerCase();
-
-  // Mapping table:
-  // tier=urban + archetype contains "hustle"/"hub"/"growth"/"startup" → Young Professionals
-  // tier=semi-urban + archetype contains "community"/"family"/"peaceful"/"suburb" → Families
-  // tier=rural/archetype contains "quiet"/"breathing"/"nature"/"rural"/"retreat" → Retirees
-  // archetype contains "artist"/"creative"/"culture"/"heritage" → Creatives
-  // archetype contains "student"/"university"/"campus" → Students
-  // else → Balanced Lifestyle
-
-  if (/hustle|hub|growth|startup|metro|professional|urban elite/.test(archetypeName) || (tier === "urban" && /work|tech|buzz/.test(archetypeName))) {
-    return "Young Professionals";
-  }
-  if (/community|family|familial|suburb|peaceful|residential|gated|township/.test(archetypeName)) {
-    return "Families";
-  }
-  if (/quiet|breathing|nature|rural|retreat|serene|tranquil|retiree/.test(archetypeName) || tier === "rural") {
-    return "Retirees";
-  }
-  if (/artist|creative|culture|heritage|bohemian|art/.test(archetypeName)) {
-    return "Creatives";
-  }
-  if (/student|university|campus|college/.test(archetypeName)) {
-    return "Students";
-  }
-  return "Balanced Lifestyle";
 }
 
 // ─── sub-components ───────────────────────────────────────────────────────────
@@ -386,27 +234,27 @@ export function HeadToHead({ a, b }: Props) {
 
           {/* Winner headline */}
           <h2
-            className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-tight"
+            className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-[1.05]"
             style={{ fontFamily: "var(--font-fraunces), serif" }}
           >
-            {verdict.winnerData.pincode.name} edges out for {verdict.categoryLabel}.
+            {verdict.headline}
           </h2>
 
-          {/* Body */}
-          <p className="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
-            {verdict.body}
+          {/* Trash-talk subhead */}
+          <p className="mt-4 text-slate-700 leading-snug text-lg sm:text-xl font-medium">
+            {verdict.trashTalk}
           </p>
 
-          {/* Top Pick chip */}
+          {/* Dim-wins ticker + audience chip */}
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] tracking-[0.18em] uppercase font-semibold text-slate-400">
-                Top Pick For:
+            {!verdict.tie && (
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 text-white">
+                {verdict.dimWins.winner} of {verdict.dimWins.total} dimensions
               </span>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-200">
-                {verdict.topPickFor}
-              </span>
-            </div>
+            )}
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-200">
+              {verdict.audienceLine}
+            </span>
           </div>
 
           {/* Share CTA */}
