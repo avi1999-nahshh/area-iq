@@ -1,6 +1,7 @@
 import { WaitlistForm } from "./waitlist-form";
 import { MapExplorer } from "./map-explorer";
 import { CompareCard } from "./compare-card";
+import { PincodeSearch } from "./pincode-search";
 
 const features = [
   {
@@ -107,6 +108,17 @@ export default function Home() {
             style={{ animationDelay: "200ms" }}
           >
             <CompareCard />
+          </div>
+        </section>
+
+        {/* Check your area — pincode input */}
+        <section className="max-w-6xl mx-auto px-6 pb-12">
+          <div className="bg-amber-50/60 border border-amber-100 rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-slate-900 mb-0.5">Check your area</p>
+              <p className="text-xs text-slate-500">Type a 6-digit pincode to see its full report card.</p>
+            </div>
+            <PincodeSearch />
           </div>
         </section>
 

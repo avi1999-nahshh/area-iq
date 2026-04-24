@@ -1,0 +1,257 @@
+[
+  {
+    "cluster_id": 0,
+    "name": "The Bustling Connector",
+    "tagline": "Life in the clean, fast lane.",
+    "emoji": "\ud83d\ude82",
+    "description": "Life here moves at a brisk, clean pace, powered by excellent transit and constant activity. It's a practical launchpad for the city, though you may travel elsewhere for quiet green spaces and community amenities.",
+    "centroid": [
+      49.27442522321428,
+      56.87782924107143,
+      40.79789062500001,
+      68.98326450892858,
+      79.9098660714287,
+      73.40996093750002,
+      24.58705357142858
+    ],
+    "pincode_count": 1792
+  },
+  {
+    "cluster_id": 1,
+    "name": "The Secure Bazaar",
+    "tagline": "Your safe and bustling corner of the city.",
+    "emoji": "\ud83d\udecd\ufe0f",
+    "description": "Life here feels secure and orderly, with clean streets and a lively local economy. While getting around the larger city can be a challenge, everything you need for daily life is right at your doorstep.",
+    "centroid": [
+      48.333220424671396,
+      72.84744186046512,
+      44.84229019211325,
+      42.78451466127402,
+      75.60188068756325,
+      73.85294742163802,
+      49.14054600606673
+    ],
+    "pincode_count": 1978
+  },
+  {
+    "cluster_id": 2,
+    "name": "The Urban Engine",
+    "tagline": "The city's pulse, powered by people.",
+    "emoji": "\u2699\ufe0f",
+    "description": "This neighborhood is a hub of economic energy, visibly clean and always buzzing with activity. While it's a great place to make a living, the lack of core infrastructure and safety can be a daily challenge.",
+    "centroid": [
+      48.82294879703886,
+      33.91827884022209,
+      37.050419494139426,
+      54.87447871684146,
+      73.35967921036399,
+      73.22273904996916,
+      49.15237507711291
+    ],
+    "pincode_count": 1621
+  },
+  {
+    "cluster_id": 3,
+    "name": "The Hustler's Hub",
+    "tagline": "The heart of the city's hustle.",
+    "emoji": "\ud83d\ude80",
+    "description": "Life here is a constant, vibrant buzz, with every convenience and opportunity right at your doorstep. You're in the center of the action, though it means navigating the city's grit and chaos daily.",
+    "centroid": [
+      20.247640449438194,
+      42.00076404494382,
+      80.46352808988765,
+      53.12804494382023,
+      29.099146067415738,
+      92.82458426966292,
+      36.8
+    ],
+    "pincode_count": 444
+  },
+  {
+    "cluster_id": 4,
+    "name": "The Urban Hustle",
+    "tagline": "The city's vibrant, beating heart.",
+    "emoji": "\ud83d\udcc8",
+    "description": "This neighborhood is the city's engine of growth, where vibrant markets and businesses thrive around the clock. The constant energy creates a land of opportunity, though it comes with the grit of a well-loved, bustling area.",
+    "centroid": [
+      54.70618382780685,
+      68.19214077952297,
+      74.3652239674229,
+      45.35394997091333,
+      20.452437463641797,
+      90.78347294938918,
+      63.98371146015096
+    ],
+    "pincode_count": 1719
+  },
+  {
+    "cluster_id": 5,
+    "name": "The Urban Engine",
+    "tagline": "Where the city's heart beats the loudest.",
+    "emoji": "\u2699\ufe0f",
+    "description": "This neighborhood is a non-stop engine of commerce, where ambition and enterprise thrive around the clock. Residents navigate a gritty, fast-paced life, finding opportunity amidst the challenges of a dense urban core.",
+    "centroid": [
+      12.18865298840322,
+      33.53625334522747,
+      43.623969669937566,
+      54.56337198929528,
+      61.85646743978591,
+      73.63110615521856,
+      16.867082961641415
+    ],
+    "pincode_count": 1121
+  },
+  {
+    "cluster_id": 6,
+    "name": "The Trader's Core",
+    "tagline": "Safe streets, bustling markets.",
+    "emoji": "\u2696\ufe0f",
+    "description": "Life here buzzes with the constant energy of commerce, making it a vibrant and economically active place. While the streets are safe for your daily hustle, the area struggles with cleanliness and modern amenities.",
+    "centroid": [
+      45.836492819349964,
+      70.81831443688587,
+      46.751428571428576,
+      50.67048374905518,
+      25.985170068027244,
+      73.97309145880575,
+      28.7981859410431
+    ],
+    "pincode_count": 1330
+  },
+  {
+    "cluster_id": 7,
+    "name": "The Prosperous Grove",
+    "tagline": "Where ambition breathes fresh air.",
+    "emoji": "\ud83c\udf31",
+    "description": "Life here is a whirlwind of opportunity, with great infrastructure and surprisingly fresh air to fuel your ambitions. While the area is booming economically, it's a neighborhood still finding its footing when it comes to cleanliness and safety.",
+    "centroid": [
+      88.10049222797929,
+      48.52209844559586,
+      76.90839378238343,
+      50.60235751295337,
+      37.91818652849741,
+      91.36142487046632,
+      39.95854922279793
+    ],
+    "pincode_count": 386
+  },
+  {
+    "cluster_id": 8,
+    "name": "The Hustle Hub",
+    "tagline": "The pulse of opportunity.",
+    "emoji": "\ud83d\udcc8",
+    "description": "Life here is a constant forward motion, driven by ambition and endless commercial energy. It's a place where opportunities are plentiful, but so is the daily hustle to thrive amidst the urban chaos.",
+    "centroid": [
+      48.76937718684394,
+      37.39428971308608,
+      61.203799860041975,
+      55.821532540237925,
+      51.72848845346396,
+      74.71534639608119,
+      45.318404478656404
+    ],
+    "pincode_count": 1428
+  },
+  {
+    "cluster_id": 9,
+    "name": "The Hustle Hub",
+    "tagline": "Fueled by grit and powered by dreams.",
+    "emoji": "\u26a1\ufe0f",
+    "description": "Life here moves at a fast pace, driven by the constant buzz of commerce and ambition. It's a place that values hard work over polish, where the raw energy is palpable on every street.",
+    "centroid": [
+      49.98137060414788,
+      62.43182146077548,
+      45.45927412082959,
+      38.28817403065825,
+      13.680387736699572,
+      73.91994138863842,
+      55.65734896302966
+    ],
+    "pincode_count": 2214
+  },
+  {
+    "cluster_id": 10,
+    "name": "The Urban Engine",
+    "tagline": "The pulse of progress and prosperity.",
+    "emoji": "\ud83c\udfd9\ufe0f",
+    "description": "Life here is a whirlwind of activity, with top-tier amenities and economic opportunities at every corner. While the pace is relentless and the air is thick with ambition, everything you need is always within reach.",
+    "centroid": [
+      44.590907990314776,
+      43.02857142857143,
+      80.29938256658596,
+      50.93606537530266,
+      81.05234866828084,
+      91.30156174334141,
+      35.07506053268765
+    ],
+    "pincode_count": 826
+  },
+  {
+    "cluster_id": 11,
+    "name": "The Unpolished Engine",
+    "tagline": "The raw, beating heart of the city's commerce.",
+    "emoji": "\u2699\ufe0f",
+    "description": "Life here moves at a relentless pace, driven by a powerful current of commerce and opportunity. While it's a place to get ahead, the daily grind means navigating a challenging environment with underdeveloped amenities and safety concerns.",
+    "centroid": [
+      48.32804129464285,
+      30.515167410714298,
+      38.01775111607143,
+      60.98522879464286,
+      43.42840959821428,
+      73.32074776785716,
+      23.383928571428516
+    ],
+    "pincode_count": 1791
+  },
+  {
+    "cluster_id": 12,
+    "name": "The Breathing Bazaar",
+    "tagline": "Breathe easy, build your future.",
+    "emoji": "\ud83c\udf2c\ufe0f",
+    "description": "Life here is a study in contrasts, where you can enjoy clean air and a vibrant local economy. While public amenities are still catching up, the area buzzes with potential and the spirit of growth.",
+    "centroid": [
+      83.27540832049304,
+      65.89590138674885,
+      49.97824345146379,
+      45.42975346687211,
+      17.008320493066314,
+      75.01664098613251,
+      54.73035439137134
+    ],
+    "pincode_count": 649
+  },
+  {
+    "cluster_id": 13,
+    "name": "The Unpolished Diamond",
+    "tagline": "Where raw potential meets relentless hustle.",
+    "emoji": "\ud83d\udc8e",
+    "description": "Life here is a constant hum of activity, with opportunities for growth and business around every corner. While it's still rough around the edges, the area's undeniable energy and spirit of enterprise define its character.",
+    "centroid": [
+      48.66347526612398,
+      30.79793988728867,
+      44.45653725735755,
+      32.02207889793363,
+      60.611484032561044,
+      73.74341264871636,
+      39.849718221665626
+    ],
+    "pincode_count": 1597
+  },
+  {
+    "cluster_id": 14,
+    "name": "The Unpolished Engine",
+    "tagline": "Where ambition breathes and builds its future.",
+    "emoji": "\ud83c\udfd7\ufe0f",
+    "description": "This area is a hub of economic energy and surprisingly fresh air, making it a place of great opportunity. While it's still developing its social and physical infrastructure, the forward momentum is undeniable.",
+    "centroid": [
+      83.52254844961239,
+      34.23712209302325,
+      42.944786821705435,
+      51.540058139534885,
+      59.564554263565896,
+      73.7299031007752,
+      36.3875968992248
+    ],
+    "pincode_count": 1032
+  }
+]

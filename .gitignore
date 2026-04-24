@@ -42,3 +42,13 @@ next-env.d.ts
 
 # claude code session memory
 .claude/
+
+# data pipeline — raw downloads
+data/raw/
+
+# claude code skill artifacts (local)
+.agents/
+
+# python caches
+__pycache__/
+*.pyc
