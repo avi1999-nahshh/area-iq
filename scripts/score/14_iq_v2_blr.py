@@ -301,12 +301,16 @@ def brag_label(p):
       (already gated by `air_confident`).
     - Affordability brags are restricted to locality-confident matches when
       not in the absolute top 10.
+    - Walkability is excluded entirely from brag candidates: the composite
+      mixes the 5-min-city score with commute<30min % (which is more about
+      office distance than walkability), and the user found the framing
+      confusing. We keep the score for internal use but never surface it.
     """
     candidates = []
     aqi = p["raw"].get("aqi")
     for dim_key, label in DIM_LABELS.items():
-        if dim_key in ("amenities",):
-            continue  # too generic — we surface essentials/lifestyle separately
+        if dim_key in ("amenities", "walkability"):
+            continue  # amenities → split into essentials/lifestyle; walkability hidden
         rank = p["ranks"][dim_key]
         pct = p["percentile_blr"][dim_key]
         if dim_key == "air":
@@ -351,14 +355,14 @@ def outperform_subhead(p):
     pct = p["percentile_blr"]
     aqi = p["raw"].get("aqi")
     label_map = {
-        "walkability": "walkability",
         "connectivity": "transit access",
         "lifestyle": "lifestyle density",
         "essentials": "essentials coverage",
         "air": "air quality",
     }
     candidates = []
-    for k in ("walkability", "connectivity", "lifestyle", "essentials", "air"):
+    # Walkability deliberately omitted — same hide-from-surface rule as brag_label.
+    for k in ("connectivity", "lifestyle", "essentials", "air"):
         if k == "air":
             # Same honesty rule as brag_label: don't claim air when absolute is bad.
             if aqi is not None and aqi > 100:

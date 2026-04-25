@@ -68,7 +68,7 @@ export function FlippableCard({ d, name, monoClass }: Props) {
     { label: "Lifestyle", value: d.scores.lifestyle },
     { label: "Connectivity", value: d.scores.connectivity },
     { label: "Density", value: d.scores.density },
-    { label: "Walkability", value: d.scores.walkability },
+    { label: "Affordability", value: d.scores.affordability },
   ];
 
   return (

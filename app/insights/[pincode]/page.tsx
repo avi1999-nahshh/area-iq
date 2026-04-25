@@ -131,23 +131,13 @@ function Bragging({ d }: { d: IQv2 }) {
         </div>
       </section>
 
-      {/* Bento — borderless cards with mono numerals */}
+      {/* Bento — borderless cards with mono numerals.
+          3 cards now: Air leads (loud, 2-col), Transit narrow + dark, Lifestyle wide horizontal. */}
       <section className="mt-16 sm:mt-20">
         <div
           className="card-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
           style={{ ["--stagger" as string]: "80ms" }}
         >
-          <FeatureCard
-            kicker="Walkability"
-            title={walkabilityTitle(d)}
-            metric={`${Math.round(d.scores.walkability)}`}
-            metricSuffix="/100"
-            body={`${fiveMinSentence(d.raw.five_min_city)} ${Math.round(d.raw.commute_under_30_pct)}% of residents reach work in under 30 minutes.`}
-            hero
-            className="lg:col-span-2"
-            staggerIdx={0}
-            monoClass={mono.className}
-          />
           <FeatureCard
             kicker="Air Quality"
             title={airTitle(d)}
@@ -156,7 +146,9 @@ function Bragging({ d }: { d: IQv2 }) {
             body={airBlurb(d)}
             warn={d.raw.aqi != null && d.raw.aqi > 150}
             celebrate={d.raw.aqi != null && d.raw.aqi <= 100}
-            staggerIdx={1}
+            hero
+            className="lg:col-span-2"
+            staggerIdx={0}
             monoClass={mono.className}
           />
           <FeatureCard
@@ -166,7 +158,7 @@ function Bragging({ d }: { d: IQv2 }) {
             metricSuffix={d.raw.metro_km != null ? "km" : ""}
             body={metroBlurb(d)}
             dark
-            staggerIdx={2}
+            staggerIdx={1}
             monoClass={mono.className}
           />
           <FeatureCard
@@ -176,8 +168,8 @@ function Bragging({ d }: { d: IQv2 }) {
             metricSuffix="POIs"
             body={`${d.counts.cafes} cafés · ${d.counts.restaurants} restaurants · ${d.counts.parks} parks within the pincode.`}
             horizontal
-            className="lg:col-span-2"
-            staggerIdx={3}
+            className="lg:col-span-3"
+            staggerIdx={2}
             monoClass={mono.className}
           />
         </div>
@@ -188,7 +180,7 @@ function Bragging({ d }: { d: IQv2 }) {
         <div className="flex items-end justify-between gap-4 mb-5 sm:mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Deep Dive</h2>
           <p className={`${mono.className} text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
-            All seven scores
+            All six scores
           </p>
         </div>
         <div
@@ -208,8 +200,6 @@ function Bragging({ d }: { d: IQv2 }) {
               ? `2BHK ~₹${Math.round(d.raw.rent_2bhk / 1000)}k/mo (${d.raw.rent_match === "locality" ? "locality match" : "city median"}).`
               : "Rent data not available — peer-relative score only."}
             soft={!d.scores.affordability_confident} />
-          <DimRow monoClass={mono.className} label="Walkability" value={d.scores.walkability} pct={d.percentile_blr.walkability}
-            note={`${fiveMinSentence(d.raw.five_min_city)} ${Math.round(d.raw.commute_under_30_pct)}% commute under 30 minutes.`} />
         </div>
 
         <p className={`${mono.className} mt-4 text-[11px] sm:text-xs tracking-[0.12em] uppercase text-slate-400 leading-relaxed`}>
@@ -421,19 +411,6 @@ function labelOnly(brag: string): string {
   const m1 = brag.match(/Bangalore's (#\d+ .+)/); if (m1) return `The ${m1[1]}`;
   const m2 = brag.match(/(Top \d+% .+) in Bangalore/); if (m2) return m2[1];
   return brag;
-}
-function fiveMinSentence(s: number): string {
-  if (s >= 9) return "Almost every daily errand sits within a 5-minute walk.";
-  if (s >= 7) return "Most daily errands are within a 5-minute walk.";
-  if (s >= 5) return "Many daily errands are within a 5-minute walk; a few need a short drive.";
-  if (s >= 3) return "Some essentials are walkable; most daily errands require a vehicle.";
-  return "Most daily errands need a car or autorickshaw.";
-}
-function walkabilityTitle(d: IQv2): string {
-  if (d.scores.walkability >= 85) return "Walker's Paradise";
-  if (d.scores.walkability >= 70) return "Very Walkable";
-  if (d.scores.walkability >= 55) return "Somewhat Walkable";
-  return "Car-Dependent";
 }
 function transitTitle(d: IQv2): string {
   const km = d.raw.metro_km ?? 99;

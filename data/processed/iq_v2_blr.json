@@ -326,8 +326,8 @@
       "affordability": 77.5,
       "walkability": 82.2
     },
-    "brag_label": "Top 25% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 82% of Bangalore on walkability."
+    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "subhead": "Your neighbourhood outperforms 77% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560102",
@@ -459,7 +459,7 @@
       "walkability": 38.8
     },
     "brag_label": "Bangalore's #3 Affordable Living",
-    "subhead": "Your neighbourhood outperforms 39% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 33% of Bangalore on transit access."
   },
   {
     "pincode": "560001",
@@ -525,7 +525,7 @@
       "walkability": 100.0
     },
     "brag_label": "Bangalore's #1 Connectivity Hub",
-    "subhead": "Your neighbourhood outperforms 100% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 100% of Bangalore on transit access."
   },
   {
     "pincode": "560045",
@@ -656,8 +656,8 @@
       "affordability": 70.5,
       "walkability": 59.7
     },
-    "brag_label": "Walkability · #53 of 129",
-    "subhead": "Your neighbourhood outperforms 60% of Bangalore on walkability."
+    "brag_label": "Lifestyle Density · #59 of 129",
+    "subhead": "Your neighbourhood outperforms 55% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560024",
@@ -722,8 +722,8 @@
       "affordability": 69.8,
       "walkability": 94.6
     },
-    "brag_label": "Top 10% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 95% of Bangalore on walkability."
+    "brag_label": "Lifestyle Density · #50 of 129",
+    "subhead": "Your neighbourhood outperforms 62% of Bangalore on lifestyle density."
   },
   {
     "pincode": "562149",
@@ -788,8 +788,8 @@
       "affordability": 69.0,
       "walkability": 81.4
     },
-    "brag_label": "Top 25% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 81% of Bangalore on walkability."
+    "brag_label": "Lifestyle Density · #52 of 129",
+    "subhead": "Your neighbourhood outperforms 60% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560016",
@@ -920,8 +920,8 @@
       "affordability": 5.4,
       "walkability": 99.2
     },
-    "brag_label": "Bangalore's #2 Walkability",
-    "subhead": "Your neighbourhood outperforms 99% of Bangalore on walkability."
+    "brag_label": "Bangalore's #3 Connectivity Hub",
+    "subhead": "Your neighbourhood outperforms 98% of Bangalore on transit access."
   },
   {
     "pincode": "560060",
@@ -1316,8 +1316,8 @@
       "affordability": 4.7,
       "walkability": 91.5
     },
-    "brag_label": "Top 10% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 92% of Bangalore on walkability."
+    "brag_label": "Top 25% Essentials Coverage in Bangalore",
+    "subhead": "Your neighbourhood outperforms 88% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560041",
@@ -1382,8 +1382,8 @@
       "affordability": 10.9,
       "walkability": 98.4
     },
-    "brag_label": "Bangalore's #3 Walkability",
-    "subhead": "Your neighbourhood outperforms 98% of Bangalore on walkability."
+    "brag_label": "Top 25% Lifestyle Density in Bangalore",
+    "subhead": "Your neighbourhood outperforms 81% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560030",
@@ -2043,7 +2043,7 @@
       "walkability": 78.3
     },
     "brag_label": "Top 5% Density & Activity in Bangalore",
-    "subhead": "Your neighbourhood outperforms 78% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 57% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560061",
@@ -2109,7 +2109,7 @@
       "walkability": 77.5
     },
     "brag_label": "Top 10% Affordable Living in Bangalore",
-    "subhead": "Your neighbourhood outperforms 78% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 67% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560059",
@@ -2241,7 +2241,7 @@
       "walkability": 76.7
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
-    "subhead": "Your neighbourhood outperforms 77% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 68% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560058",
@@ -3165,7 +3165,7 @@
       "walkability": 89.1
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
-    "subhead": "Your neighbourhood outperforms 89% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 78% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560003",
@@ -3230,8 +3230,8 @@
       "affordability": 3.1,
       "walkability": 97.7
     },
-    "brag_label": "Top 5% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 98% of Bangalore on walkability."
+    "brag_label": "Top 5% Essentials Coverage in Bangalore",
+    "subhead": "Your neighbourhood outperforms 96% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560046",
@@ -3693,7 +3693,7 @@
       "walkability": 32.6
     },
     "brag_label": "Top 25% Affordable Living in Bangalore",
-    "subhead": "Your neighbourhood outperforms 33% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 21% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560013",
@@ -3825,7 +3825,7 @@
       "walkability": 72.9
     },
     "brag_label": "Density & Activity · #34 of 129",
-    "subhead": "Your neighbourhood outperforms 73% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 71% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560037",
@@ -4880,8 +4880,8 @@
       "affordability": 16.3,
       "walkability": 71.3
     },
-    "brag_label": "Walkability · #38 of 129",
-    "subhead": "Your neighbourhood outperforms 71% of Bangalore on walkability."
+    "brag_label": "Density & Activity · #43 of 129",
+    "subhead": "Your neighbourhood outperforms 64% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560116",
@@ -5013,7 +5013,7 @@
       "walkability": 20.2
     },
     "brag_label": "Density & Activity · #53 of 129",
-    "subhead": "Your neighbourhood outperforms 20% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 19% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560109",
@@ -5144,8 +5144,8 @@
       "affordability": 41.1,
       "walkability": 10.1
     },
-    "brag_label": "Walkability · #117 of 129",
-    "subhead": "Your neighbourhood outperforms 10% of Bangalore on walkability."
+    "brag_label": "Essentials Coverage · #119 of 129",
+    "subhead": "Your neighbourhood outperforms 8% of Bangalore on essentials coverage."
   },
   {
     "pincode": "561205",
@@ -5541,7 +5541,7 @@
       "walkability": 47.3
     },
     "brag_label": "Top 25% Affordable Living in Bangalore",
-    "subhead": "Your neighbourhood outperforms 47% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 41% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560082",
@@ -6134,8 +6134,8 @@
       "affordability": 37.2,
       "walkability": 87.6
     },
-    "brag_label": "Top 25% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 88% of Bangalore on walkability."
+    "brag_label": "Essentials Coverage · #35 of 129",
+    "subhead": "Your neighbourhood outperforms 74% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560070",
@@ -6530,8 +6530,8 @@
       "affordability": 34.9,
       "walkability": 86.8
     },
-    "brag_label": "Top 25% Walkability in Bangalore",
-    "subhead": "Your neighbourhood outperforms 87% of Bangalore on walkability."
+    "brag_label": "Top 25% Essentials Coverage in Bangalore",
+    "subhead": "Your neighbourhood outperforms 80% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560098",
@@ -7719,7 +7719,7 @@
       "walkability": 14.0
     },
     "brag_label": "Top 25% Affordable Living in Bangalore",
-    "subhead": "Your neighbourhood outperforms 14% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 14% of Bangalore on essentials coverage."
   },
   {
     "pincode": "562111",
@@ -8049,7 +8049,7 @@
       "walkability": 19.4
     },
     "brag_label": "Top 5% Affordable Living in Bangalore",
-    "subhead": "Your neighbourhood outperforms 19% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 18% of Bangalore on essentials coverage."
   },
   {
     "pincode": "562122",
@@ -8115,7 +8115,7 @@
       "walkability": 2.3
     },
     "brag_label": "Density & Activity · #123 of 129",
-    "subhead": "Your neighbourhood outperforms 2% of Bangalore on walkability."
+    "subhead": "Your neighbourhood outperforms 2% of Bangalore on essentials coverage."
   },
   {
     "pincode": "562164",
@@ -8312,8 +8312,8 @@
       "affordability": 21.7,
       "walkability": 41.1
     },
-    "brag_label": "Walkability · #77 of 129",
-    "subhead": "Your neighbourhood outperforms 41% of Bangalore on walkability."
+    "brag_label": "Essentials Coverage · #83 of 129",
+    "subhead": "Your neighbourhood outperforms 36% of Bangalore on essentials coverage."
   },
   {
     "pincode": "562129",
