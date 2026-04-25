@@ -8,7 +8,7 @@ Last updated: 2026-04-25.
 
 | Variant | URL | State |
 |---|---|---|
-| Live | `https://area-iq-one.vercel.app/compare` | Live with full redesign — asymmetric hero with light hero map, slug-canonical URL, verdict card with `<ShareButton>`, three-card delta bento, six-dim Tale of the Tape, IDW-smoothed air + rent. TopNav `Compare` tab is active. |
+| Live | `https://area-iq-one.vercel.app/compare` · `/compare/{slug-a}-vs-{slug-b}` | Live as of 2026-04-25 deploy. Full redesign — asymmetric hero with light hero map, slug-canonical URL, verdict card with `<ShareButton>`, three-card delta bento, six-dim Tale of the Tape, IDW-smoothed air + rent. TopNav `Compare` tab active. Legacy `?a=&b=` URLs preserved via server-side 307 to slug. |
 | Lab preview | — | Mockup tree at `/mockup/compare` was deleted on merge to live. |
 
 ## Components shipped
@@ -70,7 +70,8 @@ The 18 remaining `city` pincodes are correctly outside the dense locality grid; 
 
 ## Recent updates
 
-- 2026-04-25 — Mockup at `/mockup/compare` lifted into live `/compare`. Old slate-amber implementation (v1 dim engine, query-param URL) replaced. TopNav `Compare` tab flipped to `ready=true`. `<ShareButton>` wired into the verdict card; legacy `?a=&b=` URLs preserved via 307.
+- 2026-04-25 — **Production deploy landed.** Commits `a092ea9` (compare ship) + `82c6ad1` (Suspense fix on `/proximity` to unblock the prerender). Pushed via `vercel --prod` after the GitHub→Vercel webhook was slow to fire. Live URL alias `area-iq-one.vercel.app/compare` confirmed serving the new build; all three URL contracts (root redirect, slug, legacy query 307) verified against prod.
+- 2026-04-25 — Mockup at `/mockup/compare` lifted into live `/compare`. Old slate-amber implementation (v1 dim engine, query-param URL) replaced. TopNav `Compare` tab flipped to `ready=true`. `<ShareButton>` wired into the verdict card; legacy `?a=&b=` URLs preserved via 307. Plausible custom events wired: `Compare Viewed`, `Compare Picker Changed`, `Share Clicked` (via the shared `<ShareButton>`).
 - 2026-04-25 — IDW rent smoothing added to score pipeline; rent coverage 45% → 86%. UI surfaces `(city median)` tag for fallback pincodes.
 - 2026-04-25 — IDW air-quality smoothing added; Indiranagar AQI corrected from 38 → 113, Koramangala from 185 → 160 — both now in BLR-realistic moderate-to-unhealthy range.
 - 2026-04-25 — Full design refactor: asymmetric hero with light single-map plate, single dramatic verdict card, three-card delta bento, richer Tale of the Tape rows, shared `<BragChip>` extracted, card-stagger motion. Mono kicker pass.

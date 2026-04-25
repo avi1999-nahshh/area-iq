@@ -23,7 +23,7 @@ Last updated: 2026-04-26.
 
 | Project | URL | State |
 |---|---|---|
-| area-iq | https://area-iq-one.vercel.app | Live, latest deploy 2026-04-25 |
+| area-iq | https://area-iq-one.vercel.app | Live, latest deploy 2026-04-25 (commits `a092ea9` compare ship + `82c6ad1` Suspense fix). Pushed via `vercel --prod` after the GitHub webhook was slow. |
 
 ## Open follow-ups
 
@@ -35,6 +35,7 @@ Cross-cutting items that don't belong inside a single feature's status. Move the
 
 ## Recent rollouts
 
+- 2026-04-25 — `app/proximity/page.tsx` wrapped in `<Suspense>` to unblock the Next.js 16 static prerender (`useSearchParams()` was firing during prerender). Commit `82c6ad1`. Same prod deploy as Story 1.
 - 2026-04-25 — Proximity v1.1: removed user-facing presets, geocode multi-pass + alias dictionary (BIAL/ORR/ECity etc), tri-mode dropdown, select-all-on-focus. **Address autocomplete dropdown bug open** — geocode action returns results server-side but the typed-search results don't render in the browser. Session closed mid-debug; first reproduction step + suspect list in `02-proximity/status.md`. Default Manyata office still loads and the ranked-card flow still works, so the page isn't broken — only typed-address autocomplete is silent.
 - 2026-04-25 — **Story 1 (Compare) shipped end-to-end redesign.** `/compare` is now the canonical route with slug-form URLs (`/compare/indiranagar-vs-koramangala`); legacy `?a=&b=` URLs 307 to slug. New page anatomy: asymmetric hero with light single-map plate (CARTO Positron, both pincodes pinned + dashed amber connector), two-bar autocomplete picker row, dramatic verdict card with `<ShareButton>`, three-card delta bento (Lifestyle / Rent / Air), six-dim "Tale of the Tape". Engine fixes: IDW air-quality smoothing across K=3 nearest CPCB stations, IDW rent smoothing across K=3 nearest locality-confident pincodes (rent coverage 45% → 86%), confidence-aware `(city median)` UI tags. Plausible analytics wired: `Compare Viewed`, `Compare Picker Changed`, `Share Clicked`. TopNav `Compare` flipped to `ready=true`.
 - 2026-04-25 — `/methodology` page documented Proximity. New section "How proximity search works" (3-step user-friendly explainer + honest limits). Sources table picks up OpenStreetMap routing + Nominatim entries. Stale "starts with straight-line" bullet in Limitations corrected.
