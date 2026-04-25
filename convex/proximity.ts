@@ -183,10 +183,13 @@ export const geocode = action({
     const q = query.trim();
     if (q.length < 3) return [];
 
-    // viewbox = lng_min,lat_max,lng_max,lat_min — a generous Bangalore box
+    // viewbox = lng_min,lat_max,lng_max,lat_min — widened to catch outer ring,
+    // airport, Whitefield, Hoskote edges, Electronic City extension. Soft
+    // preference (bounded=0) so a slightly mistyped address still resolves;
+    // we filter to a BLR-only box server-side below.
     const url =
       `${NOMINATIM_BASE}/search?q=${encodeURIComponent(q)}` +
-      `&format=json&countrycodes=in&viewbox=77.40,13.20,77.85,12.80&bounded=1&limit=5`;
+      `&format=json&countrycodes=in&viewbox=77.30,13.30,77.95,12.70&bounded=0&limit=10`;
 
     const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
     if (!resp.ok) return [];
@@ -197,12 +200,20 @@ export const geocode = action({
       place_id: number;
     }> = await resp.json();
 
-    return data.map((r) => ({
-      label: r.display_name,
-      lat: parseFloat(r.lat),
-      lng: parseFloat(r.lon),
-      placeId: String(r.place_id),
-    }));
+    // Hard BLR filter: drop anything that crept in from outside the box
+    // (Nominatim with bounded=0 returns viewbox-preferring but not viewbox-only).
+    return data
+      .map((r) => ({
+        label: r.display_name,
+        lat: parseFloat(r.lat),
+        lng: parseFloat(r.lon),
+        placeId: String(r.place_id),
+      }))
+      .filter(
+        (r) =>
+          r.lat >= 12.70 && r.lat <= 13.30 &&
+          r.lng >= 77.30 && r.lng <= 77.95
+      );
   },
 });
 
