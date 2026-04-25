@@ -3,11 +3,15 @@
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAction } from "convex/react";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { api } from "@/convex/_generated/api";
 import type { IQv2 } from "@/app/insights/lib";
 import { displayName } from "@/app/insights/blr-aliases";
+import { ShareButton } from "@/app/_components/share-button";
+import { proximityShareText } from "@/app/_lib/share-copy";
+import { track } from "@/app/_lib/track";
 import {
   DIMS,
   MODE_LABEL,
@@ -74,6 +78,75 @@ export function ProximityClient({ pincodes }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<GeocodeResult[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
+
+  // ─── URL state persistence ─────────────────────────────────
+  // Read once on mount so a shared link (e.g. /proximity?t=35&mode=transit&p=air,lifestyle)
+  // re-creates the search. Then on form changes, replace the URL (no history
+  // entry) so a copy-link captures the current state.
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const t = searchParams.get("t");
+    const m = searchParams.get("mode");
+    const p = searchParams.get("p");
+    const q = searchParams.get("q");
+    const lat = searchParams.get("lat");
+    const lng = searchParams.get("lng");
+
+    if (t) {
+      const num = Number(t);
+      if (MIN_STOPS.includes(num)) setMaxMinutes(num);
+    }
+    if (m === "transit" || m === "drive" || m === "walk") {
+      setMode(m);
+    }
+    if (p) {
+      const valid = new Set(DIMS.map((d) => d.key));
+      const next = new Set(
+        p.split(",").filter((k): k is DimKey => valid.has(k as DimKey)),
+      );
+      if (next.size > 0) setPriorities(next);
+    }
+    // If the URL carries a custom geocoded location, restore it.
+    if (q && lat && lng) {
+      const latN = Number(lat);
+      const lngN = Number(lng);
+      if (Number.isFinite(latN) && Number.isFinite(lngN)) {
+        setOffice({ id: `url-${q}`, label: q, lat: latN, lng: lngN });
+        setAddressText(q);
+      }
+    } else if (q) {
+      // try matching a preset by label
+      const preset = OFFICE_PRESETS.find(
+        (o) => o.label.toLowerCase() === q.toLowerCase(),
+      );
+      if (preset) {
+        setOffice(preset);
+        setAddressText(preset.label);
+      }
+    }
+    // Run once on mount; we don't want re-applying on subsequent renders.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Write to URL on key form changes. router.replace is cheap and doesn't
+  // pollute history; coalesce via a microtask so multiple updates batch.
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (office.label) params.set("q", office.label);
+    // Persist lat/lng for non-preset offices so the destination is restorable
+    if (!OFFICE_PRESETS.some((p) => p.id === office.id)) {
+      params.set("lat", office.lat.toFixed(6));
+      params.set("lng", office.lng.toFixed(6));
+    }
+    params.set("t", String(maxMinutes));
+    params.set("mode", mode);
+    if (priorities.size > 0) {
+      params.set("p", Array.from(priorities).join(","));
+    }
+    router.replace(`/proximity?${params.toString()}`, { scroll: false });
+  }, [office, maxMinutes, mode, priorities, router]);
 
   useEffect(() => {
     const q = searchQuery.trim();
@@ -153,6 +226,11 @@ export function ProximityClient({ pincodes }: Props) {
   }
 
   function pickPreset(p: OfficePreset) {
+    track("Search Submitted", {
+      surface: "proximity",
+      source: "preset",
+      preset_id: p.id,
+    });
     setOffice(p);
     setAddressText(p.label);
     setSearchQuery("");
@@ -161,6 +239,11 @@ export function ProximityClient({ pincodes }: Props) {
   }
 
   function pickGeocoded(r: GeocodeResult) {
+    track("Search Submitted", {
+      surface: "proximity",
+      source: "geocode",
+      query_length: searchQuery.trim().length,
+    });
     const next: OfficePreset = {
       id: `nominatim-${r.placeId}`,
       label: r.label.split(",").slice(0, 2).join(",").trim(), // first two address parts, readable
@@ -176,17 +259,38 @@ export function ProximityClient({ pincodes }: Props) {
 
   return (
     <div className={`${inter.className} flex flex-col gap-6`}>
-      <header className="flex flex-col gap-1.5">
-        <p className={`${mono.className} text-[11px] font-semibold tracking-[0.2em] uppercase text-amber-700`}>
-          Proximity · Bangalore
-        </p>
-        <h1 className="text-3xl sm:text-[2.25rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-          Where should you live, given where you work?
-        </h1>
-        <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
-          Tell us where you work, how far you&rsquo;ll commute, and what matters most.
-          We rank Bangalore&rsquo;s urban pincodes by what fits — not by what&rsquo;s marketable.
-        </p>
+      <header className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div className="flex flex-col gap-1.5">
+          <p className={`${mono.className} text-[11px] font-semibold tracking-[0.2em] uppercase text-amber-700`}>
+            Proximity · Bangalore
+          </p>
+          <h1 className="text-3xl sm:text-[2.25rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
+            Where should you live, given where you work?
+          </h1>
+          <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
+            Tell us where you work, how far you&rsquo;ll commute, and what matters most.
+            We rank Bangalore&rsquo;s urban pincodes by what fits — not by what&rsquo;s marketable.
+          </p>
+        </div>
+        <div className="shrink-0">
+          <ShareButton
+            surface="proximity"
+            size="sm"
+            variant="ghost"
+            label="Share search"
+            share={proximityShareText({
+              officeLabel: office.label,
+              maxMinutes,
+              mode: MODE_LABEL[mode],
+              query: office.label,
+            })}
+            trackProps={{
+              max_minutes: maxMinutes,
+              mode,
+              priorities: Array.from(priorities).join(",") || "none",
+            }}
+          />
+        </div>
       </header>
 
       {/* Form panel */}
@@ -213,9 +317,15 @@ export function ProximityClient({ pincodes }: Props) {
                   setSearchQuery(e.target.value);
                   setShowPresets(true);
                 }}
-                onFocus={() => setShowPresets(true)}
+                onFocus={(e) => {
+                  // Select-all on focus so the user can type to replace the current
+                  // office without manually clearing it first. Without this, the
+                  // field looks "filled" and the search affordance is hidden.
+                  e.target.select();
+                  setShowPresets(true);
+                }}
                 onBlur={() => setTimeout(() => setShowPresets(false), 200)}
-                placeholder="Search address or pick a tech park"
+                placeholder="Type any Bangalore address — MG Road, Indiranagar, your home…"
                 aria-haspopup="listbox"
                 aria-expanded={showPresets}
                 className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-[15px] text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"
@@ -234,7 +344,7 @@ export function ProximityClient({ pincodes }: Props) {
               {showPresets && (
                 <div
                   role="listbox"
-                  className="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg overflow-hidden max-h-80 overflow-y-auto"
+                  className="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg overflow-hidden max-h-[28rem] overflow-y-auto"
                   style={{ boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 18px 40px -16px rgba(15,23,42,0.18)" }}
                 >
                   {searchQuery.trim().length >= 3 && (
