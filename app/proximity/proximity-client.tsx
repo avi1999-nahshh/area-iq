@@ -151,6 +151,7 @@ export function ProximityClient({ pincodes }: Props) {
 
   useEffect(() => {
     const q = searchQuery.trim();
+    console.log("[proximity-debug] searchQuery changed:", JSON.stringify(searchQuery), "trimmed length:", q.length);
     if (q.length < 3) {
       setSearchResults([]);
       setSearchLoading(false);
@@ -158,10 +159,14 @@ export function ProximityClient({ pincodes }: Props) {
     }
     setSearchLoading(true);
     const t = setTimeout(() => {
+      console.log("[proximity-debug] firing geocode action with query:", q);
       geocode({ query: q })
-        .then((results) => setSearchResults(results))
+        .then((results) => {
+          console.log("[proximity-debug] geocode returned", results.length, "results", results);
+          setSearchResults(results);
+        })
         .catch((err) => {
-          console.error("[proximity] geocode failed:", err);
+          console.error("[proximity-debug] geocode failed:", err);
           setSearchResults([]);
         })
         .finally(() => setSearchLoading(false));
