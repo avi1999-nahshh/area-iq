@@ -15,7 +15,6 @@ import { track } from "@/app/_lib/track";
 import {
   DIMS,
   MODE_LABEL,
-  OFFICE_PRESETS,
   rankMatches,
   rankFromMinutes,
   gradeFromScore,
@@ -44,14 +43,24 @@ const RETURN_OPTIONS = ["5pm", "6pm", "7pm", "8pm", "9pm"] as const;
 type DepartTime = (typeof DEPART_OPTIONS)[number];
 type ReturnTime = (typeof RETURN_OPTIONS)[number];
 
+// First-paint default so the page lands on results, not an empty state. The
+// user is free to type any other Bangalore address to replace it. Not exposed
+// as a "preset" anywhere in the UI.
+const DEFAULT_OFFICE: OfficePreset = {
+  id: "default",
+  label: "Manyata Tech Park",
+  lat: 13.0454,
+  lng: 77.6206,
+};
+
 interface Props {
   pincodes: IQv2[];
 }
 
 export function ProximityClient({ pincodes }: Props) {
-  const [office, setOffice] = useState<OfficePreset>(OFFICE_PRESETS[0]);
-  const [addressText, setAddressText] = useState<string>(OFFICE_PRESETS[0].label);
-  const [showPresets, setShowPresets] = useState(false);
+  const [office, setOffice] = useState<OfficePreset>(DEFAULT_OFFICE);
+  const [addressText, setAddressText] = useState<string>(DEFAULT_OFFICE.label);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [maxMinutes, setMaxMinutes] = useState<number>(35);
   const [mode, setMode] = useState<Mode>("transit");
   const [priorities, setPriorities] = useState<Set<DimKey>>(new Set());
@@ -108,22 +117,15 @@ export function ProximityClient({ pincodes }: Props) {
       );
       if (next.size > 0) setPriorities(next);
     }
-    // If the URL carries a custom geocoded location, restore it.
+    // Restore office only if the URL carries both label + coords. Without
+    // coords there's no presets table to look up against — typed-in label
+    // alone can't be reverse-geocoded here.
     if (q && lat && lng) {
       const latN = Number(lat);
       const lngN = Number(lng);
       if (Number.isFinite(latN) && Number.isFinite(lngN)) {
         setOffice({ id: `url-${q}`, label: q, lat: latN, lng: lngN });
         setAddressText(q);
-      }
-    } else if (q) {
-      // try matching a preset by label
-      const preset = OFFICE_PRESETS.find(
-        (o) => o.label.toLowerCase() === q.toLowerCase(),
-      );
-      if (preset) {
-        setOffice(preset);
-        setAddressText(preset.label);
       }
     }
     // Run once on mount; we don't want re-applying on subsequent renders.
@@ -135,11 +137,10 @@ export function ProximityClient({ pincodes }: Props) {
   useEffect(() => {
     const params = new URLSearchParams();
     if (office.label) params.set("q", office.label);
-    // Persist lat/lng for non-preset offices so the destination is restorable
-    if (!OFFICE_PRESETS.some((p) => p.id === office.id)) {
-      params.set("lat", office.lat.toFixed(6));
-      params.set("lng", office.lng.toFixed(6));
-    }
+    // Always persist coords — every office is a custom one now (no presets table
+    // to fall back on for label → coords reverse lookup).
+    params.set("lat", office.lat.toFixed(6));
+    params.set("lng", office.lng.toFixed(6));
     params.set("t", String(maxMinutes));
     params.set("mode", mode);
     if (priorities.size > 0) {
@@ -225,19 +226,6 @@ export function ProximityClient({ pincodes }: Props) {
     });
   }
 
-  function pickPreset(p: OfficePreset) {
-    track("Search Submitted", {
-      surface: "proximity",
-      source: "preset",
-      preset_id: p.id,
-    });
-    setOffice(p);
-    setAddressText(p.label);
-    setSearchQuery("");
-    setSearchResults([]);
-    setShowPresets(false);
-  }
-
   function pickGeocoded(r: GeocodeResult) {
     track("Search Submitted", {
       surface: "proximity",
@@ -254,7 +242,7 @@ export function ProximityClient({ pincodes }: Props) {
     setAddressText(next.label);
     setSearchQuery("");
     setSearchResults([]);
-    setShowPresets(false);
+    setDropdownOpen(false);
   }
 
   return (
@@ -315,19 +303,19 @@ export function ProximityClient({ pincodes }: Props) {
                 value={searchQuery !== "" ? searchQuery : addressText}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
-                  setShowPresets(true);
+                  setDropdownOpen(true);
                 }}
                 onFocus={(e) => {
                   // Select-all on focus so the user can type to replace the current
                   // office without manually clearing it first. Without this, the
                   // field looks "filled" and the search affordance is hidden.
                   e.target.select();
-                  setShowPresets(true);
+                  setDropdownOpen(true);
                 }}
-                onBlur={() => setTimeout(() => setShowPresets(false), 200)}
+                onBlur={() => setTimeout(() => setDropdownOpen(false), 200)}
                 placeholder="Type any Bangalore address — MG Road, Indiranagar, your home…"
                 aria-haspopup="listbox"
-                aria-expanded={showPresets}
+                aria-expanded={dropdownOpen}
                 className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-200 rounded-lg text-[15px] text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" aria-hidden>
@@ -341,68 +329,27 @@ export function ProximityClient({ pincodes }: Props) {
                   </svg>
                 )}
               </span>
-              {showPresets && (
+              {/* Dropdown opens only when actively searching (3+ chars) or in
+                  the brief 1-2 char hint window. Empty input = no dropdown,
+                  no list to compete with the field. */}
+              {dropdownOpen && searchQuery.trim().length > 0 && (
                 <div
                   role="listbox"
                   className="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg overflow-hidden max-h-[28rem] overflow-y-auto"
                   style={{ boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 18px 40px -16px rgba(15,23,42,0.18)" }}
                 >
-                  {/* Mode A — empty input: show presets only (no search noise). */}
-                  {searchQuery.trim().length === 0 && (
-                    <div>
-                      <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
-                        Quick picks · Bangalore tech parks
-                      </div>
-                      {OFFICE_PRESETS.map((p) => (
-                        <button
-                          key={p.id}
-                          type="button"
-                          role="option"
-                          aria-selected={office.id === p.id}
-                          onMouseDown={(e) => e.preventDefault()}
-                          onClick={() => pickPreset(p)}
-                          className={`w-full text-left px-3 py-2 text-sm hover:bg-amber-50 flex items-center gap-2 transition ${
-                            office.id === p.id ? "bg-amber-50/60" : ""
-                          }`}
-                        >
-                          <span
-                            className={`w-2 h-2 rounded-full shrink-0 ${
-                              office.id === p.id ? "bg-amber-500" : "bg-slate-200"
-                            }`}
-                            aria-hidden
-                          />
-                          <span className="text-slate-800">{p.label}</span>
-                        </button>
-                      ))}
-                      <div className={`${mono.className} px-3 py-2 text-[10px] text-slate-400 border-t border-slate-100`}>
-                        or start typing — any Bangalore address works
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Mode B — typing 1-2 chars: hint, no API call yet. */}
-                  {searchQuery.trim().length > 0 && searchQuery.trim().length < 3 && (
+                  {searchQuery.trim().length < 3 ? (
                     <div className={`${mono.className} px-3 py-3 text-[11px] text-slate-500`}>
                       Keep typing… <span className="text-slate-400">(at least 3 characters)</span>
                     </div>
-                  )}
-
-                  {/* Mode C — typing 3+ chars: search results only, no preset clutter. */}
-                  {searchQuery.trim().length >= 3 && (
+                  ) : (
                     <div>
-                      <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400 flex items-center justify-between`}>
-                        <span>{searchLoading ? "Searching…" : searchResults.length > 0 ? `${searchResults.length} matches in Bangalore` : "No matches"}</span>
-                        <button
-                          type="button"
-                          onMouseDown={(e) => e.preventDefault()}
-                          onClick={() => {
-                            setSearchQuery("");
-                            setSearchResults([]);
-                          }}
-                          className="text-amber-700 hover:text-amber-900 normal-case tracking-normal text-[10px] font-semibold"
-                        >
-                          ← back to presets
-                        </button>
+                      <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
+                        {searchLoading
+                          ? "Searching…"
+                          : searchResults.length > 0
+                            ? `${searchResults.length} matches in Bangalore`
+                            : "No matches"}
                       </div>
                       {searchResults.map((r) => (
                         <button
@@ -423,9 +370,9 @@ export function ProximityClient({ pincodes }: Props) {
                       ))}
                       {!searchLoading && searchResults.length === 0 && (
                         <div className="px-3 py-3 text-[12px] text-slate-500 leading-relaxed">
-                          Try a road name (&ldquo;Sarjapur Road&rdquo;, &ldquo;100 Feet Road&rdquo;) or
-                          a locality (&ldquo;Indiranagar&rdquo;, &ldquo;Bellandur&rdquo;). OSM data is
-                          thin for individual buildings.
+                          Try a road name (&ldquo;Sarjapur Road&rdquo;, &ldquo;100 Feet Road&rdquo;)
+                          or a locality (&ldquo;Indiranagar&rdquo;, &ldquo;Bellandur&rdquo;). OSM
+                          data is thin for individual buildings.
                         </div>
                       )}
                     </div>
@@ -434,7 +381,7 @@ export function ProximityClient({ pincodes }: Props) {
               )}
             </div>
             <p className="text-[11px] text-slate-400">
-              Type any Bangalore address, or pick a preset.
+              Type any Bangalore address — road, locality, or landmark.
             </p>
           </div>
 
