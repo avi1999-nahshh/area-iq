@@ -1101,7 +1101,7 @@ export function HeadToHead({ a, b }: Props) {
                     )}
                   </button>
                   <a
-                    href={`/area/${a.pincode.pincode}`}
+                    href={`/insights/${a.pincode.pincode}`}
                     className={mono.className}
                     style={{
                       display: "inline-flex",
@@ -1121,7 +1121,7 @@ export function HeadToHead({ a, b }: Props) {
                     {a.pincode.name} brief →
                   </a>
                   <a
-                    href={`/area/${b.pincode.pincode}`}
+                    href={`/insights/${b.pincode.pincode}`}
                     className={mono.className}
                     style={{
                       display: "inline-flex",

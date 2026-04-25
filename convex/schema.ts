@@ -225,4 +225,15 @@ export default defineSchema({
     generated_at: v.number(),
     narrative: v.optional(v.string()),
   }).index("by_district", ["district"]),
+
+  // ── commute matrix cache ─────────────────────────────
+  // bucketKey = `${lat_3dp},${lng_3dp}|${mode}` — buckets origins to a ~110m grid
+  // so two users searching from the same tech park hit the same row. minutes[i]
+  // and pincodes[i] are parallel arrays. TTL enforced in the action layer.
+  commute_cache: defineTable({
+    bucketKey: v.string(),
+    minutes: v.array(v.number()),
+    pincodes: v.array(v.string()),
+    computedAt: v.number(),
+  }).index("by_bucket", ["bucketKey"]),
 });

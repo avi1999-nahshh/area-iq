@@ -1,5 +1,5 @@
 import { Instrument_Serif, Spectral, JetBrains_Mono } from "next/font/google";
-import { MapPreview } from "../../area/[pincode]/map-preview";
+import { MapPreview } from "../_map-preview";
 import type { BriefData } from "./loader";
 
 const display = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"] });

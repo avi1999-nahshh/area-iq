@@ -9,8 +9,8 @@ Last updated: 2026-04-26.
 | Story | Live in prod? | Live URL | Lab preview | Detail |
 |---|---|---|---|---|
 | 1 — Compare | partial | https://area-iq-one.vercel.app/compare | — | [01-compare/status.md](./01-compare/status.md) |
-| 2 — Proximity | no | n/a (404) | Stitch design only | [02-proximity/status.md](./02-proximity/status.md) |
-| 3 — Report card | yes | https://area-iq-one.vercel.app/insights · /{pincode} | merged into /insights | [03-report-card/status.md](./03-report-card/status.md) |
+| 2 — Proximity | yes | https://area-iq-one.vercel.app/proximity | — | [02-proximity/status.md](./02-proximity/status.md) |
+| 3 — Report card | yes | https://area-iq-one.vercel.app/insights · /{pincode} | — | [03-report-card/status.md](./03-report-card/status.md) |
 
 ## Convex
 
@@ -25,14 +25,23 @@ Last updated: 2026-04-26.
 |---|---|---|
 | area-iq | https://area-iq-one.vercel.app | Live, latest deploy 2026-04-25 |
 
+## Open follow-ups
+
+Cross-cutting items that don't belong inside a single feature's status. Move them into a feature's `status.md` once they're scoped, then check off here.
+
+- [ ] **Copy review pass.** Headlines, subheads, brag labels, trash-talk lines, methodology prose, the landing-page voice. Currently a mix of placeholder-sharp and product-final — needs an editor's read once the three features are visually settled. Surfaces to cover: `/`, `/insights`, `/insights/[pincode]`, `/compare`, `/methodology`, share-card text, OG titles + descriptions.
+- [ ] **Share hooks** — OG image routes (`/api/og/insights`, `/api/og/compare`), `<ShareButton>` with native Web Share API + WhatsApp/X/LinkedIn/Copy fallbacks, share-copy helper. Full plan: [cross-cutting.md § A](./cross-cutting.md#a-share-hooks). Phasing: Insights OG + button first, Compare second, share-as-image deferred.
+- [ ] **Analytics** — Plausible custom events for the funnel (`Feature Click`, `Search Submitted`, `Pincode Viewed`, `Card Flipped`, `Compare Submitted`, `Share Clicked`, `404 Hit`). Plausible + Vercel Analytics already wired in `app/layout.tsx` — only the `track()` helper + call sites remain. Full plan: [cross-cutting.md § B](./cross-cutting.md#b-analytics). Phasing: top-of-funnel first, share events depend on the hook above shipping.
+
 ## Recent rollouts
 
-- 2026-04-26 — `/insights-lab` design merged into live `/insights`. The lab tree is deleted; `/insights` and `/insights/{pincode}` now carry the locked Stitch direction with the flippable card, real CARTO Dark Matter map, 4-card bento, custom 404, alias-aware search, rank-#1 emphasis, and the full a11y pass. `/area/{pincode}` Civic Brief is still live alongside it.
+- 2026-04-25 — **Story 2 (Proximity) shipped Phase A.** New route `/proximity` with typeable office combobox (Nominatim geocoding, Bangalore-bounded), commute-window slider, transport toggle, 5 priority chips (Air / Lifestyle / Essentials / Connectivity / Affordability), Leaflet map with double-click pin → `/insights/[pincode]` navigation, ranked match cards with inline grade ladders. Backend: `convex/proximity.ts` (commuteMatrix + geocode + prewarmPresets actions, `commute_cache` table with 7-day TTL and 110m origin bucketing). Real OSRM road-network routing (free-flow; no traffic model — Phase B = Mapbox). 6 BLR tech parks × 3 modes pre-warmed (18/18 cells).
+- 2026-04-25 — `/area/[pincode]` (Civic Brief) **removed**. `/insights/[pincode]` is now the sole canonical report-card route. Proximity cards, proximity map double-click, and compare CTAs all repointed. Convex `area.getByPincode` query unchanged (still backs `/insights/`).
+- 2026-04-26 — `/insights-lab` design merged into live `/insights`. The lab tree is deleted; `/insights` and `/insights/{pincode}` now carry the locked Stitch direction with the flippable card, real CARTO Dark Matter map, 4-card bento, custom 404, alias-aware search, rank-#1 emphasis, and the full a11y pass.
 - 2026-04-26 — `/insights-lab` Stitch-direction preview built local-only first; merged same day after sign-off.
 - 2026-04-25 — Trash-talk verdict engine (Story 1) shipped to `/compare` in prod with decisive headlines.
-- 2026-04-25 — Civic Brief direction (Story 3 v1) shipped to `/area/[pincode]` in prod, replaced first-pass editorial layout.
 - 2026-04-25 — Trivia narrative misalignment fixed: 1077 of 1079 narratives recovered. Pipeline patched to prevent regression. Convex dev reseeded.
-- 2026-04-25 — `NEXT_PUBLIC_CONVEX_URL` set on Vercel prod (was empty); `/area/[pincode]` now resolves correctly in prod.
+- 2026-04-25 — `NEXT_PUBLIC_CONVEX_URL` set on Vercel prod (was empty); report-card routes now resolve correctly in prod.
 - 2026-04-25 — `PincodeSearch` removed from landing page per "keep area separate" decision.
 
 ## How to update this file

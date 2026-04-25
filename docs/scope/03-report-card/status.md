@@ -2,15 +2,15 @@
 
 > ↩ [Main rollup](../STATUS.md) · [Main scope](../README.md) · [This feature's scope](./scope.md)
 
-Last updated: 2026-04-26.
+Last updated: 2026-04-25.
 
 ## Production state
 
 | Variant | URL | State |
 |---|---|---|
-| Live (Stitch direction, locked) | `https://area-iq-one.vercel.app/insights` and `/insights/{pincode}` | Live since 2026-04-26 — merged from `/insights-lab` after sign-off. Carries the flippable card with real CARTO Dark Matter map, asymmetric hero, alias-aware search, rank-#1 emphasis, custom 404, full a11y. |
-| Live (Civic Brief direction) | `https://area-iq-one.vercel.app/area/{pincode}` | Live since 2026-04-25 — oatmeal editorial palette. Kept alongside `/insights` for now; consolidation pending. |
-| Lab tree | — | Deleted 2026-04-26 (`app/insights-lab/` removed). Future polish lands directly on `/insights`. |
+| Live (Stitch direction, canonical) | `https://area-iq-one.vercel.app/insights` and `/insights/{pincode}` | Sole report-card route. Carries the flippable card with real CARTO Dark Matter map, asymmetric hero, alias-aware search, rank-#1 emphasis, custom 404, full a11y. |
+| `/area/[pincode]` (Civic Brief) | — | **Removed 2026-04-25.** Folded out of the codebase; redirected callers to `/insights/`. |
+| `/insights-lab/[pincode]` | — | Removed 2026-04-26 when lab merged into live `/insights`. |
 
 ## Components shipped
 
@@ -28,7 +28,7 @@ Last updated: 2026-04-26.
   - Idle wobble (paused offscreen via IntersectionObserver)
   - Live-pulse pip (paused when flipped)
   - Lazy-loaded via `next/dynamic` with skeleton
-- Custom 404 page for out-of-scope pincodes (`app/insights-lab/not-found.tsx`)
+- Custom 404 page for out-of-scope pincodes (`app/insights/not-found.tsx`)
 - Mobile drawer nav, skip-to-content links, focus-visible rings throughout
 - Top 5 ranking on landing with rank-#1 emphasis ("Editor's Pick" flag chip + amber wash + ring)
 - Top 5 dedup by display root (one Whitefield max)
@@ -47,18 +47,15 @@ Last updated: 2026-04-26.
 
 - Claim CTA is inert (gated with "Soon" pill)
 - OG image route per pincode not yet built
-- Live `/area/[pincode]` is two design iterations behind `/insights-lab/[pincode]` — pending user sign-off to swap
-- Three live variants (`/area`, `/insights`, `/insights-lab`) — needs consolidation once direction is locked
 
 ## Next milestones
 
-1. User sign-off on Stitch lab direction → migrate `/insights-lab` → `/area` (or rename to a single canonical route)
-2. Consolidate routes (decide: `/area`, `/insights`, or rename)
-3. Build OG image generation route
-4. Wire Claim flow (email collect, ties to Story 2 infra)
+1. Build OG image generation route for `/insights/[pincode]`
+2. Wire Claim flow (email collect, ties to Story 2 infra)
 
 ## Recent updates
 
+- 2026-04-25 — `/area/[pincode]` (Civic Brief direction) removed. `app/area/` deleted from the codebase; proximity cards, proximity map double-click, and compare CTAs all repointed to `/insights/[pincode]`. `convex/area.ts` (the joined-record query) is unchanged — it backed both routes.
 - 2026-04-26 — Lab → live merge: `/insights-lab` deleted; live `/insights` + `/insights/{pincode}` now carry the locked Stitch design with flippable card + real map. Lab-only chrome (Lab Preview badge, Back-to-live link, "Lab Preview" footer text) stripped from the merge.
 - 2026-04-26 — One-pass UI audit fixes shipped to lab (carried into the merge): dead-link gating ("Soon" pill on Claim), skip-to-content, focus-visible rings, custom 404, Top-5 rank-1 emphasis, BragChip slate→amber consolidation, methodology ghost link, CardMap lazy-loaded, Live-pulse paused when flipped, wobble paused offscreen.
 - 2026-04-26 — Search alias support: typing "Whitefield" now finds 560066/560067/560048 even though Convex search index only knows India Post names ("EPIP" / "Mahadevapura").

@@ -8,12 +8,12 @@ Last updated: 2026-04-25.
 
 | Variant | URL | State |
 |---|---|---|
-| Live | n/a | 404; nav tab labelled **"Soon"** |
-| Lab preview | n/a | Not started in code. Stitch design exists. |
+| Live | `/proximity` | Shipped 2026-04-25 — Phase A (real OSRM road-network routing + Nominatim geocoding). Tab live in shared TopNav. |
+| Lab preview | — | n/a — built directly on the canonical route. |
 
 ## Stitch reference
 
-Local design files at:
+Local design files (used as starting point, adapted to project's Inter + amber + cream system):
 
 ```
 /Users/avinashdubey/Downloads/stitch_area_iq_intelligence_platform/commute_based_search/
@@ -21,34 +21,48 @@ Local design files at:
 └── screen.png       — visual reference
 ```
 
-Key fields surfaced in the design:
-- Work Location (address input)
-- Max Commute Time slider (35 mins shown)
-- Preferred Transport toggle (Transit / Drive / Walk)
-- Prioritize chips (Safety / Social Life / Affordability / Parks)
-- Map with isochrone overlay + Salesforce Tower marker
-- Top Matches list — Hayes Valley (BEST MATCH IQ Score 94), Mission District (88), Nob Hill (85)
-
 ## Components shipped
 
-- None. Tab is gated as "Soon" in `app/insights-lab/lab-nav.tsx` and `app/insights/top-nav.tsx`.
+**Frontend (`app/proximity/`)**
+- `page.tsx` — server shell, mounts shared TopNav, loads `iq_v2_blr.json`
+- `proximity-client.tsx` — form, results, modal, geocode debounce, action wiring
+- `proximity-map.tsx` — Leaflet map with office pin, amber commute-window radius, numbered match pins, double-click → `/insights/[pincode]` navigation
+- `lib.ts` — mode coefficients, weighted score, haversine fallback, `rankFromMinutes` helper
 
-## Known blockers
+**Backend (`convex/proximity.ts`)**
+- `commuteMatrix` action — OSRM `/table` (chunked at 100), bucketed cache lookup/write
+- `geocode` action — Nominatim free-text, Bangalore-bounded viewbox
+- `prewarmPresets` action — idempotent batch fill (6 presets × 3 modes; ran 2026-04-25 → 18/18 cells warm)
+- `getCachedMatrix` / `upsertCachedMatrix` — internal helpers
+- `commute_cache` schema table (parallel-array layout, `by_bucket` index)
 
-- Geocoding provider not chosen
-- Commute estimation strategy not chosen (straight-line vs isochrone)
-- No data-quality blockers — the IQ v2 dimension engine has everything needed for ranking. This is purely a build-out task.
+**Design polish (audit 2026-04-25)**
+- Card stagger via CSS `@keyframes pxFadeUp` (600ms cubic-bezier, 70ms cascade, reduced-motion respected)
+- `active:translate-y-[1px]` on cards, transport toggle, prioritize chips, modal segments
+- Inline grade ladder replacing the boxed trio (`Air A · Lifestyle A+ · Value B-`)
+- Tinted shadows matching project ladder (no `shadow-2xl`)
+- Single bottom-left map chip (merged from two)
+- Mobile map height bumped (360 / 460 / 640)
+- Route status pip beside "Top Matches" header (idle / loading / live / fallback)
+
+## Honest limits (Phase A)
+
+- **No traffic model.** OSRM gives free-flow road times. BLR drives at 9am are ~1.5–2× the displayed number.
+- **Public OSRM rate-limited.** Demo server is shared.
+- **Nominatim ToS = 1 req/sec.** Address input is debounced 800ms.
+- **"Adjust hours" modal selection captured but not wired.** Defers to Phase B.
 
 ## Next milestones
 
-1. Choose + integrate geocoding API (recommend Nominatim for v1)
-2. Build form UI to Stitch fidelity using the lab design system (Inter, JetBrains Mono numerals, white cards, amber accents, grain overlay)
-3. Build commute-window filter (start with straight-line + mode coefficient)
-4. Build re-rank with weight-toggle chips
-5. Render Top Matches list with rank badge / score / commute / brag label
-6. Hook each match's CTA to `/insights/[pincode]`
-7. Hook up "Save this search" → email capture (gated; ties to Claim flow)
+1. **Phase B swap** — Mapbox Matrix (`driving-traffic`) for traffic-aware drive times. ~30-min change: replace `OSRM_BASE` + URL builder in `convex/proximity.ts`, add `MAPBOX_TOKEN` to Convex env. Free tier 100k matrix elements/mo covers POC.
+2. Wire the "Adjust hours" selection into commute math (rush-hour multiplier or Phase B time-aware API).
+3. Replace radius circle with real isochrone polygon (Mapbox Isochrones API).
+4. URL state persistence for shareable `/proximity?...` links.
+5. OG image for `/proximity`.
+6. "Save this search" → email capture (ties to Claim flow infra in Story 3).
 
 ## Recent updates
 
-- (none — story not started)
+- 2026-04-25 — **Phase A shipped.** Backend (`convex/proximity.ts`) + frontend live at `/proximity`. OSRM road-network commute matrix, Nominatim geocoding, 7-day cache with 6 presets pre-warmed (18/18 cells filled). Cards click and map pins double-click through to `/insights/[pincode]`.
+- 2026-04-25 — Design audit applied: stagger animation, active translate, inline grade ladder, tinted shadows, merged map chips, mobile map bump, route-status pip, skeleton loaders.
+- 2026-04-25 — UI freeze on the dummy build: typeable office input, slider, transport toggle, 5 priority chips (Walkability removed), commute-hours modal, ranked match cards, Leaflet map with double-click navigation. Commute math was straight-line × mode coefficient at this point.

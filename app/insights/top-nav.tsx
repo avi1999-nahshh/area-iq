@@ -8,7 +8,7 @@ import { AreaSearch } from "./area-search";
 const TABS: { href: string; label: string; ready: boolean }[] = [
   { href: "/insights", label: "Insights", ready: true },
   { href: "/compare", label: "Compare", ready: false },
-  { href: "/proximity", label: "Proximity", ready: false },
+  { href: "/proximity", label: "Proximity", ready: true },
 ];
 
 export function TopNav() {
