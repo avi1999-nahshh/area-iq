@@ -84,7 +84,7 @@ export const searchByPrefix = query({
 
 /**
  * Full-text neighbourhood search by area name. Reusable across /insights,
- * /compare, /proximity. The POC scopes to Bangalore urban via the optional
+ * /compare, /proximity. Currently scopes to Bangalore urban via the optional
  * `metroOnly` filter; pass false to broaden once we expand beyond BLR.
  */
 export const searchByName = query({
@@ -103,7 +103,7 @@ export const searchByName = query({
       )
       .take(limit * 2);
 
-    // For Bangalore-only POC, also intersect with tier=urban via the scores table.
+    // For Bangalore, also intersect with tier=urban via the scores table.
     if (metroCity === "Bengaluru") {
       const filtered: typeof results = [];
       for (const r of results) {

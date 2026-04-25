@@ -137,11 +137,25 @@ export function computeVerdict(a: IQv2, b: IQv2): Verdict {
   } else if (delta >= 4) {
     headline = `${winnerName} edges it by ${delta} points.`;
   } else {
-    const biggest = [...dims].sort(
-      (x, y) => Math.abs(y.a - y.b) - Math.abs(x.a - x.b),
-    )[0];
-    const dimDelta = Math.abs(biggest.a - biggest.b);
-    headline = `${winnerName} takes it on ${biggest.label.toLowerCase()} — ${dimDelta} points clear.`;
+    // Overall scores are nearly tied but at least one dimension diverges
+    // sharply. The biggest dim gap may favour the *loser* — saying
+    // "Indiranagar takes it on affordability" reads backward when Indiranagar
+    // is losing affordability by 69 points. Pick the biggest dim the overall
+    // winner actually wins on instead.
+    const sideOfOverallWinner: "a" | "b" = aWins ? "a" : "b";
+    const winnerWonDims = dims.filter((d) => d.winner === sideOfOverallWinner);
+    if (winnerWonDims.length > 0) {
+      const biggest = [...winnerWonDims].sort(
+        (x, y) => Math.abs(y.a - y.b) - Math.abs(x.a - x.b),
+      )[0];
+      const dimDelta = Math.abs(biggest.a - biggest.b);
+      headline = `${winnerName} takes it on ${biggest.label.toLowerCase()} — ${dimDelta} points clear.`;
+    } else {
+      headline =
+        delta > 0
+          ? `${winnerName} edges it by ${delta} point${delta === 1 ? "" : "s"}.`
+          : `${winnerName} edges it.`;
+    }
   }
 
   const winnerData = aWins ? a : b;

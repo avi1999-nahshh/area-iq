@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next";
+import { TopNav } from "../insights/top-nav";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const sans = Geist({ subsets: ["latin"] });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
@@ -15,15 +16,14 @@ const TOC = [
   { id: "scope", label: "Scope" },
   { id: "dimensions", label: "The six dimensions" },
   { id: "honesty", label: "Honesty rules" },
-  { id: "hidden", label: "What's hidden or dropped" },
-  { id: "proximity", label: "How proximity search works" },
+  { id: "proximity", label: "How Reach works" },
   { id: "sources", label: "Data sources" },
   { id: "limitations", label: "Limitations" },
 ];
 
 export default function MethodologyPage() {
   return (
-    <div className={`${inter.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-amber-500 focus:text-white focus:rounded-md focus:font-semibold"
@@ -32,23 +32,7 @@ export default function MethodologyPage() {
       </a>
       <GrainOverlay />
 
-      {/* Minimal nav */}
-      <header className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="font-semibold text-base tracking-tight text-slate-900">
-          Area<span className="text-amber-500">IQ</span>
-        </Link>
-        <nav className="flex items-center gap-1 sm:gap-2">
-          <Link
-            href="/insights"
-            className="hidden sm:inline-flex text-xs font-medium text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-md hover:bg-gray-50 transition-colors"
-          >
-            Insights
-          </Link>
-          <span className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-white">
-            Early Access
-          </span>
-        </nav>
-      </header>
+      <TopNav />
 
       <main id="main" className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-20 sm:pb-28">
         {/* Breadcrumb */}
@@ -68,19 +52,18 @@ export default function MethodologyPage() {
 
         {/* Hero */}
         <header className="max-w-3xl mb-12 sm:mb-16">
-          <span className="inline-flex items-stretch overflow-hidden rounded-md text-[11px] font-semibold tracking-[0.18em] uppercase mb-4">
-            <span className="w-[3px] bg-amber-500" />
-            <span className="px-3 py-1.5 bg-amber-50 text-amber-700">Documentation</span>
-          </span>
+          <p className={`${mono.className} text-[11px] tracking-[0.22em] uppercase font-semibold text-amber-700 mb-4`}>
+            Documentation
+          </p>
           <h1
-            className="text-[2.5rem] leading-[1.04] sm:text-5xl lg:text-6xl font-extrabold tracking-tight"
+            className="text-[2.5rem] leading-[1.04] sm:text-5xl lg:text-6xl font-extrabold tracking-tighter"
             style={{ textWrap: "balance" }}
           >
-            How we score.
+            How we score,{" "}
+            <span className="italic text-amber-600">honestly</span>.
           </h1>
-          <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-            The six dimensions, the formula, the honesty gates, and the data sources behind
-            every AreaIQ score. Read what we exclude as carefully as what we include.
+          <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed italic max-w-2xl">
+            The six dimensions, the formula, the honesty gates, and the data sources behind every AreaIQ score. Read what we exclude as carefully as what we include.
           </p>
         </header>
 
@@ -117,27 +100,21 @@ export default function MethodologyPage() {
               mono={mono.className}
             >
               <p>
-                AreaIQ is, deliberately, a small product. It covers <Stat mono={mono.className}>129</Stat>{" "}
-                pincodes — the urban tier inside Bangalore. Nothing else.
+                AreaIQ covers <Stat mono={mono.className}>129</Stat> pincodes — the urban
+                tier inside Bangalore. Coverage inside that scope:
               </p>
-              <p>
-                We tried scoring all of India. The data didn&apos;t hold up. About 88% of
-                Indian pincodes are tier <Code mono={mono.className}>rural</Code>; for those,
-                rent coverage is around 2%, the nearest CPCB air station is a median of 24km
-                away, and there&apos;s no metro within a useful radius. A score in those
-                conditions is fiction.
-              </p>
-              <p>
-                Inside Bangalore urban, the picture changes: <Stat mono={mono.className}>100%</Stat> of
-                pincodes have AQI, metro distance, and rent data; <Stat mono={mono.className}>76%</Stat> have
-                a CPCB station within 15km; <Stat mono={mono.className}>49%</Stat> have a locality-level
-                rent match (vs. 24% nationally). That&apos;s the smallest cut we could make
-                where the score is defensible.
-              </p>
-              <p>
-                When AreaIQ expands, it&apos;ll be one city at a time — never a flag-day
-                rollout to all of India.
-              </p>
+              <ul className="list-disc pl-6 space-y-1.5 text-base">
+                <li>
+                  <Stat mono={mono.className}>100%</Stat> have AQI, metro distance, and rent data
+                </li>
+                <li>
+                  <Stat mono={mono.className}>76%</Stat> have a CPCB air-monitoring station within 15km
+                </li>
+                <li>
+                  <Stat mono={mono.className}>49%</Stat> have a locality-level rent match
+                  (the rest fall back to a city median, labelled as such in the report)
+                </li>
+              </ul>
             </Section>
 
             {/* DIMENSIONS */}
@@ -159,13 +136,6 @@ export default function MethodologyPage() {
                 The overall score weights these as:
               </p>
               <WeightTable mono={mono.className} />
-              <p className="text-sm text-slate-500 mt-3">
-                Walkability is computed but weighted at zero — see{" "}
-                <a href="#hidden" className="text-amber-700 hover:text-amber-900 underline underline-offset-2 decoration-amber-300">
-                  What&apos;s hidden or dropped
-                </a>{" "}
-                below.
-              </p>
             </Section>
 
             {/* HONESTY */}
@@ -216,65 +186,11 @@ export default function MethodologyPage() {
               </ul>
             </Section>
 
-            {/* HIDDEN */}
-            <Section
-              id="hidden"
-              kicker="04"
-              title="What's hidden or dropped"
-              mono={mono.className}
-            >
-              <p>
-                Three signals were either fully removed or kept in the data but never shown:
-              </p>
-
-              <Card mono={mono.className} title="Walkability — hidden, weight 0">
-                <p>
-                  Composite of{" "}
-                  <Code mono={mono.className}>five_minute_city_score × 0.6</Code> +{" "}
-                  <Code mono={mono.className}>commute_under_30min_pct × 0.4</Code>. The blend
-                  mixes neighbourhood walkability with office commute time, and reads as
-                  confusing in the report. The score still computes (still in
-                  <Code mono={mono.className}>iq_v2_blr.json</Code>) but no surface displays it
-                  and the overall weights it at 0. Its old 15% was redistributed across air
-                  (+4), amenities (+4), connectivity (+2), density (+3), affordability (+2).
-                </p>
-              </Card>
-
-              <Card mono={mono.className} title="Cleanliness — dropped">
-                <p>
-                  100% of pincodes show a Swachh Survekshan score, but only{" "}
-                  <Stat mono={mono.className}>925</Stat> unique ULBs drive all 19,928 rows. The
-                  other 19,003 are broadcast from their parent city or state. Two pincodes in
-                  the same ULB get identical cleanliness scores. Single year (2024-25). We
-                  dropped it from scoring entirely.
-                </p>
-              </Card>
-
-              <Card mono={mono.className} title="Safety — dropped">
-                <p>
-                  The NCRB district crime data is from <Stat mono={mono.className}>2014</Stat>.
-                  Twelve years stale. Same district = same safety score, no within-district
-                  resolution. We dropped it rather than display a number that suggests
-                  precision the data doesn&apos;t have.
-                </p>
-              </Card>
-
-              <Card mono={mono.className} title="Property as nightlight intensity — dropped">
-                <p>
-                  The previous &ldquo;property_score&rdquo; field was actually a nightlight
-                  intensity proxy, not real property data, despite being labelled as such.
-                  Replaced by 99acres rent (locality match preferred, city median fallback).
-                  Pincodes with no rent data show a peer-relative score with reduced weight,
-                  not a fabricated number.
-                </p>
-              </Card>
-            </Section>
-
             {/* PROXIMITY */}
             <Section
               id="proximity"
-              kicker="05"
-              title="How proximity search works"
+              kicker="04"
+              title="How Reach works"
               mono={mono.className}
             >
               <p>
@@ -344,7 +260,7 @@ export default function MethodologyPage() {
             </Section>
 
             {/* SOURCES */}
-            <Section id="sources" kicker="06" title="Data sources" mono={mono.className}>
+            <Section id="sources" kicker="05" title="Data sources" mono={mono.className}>
               <SourceTable mono={mono.className} />
               <p className="mt-6">
                 When sources update, AreaIQ does too. Air is the closest to real-time (CPCB
@@ -354,7 +270,7 @@ export default function MethodologyPage() {
             </Section>
 
             {/* LIMITATIONS */}
-            <Section id="limitations" kicker="07" title="Limitations" mono={mono.className}>
+            <Section id="limitations" kicker="06" title="Limitations" mono={mono.className}>
               <ul className="list-disc pl-6 space-y-2 text-base">
                 <li>
                   <strong>Bangalore-only.</strong> Don&apos;t use scores from outside the
@@ -381,7 +297,7 @@ export default function MethodologyPage() {
                   is suppressed (see Honesty rules).
                 </li>
                 <li>
-                  <strong>No real-time traffic in proximity search.</strong> We use real
+                  <strong>No real-time traffic in Reach.</strong> We use real
                   road-network times (not straight-line), but they assume free-flow speeds.
                   Bangalore rush-hour drives will run noticeably longer than the number
                   shown. Traffic-aware routing is the next iteration; the rest stays the same.
@@ -423,7 +339,7 @@ export default function MethodologyPage() {
         <span className="font-semibold text-slate-900">
           Area<span className="text-amber-500">IQ</span>
         </span>
-        <span className={mono.className}>Bangalore POC · Urban tier · {new Date().getFullYear()}</span>
+        <span className={mono.className}>Bangalore · Urban tier · {new Date().getFullYear()}</span>
       </footer>
     </div>
   );
@@ -595,7 +511,6 @@ function WeightTable({ mono }: { mono: string }) {
     ["Connectivity", 22],
     ["Density & Activity", 18],
     ["Affordability", 12],
-    ["Walkability (hidden)", 0],
   ];
   return (
     <div className="bg-white rounded-lg p-2 sm:p-3"
@@ -667,7 +582,7 @@ function SourceTable({ mono }: { mono: string }) {
       source: "OpenStreetMap routing",
       vintage: "Live (rate-limited public demo)",
       granularity: "Address → road-network minutes per pincode",
-      what: "Drive / transit / walk commute time for proximity search",
+      what: "Drive / transit / walk commute time for Reach",
     },
     {
       source: "Nominatim",

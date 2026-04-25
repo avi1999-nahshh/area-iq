@@ -5,7 +5,7 @@ import { listIQv2 } from "@/app/insights/lib";
 import { ProximityClient } from "./proximity-client";
 
 export const metadata: Metadata = {
-  title: "Proximity — find a Bangalore neighbourhood by your office",
+  title: "Reach — find a Bangalore neighbourhood by your office",
   description:
     "Pick your office, your max commute, and what matters. AreaIQ ranks Bangalore neighbourhoods within reach using six-dimension scoring.",
 };

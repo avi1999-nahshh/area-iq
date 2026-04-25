@@ -1,10 +1,11 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import { TopNav } from "./top-nav";
 import { AreaSearch } from "./area-search";
+import { BlrMap } from "./blr-map";
 import { listIQv2 } from "./lib";
 import { displayName } from "./blr-aliases";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const sans = Geist({ subsets: ["latin"] });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export default function InsightsLanding() {
@@ -23,7 +24,7 @@ export default function InsightsLanding() {
   }
 
   return (
-    <div className={`${inter.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-amber-500 focus:text-white focus:rounded-md focus:font-semibold"
@@ -42,25 +43,22 @@ export default function InsightsLanding() {
       />
       <TopNav />
       <main id="main" className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
-        {/* Asymmetric hero */}
-        <section className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-end">
+        {/* Hero — split: left text, right sketch */}
+        <section className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
           <div>
-            <span className="inline-flex items-stretch overflow-hidden rounded-md text-[11px] font-semibold tracking-[0.18em] uppercase mb-4">
-              <span className="w-[3px] bg-amber-500" />
-              <span className="px-3 py-1.5 bg-amber-50 text-amber-700">
-                Bangalore · Urban Pincodes · Early Access
-              </span>
-            </span>
+            <p className={`${mono.className} text-[11px] tracking-[0.22em] uppercase font-semibold text-amber-700 mb-4`}>
+              Bangalore neighbourhoods, scored
+            </p>
             <h1
-              className="text-[2.5rem] leading-[1.04] sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
+              className="text-[2.5rem] leading-[1.04] sm:text-5xl lg:text-6xl font-extrabold tracking-tighter mb-5"
               style={{ textWrap: "balance" }}
             >
-              Look up any Bangalore neighbourhood&apos;s report card.
+              Look up any Bangalore neighbourhood&apos;s{" "}
+              <span className="italic text-amber-600">report card</span>.
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6 max-w-xl">
-              <span className={`${mono.className} font-bold tabular-nums`}>{all.length}</span>{" "}
-              urban pincodes graded on air, amenities, connectivity, density, affordability,
-              and walkability. Search by name.
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed italic mb-6 max-w-xl">
+              <span className={`${mono.className} not-italic font-bold tabular-nums text-slate-900`}>{all.length}</span>{" "}
+              urban pincodes graded on air, essentials, lifestyle, connectivity, density, and affordability.
             </p>
             <div className="max-w-xl">
               <AreaSearch
@@ -70,16 +68,29 @@ export default function InsightsLanding() {
               />
             </div>
           </div>
-          <div className="hidden lg:block">
-            <p className={`${mono.className} text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400 mb-3`}>
-              Methodology
+          <div className="hidden lg:block justify-self-end pt-8 lg:pt-0 w-full max-w-[360px]">
+            <p className={`${mono.className} text-[10px] tracking-[0.22em] uppercase text-slate-400 font-semibold mb-3`}>
+              Bangalore urban · {all.length} scored
             </p>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Data joins CPCB air monitoring, OSM amenities, Census 2011, 99acres rent, BMTC
-              + metro proximity. Every score is peer-relative within Bangalore urban tier.
-            </p>
-            <p className={`${mono.className} mt-4 text-[10px] tracking-[0.18em] uppercase text-slate-400`}>
-              Bangalore POC · {new Date().getFullYear()}
+            <div
+              className="relative w-full overflow-hidden rounded-2xl"
+              style={{ aspectRatio: "5 / 4" }}
+            >
+              <BlrMap pincodes={all} />
+            </div>
+            <p className={`${mono.className} text-[10px] tracking-[0.18em] uppercase text-slate-400 mt-3 flex items-center gap-3`}>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full" style={{ background: "rgba(217,119,6,0.45)" }} />
+                <span>&lt;50</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(217,119,6,0.65)" }} />
+                <span>50–69</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full" style={{ background: "rgba(217,119,6,0.85)" }} />
+                <span>70+</span>
+              </span>
             </p>
           </div>
         </section>
@@ -163,7 +174,7 @@ export default function InsightsLanding() {
         <span className="font-semibold text-slate-900">
           Area<span className="text-amber-500">IQ</span>
         </span>
-        <span className={mono.className}>Bangalore POC · Urban tier · {new Date().getFullYear()}</span>
+        <span className={mono.className}>Bangalore · Urban tier · {new Date().getFullYear()}</span>
       </footer>
     </div>
   );

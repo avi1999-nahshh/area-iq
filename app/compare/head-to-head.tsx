@@ -116,11 +116,83 @@ export function HeadToHead({ a, b, shareUrl }: Props) {
       {/* Tale of the Tape */}
       <Receipts a={a} b={b} dims={verdict.dims} />
 
+      {/* Prominent share — the second hook, after the user has read everything */}
+      <BigShare a={a} b={b} verdict={verdict} shareUrl={shareUrl} pairSlug={pairSlug} />
+
       {/* CTA links */}
       <CtaRow a={a} b={b} />
 
       <CardStaggerStyle />
     </div>
+  );
+}
+
+// ── Prominent share section ─────────────────────────────────────────────
+
+function BigShare({
+  a,
+  b,
+  verdict,
+  shareUrl,
+  pairSlug,
+}: {
+  a: IQv2;
+  b: IQv2;
+  verdict: ReturnType<typeof computeVerdict>;
+  shareUrl: string;
+  pairSlug: string;
+}) {
+  return (
+    <section className="mt-12 sm:mt-16">
+      <article
+        className="rounded-2xl bg-slate-900 text-white px-6 sm:px-10 py-10 sm:py-12 flex flex-col items-center text-center"
+        style={{
+          boxShadow:
+            "0 1px 2px rgba(15,23,42,0.18), 0 12px 32px -16px rgba(15,23,42,0.32)",
+        }}
+      >
+        <p className={`${MONO_KICKER} text-amber-300`}>
+          Settle it on the group chat
+        </p>
+        <h2
+          className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tighter leading-[1.05] max-w-2xl"
+          style={{ textWrap: "balance" }}
+        >
+          Share the <span className="italic text-amber-300">verdict<span className="not-italic">.</span></span>
+        </h2>
+        <p className="mt-3 text-sm sm:text-base text-slate-300 italic max-w-xl">
+          {verdict.shareLine}
+        </p>
+        <div className="mt-6">
+          <ShareButton
+            surface="compare"
+            size="lg"
+            variant="amber"
+            label="Share this verdict"
+            share={compareShareText({
+              winner: verdict.winnerName,
+              loser: verdict.loserName,
+              trashTalk: verdict.shareLine,
+              pairSlug,
+            })}
+            trackProps={{
+              pincode_a: a.pincode,
+              pincode_b: b.pincode,
+              winner_pincode:
+                verdict.winnerSide === "tie"
+                  ? "tie"
+                  : verdict.winnerSide === "a"
+                    ? a.pincode
+                    : b.pincode,
+              hook: "bottom",
+            }}
+          />
+        </div>
+        <p className={`${MONO_KICKER} text-slate-500 mt-5 truncate max-w-full`}>
+          {shareUrl.replace(/^https?:\/\//, "")}
+        </p>
+      </article>
+    </section>
   );
 }
 
@@ -516,16 +588,18 @@ function DimSide({
   const barColor = winner ? "bg-amber-500" : "bg-slate-300";
   const topPct = Math.max(1, Math.round(100 - pct));
   return (
-    <div className="flex flex-col gap-1.5 sm:items-end">
-      <div className="flex items-baseline gap-2 sm:flex-row-reverse">
-        <span className={`${MONO_KICKER} text-slate-400 normal-case tracking-[0.12em] font-medium`}>
-          Top {topPct}% in BLR
-        </span>
-        <span className={`font-mono text-2xl sm:text-3xl font-extrabold tabular-nums ${valueColor}`}>
-          {v}
-        </span>
-      </div>
-      <div className="w-full sm:w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+    <div className="flex flex-col gap-1 sm:items-end">
+      {/* Stack number above kicker so the right edge of every row's number
+          aligns vertically. With kicker on the same row + flex-row-reverse,
+          variable kicker widths ("Top 1% …" vs "Top 99% …") pushed numbers
+          to inconsistent x-positions. */}
+      <span className={`font-mono text-2xl sm:text-3xl font-extrabold tabular-nums leading-none ${valueColor}`}>
+        {v}
+      </span>
+      <span className={`${MONO_KICKER} text-slate-400 normal-case tracking-[0.12em] font-medium`}>
+        Top {topPct}% in BLR
+      </span>
+      <div className="mt-1 w-full sm:w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden">
         <div className={`h-full rounded-full ${barColor}`} style={{ width: `${Math.max(2, v)}%` }} />
       </div>
       {softLabel ? (

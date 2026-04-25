@@ -108,7 +108,7 @@ function WaitlistFormStatic({ dark = false }: { dark?: boolean }) {
         </button>
       </form>
       <p className={`text-xs ${dark ? "text-slate-500" : "text-slate-400"}`}>
-        No spam. Early access only.
+        No spam. Bangalore-only for now.
       </p>
     </div>
   );

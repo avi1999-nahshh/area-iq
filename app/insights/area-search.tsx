@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { BLR_ALIASES, displayName } from "./blr-aliases";
+import { track } from "../_lib/track";
 
 type Hit = {
   pincode: string;
@@ -17,8 +18,9 @@ type Hit = {
  * Match the typed term against our colloquial-name overrides ("Whitefield",
  * "K R Puram") that the Convex search index doesn't see — the index only
  * knows India Post's official `name` ("EPIP", "Krishnarajapuram R S"). For
- * the BLR POC we patch this client-side; once we expand cities we should
- * persist alias values into a denormalised search field on Convex instead.
+ * the Bangalore-only release we patch this client-side; once we expand
+ * cities we should persist alias values into a denormalised search field
+ * on Convex instead.
  */
 function aliasMatches(term: string): Hit[] {
   const q = term.toLowerCase();
@@ -99,6 +101,10 @@ export function AreaSearch({
   }, []);
 
   function go(h: Hit) {
+    track("Search Suggested", {
+      pincode: h.pincode,
+      surface: basePath.replace(/^\//, "") || "root",
+    });
     setValue(displayName(h.pincode, h.name));
     setOpen(false);
     inputRef.current?.blur();

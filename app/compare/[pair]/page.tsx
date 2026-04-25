@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
@@ -8,7 +8,7 @@ import { displayName } from "@/app/insights/blr-aliases";
 import { parsePairSlug, pairSlug as makePairSlug } from "../lib";
 import { HeadToHead } from "../head-to-head";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const sans = Geist({ subsets: ["latin"] });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 interface Props {
@@ -52,7 +52,7 @@ export default async function CompareMockupPage({ params }: Props) {
   const shareUrl = `${proto}://${host}/compare/${canonical}`;
 
   return (
-    <div className={`${inter.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-amber-500 focus:text-white focus:rounded-md focus:font-semibold"
@@ -70,7 +70,7 @@ export default async function CompareMockupPage({ params }: Props) {
 
 function OutOfScopePanel({ pair }: { pair: string }) {
   return (
-    <div className={`${inter.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
       <GrainOverlay />
       <TopNav />
       <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-16 pb-24 text-center">

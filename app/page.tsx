@@ -1,211 +1,364 @@
-import { WaitlistForm } from "./waitlist-form";
-import { MapExplorer } from "./map-explorer";
-import { CompareCard } from "./compare-card";
+import Link from "next/link";
+import { Geist, JetBrains_Mono } from "next/font/google";
+import { UseCaseRotator } from "./_components/use-case-rotator";
+import { TopNav } from "./insights/top-nav";
+import { FlippableCard } from "./insights/[pincode]/flippable-card";
+import { getIQv2 } from "./insights/lib";
+import { displayName } from "./insights/blr-aliases";
 
-const features = [
-  {
-    num: "01",
-    title: "Public infrastructure",
-    description:
-      "Hospitals, schools, shopping, and transit connectivity scored and mapped for any pincode.",
-  },
-  {
-    num: "02",
-    title: "Air quality",
-    description:
-      "Live AQI, PM2.5 levels, and seasonal pollution patterns from government monitoring stations.",
-  },
-  {
-    num: "03",
-    title: "Safety",
-    description:
-      "Crime indices, FIR trends, police station proximity, and night-time walkability scores.",
-  },
-  {
-    num: "04",
-    title: "Cleanliness score",
-    description:
-      "Ward-level garbage complaint data, Swachh Survekshan rankings, and drain density.",
-  },
-  {
-    num: "05",
-    title: "Property & rentals",
-    description:
-      "Buying and rental rates per sq ft, year-on-year price trend, and active builders in the area.",
-  },
-  {
-    num: "06",
-    title: "Key contacts",
-    description:
-      "Your MP, MLA, Ward Councillor, and local police officers — always current, one tap away.",
-  },
-];
+const sans = Geist({ subsets: ["latin"] });
+const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+
+const KICKER = "text-[11px] tracking-[0.22em] uppercase font-semibold";
 
 export default function Home() {
+  // Real Indiranagar data drives the hero card — same shape and component
+  // as /insights/[pincode], so the landing preview matches the live thing.
+  const heroSample = getIQv2("560038");
+
   return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)] grain">
-      {/* Skip to content */}
-      <a href="#main" className="skip-link">
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-amber-500 focus:text-white focus:rounded-md focus:font-semibold"
+      >
         Skip to content
       </a>
+      <GrainOverlay />
+      <PageStagger />
 
-      {/* Nav */}
-      <header
-        className="px-6 py-5 max-w-6xl mx-auto w-full flex items-center justify-between animate-fade-in-up"
-        style={{ animationDelay: "0ms" }}
-      >
-        <span className="font-semibold text-lg tracking-tight text-slate-900">
-          Area<span className="text-amber-500">IQ</span>
-        </span>
-        <span className="text-xs text-slate-400 font-medium tracking-wide uppercase">
-          Early access
-        </span>
-      </header>
+      <TopNav />
 
-      <main id="main" className="flex-1">
-        {/* Hero — asymmetric 2-col */}
-        <section className="max-w-6xl mx-auto px-6 pt-16 pb-24 grid lg:grid-cols-[1fr_460px] gap-16 items-center">
-          {/* Left: copy */}
-          <div>
-            <p
-              className="text-sm font-medium text-amber-600 mb-6 animate-fade-in-up"
-              style={{ animationDelay: "80ms" }}
-            >
-              Neighbourhood intelligence for India
+      <main id="main" className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-20 sm:pb-28">
+        {/* ── Hero ────────────────────────────────────────────────── */}
+        <section className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
+          <div className="stagger-1">
+            <p className={`${mono.className} ${KICKER} text-amber-700`}>
+              Bangalore neighbourhoods, decided
             </p>
-
             <h1
-              className="text-5xl sm:text-6xl font-bold tracking-tighter leading-none text-slate-900 mb-6 text-balance animate-fade-in-up"
-              style={{ animationDelay: "160ms" }}
+              className="mt-4 text-[2.5rem] leading-[1.04] sm:text-6xl lg:text-[5.25rem] font-extrabold tracking-tighter"
+              style={{ textWrap: "balance" }}
             >
-              Search, compare, and choose
-              <br />
-              <span className="text-amber-500">your next neighbourhood.</span>
+              Choose your{" "}
+              <span className="italic text-amber-600">next</span>{" "}
+              Bangalore neighbourhood.
             </h1>
-
-            <p
-              className="text-lg text-slate-500 leading-relaxed mb-8 max-w-lg text-balance animate-fade-in-up"
-              style={{ animationDelay: "240ms" }}
-            >
-              Type any two pincodes. Get a side-by-side report card — safety,
-              air quality, infrastructure, property prices, government contacts —
-              so you can decide with data, not gut feeling.
+            <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed italic max-w-xl">
+              The argument-ender for HSR vs Whitefield, the report card for any pincode, and the commute-aware shortlist when you&apos;re moving for work.
             </p>
 
-            <div
-              className="animate-fade-in-up"
-              style={{ animationDelay: "320ms" }}
-            >
-              <WaitlistForm />
+            {/* Kinetic rotator — surfaces the 3 use cases on a 6s loop with
+                always-visible chips below for instant scan. */}
+            <div className="mt-7 sm:mt-8">
+              <UseCaseRotator monoClass={mono.className} />
             </div>
-
           </div>
 
-          {/* Right: comparison card */}
-          <div
-            className="hidden lg:flex justify-center animate-fade-in-up"
-            style={{ animationDelay: "200ms" }}
+          {/* Right: live sample card — same component as /insights/[pincode] */}
+          <div className="stagger-2 relative justify-self-center lg:justify-self-end pt-6 lg:pt-0">
+            {heroSample && (
+              <FlippableCard
+                d={heroSample}
+                name={displayName(heroSample.pincode, heroSample.name)}
+                monoClass={mono.className}
+                surface="landing-hero"
+              />
+            )}
+          </div>
+        </section>
+
+        {/* ── Three feature panels ─────────────────────────────── */}
+        <section
+          aria-label="Three ways to use AreaIQ"
+          className="mt-16 sm:mt-24 grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6"
+        >
+          <FeaturePanel
+            num="01"
+            kicker="Insights"
+            headline="Read the report card."
+            body="Search any Bangalore neighbourhood. Get a six-dimension report card in five seconds."
+            sub="6 scores · 1 share-card · 1 deep dive"
+            href="/insights"
+            cta="See a report card"
+            variant="hero"
+            className="lg:col-span-2"
+            staggerIdx={3}
+          />
+          <FeaturePanel
+            num="02"
+            kicker="Compare"
+            headline="End the argument."
+            body="Indiranagar vs Koramangala? Two areas, head-to-head."
+            sub="Verdict · trash-talk · numbers"
+            href="/compare"
+            cta="Pick two areas"
+            staggerIdx={4}
+          />
+          <FeaturePanel
+            num="03"
+            kicker="Reach"
+            headline="Live within reach."
+            body="Pin your office. We rank Bangalore neighbourhoods within your commute window, weighted by the dimensions you care about."
+            sub="Office address · commute slider · ranked matches"
+            href="/proximity"
+            cta="Find your area"
+            variant="wide"
+            className="lg:col-span-3"
+            staggerIdx={5}
+          />
+        </section>
+
+        {/* ── Closing typographic statement ────────────────────── */}
+        <section className="stagger-6 mt-16 sm:mt-24 border-t border-slate-200/70 pt-10 sm:pt-12">
+          <p className={`${mono.className} ${KICKER} text-slate-400 mb-4`}>
+            What you&apos;re looking at
+          </p>
+          <p
+            className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tighter text-slate-900 leading-[1.1] max-w-4xl"
+            style={{ textWrap: "balance" }}
           >
-            <CompareCard />
-          </div>
-        </section>
-
-        {/* Check your area — pincode input */}
-        {/* Divider */}
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="border-t border-slate-200/70" />
-        </div>
-
-        {/* Map explorer */}
-        <section className="max-w-6xl mx-auto px-6 py-20">
-          <div className="mb-10">
-            <p className="text-sm font-medium text-amber-600 mb-3">
-              Explore before you decide
-            </p>
-            <h2 className="text-4xl font-bold tracking-tighter leading-none text-slate-900 text-balance">
-              Find your neighbourhood on the map.
-            </h2>
-            <p className="text-slate-500 mt-4 max-w-lg text-balance leading-relaxed">
-              Filter by what matters most — safety, air quality, or affordability —
-              and see how every area in Bengaluru stacks up at a glance.
-            </p>
-          </div>
-          <MapExplorer />
-        </section>
-
-        {/* Divider */}
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="border-t border-slate-200/70" />
-        </div>
-
-        {/* Features — numbered editorial 2-col list */}
-        <section className="max-w-6xl mx-auto px-6 py-24">
-          <div className="mb-14">
-            <p className="text-sm font-medium text-amber-600 mb-3">
-              What&apos;s in every report
-            </p>
-            <h2 className="text-4xl font-bold tracking-tighter leading-none text-slate-900 text-balance">
-              Six data layers. Every pincode.
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-0 border-t border-slate-200/70">
-            {features.map((f, i) => (
-              <div
-                key={f.title}
-                className={[
-                  "group flex gap-6 py-8 transition-colors duration-200 hover:bg-amber-50/40",
-                  i % 2 === 0
-                    ? "sm:pr-12 sm:border-r sm:border-slate-200/70"
-                    : "sm:pl-12",
-                  i < features.length - 2 ? "border-b border-slate-200/70" : "",
-                ].join(" ")}
-              >
-                <span className="text-2xl font-bold text-amber-200 group-hover:text-amber-300 tabular-nums pt-0.5 shrink-0 transition-colors duration-200 leading-none">
-                  {f.num}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-slate-900 mb-1.5 text-sm group-hover:text-amber-700 transition-colors duration-200">
-                    {f.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">
-                    {f.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Bottom CTA */}
-        <section className="border-t border-amber-100 bg-amber-50/60">
-          <div className="max-w-6xl mx-auto px-6 py-20">
-            <div className="max-w-lg">
-              <h2 className="text-3xl font-bold tracking-tighter leading-none text-slate-900 mb-4 text-balance">
-                Know your neighbourhood before you move.
-              </h2>
-              <p className="text-slate-500 mb-8 leading-relaxed">
-                Get early access and be the first to compare any two pincodes in India.
-              </p>
-              <WaitlistForm />
-            </div>
-          </div>
+            <span className={`${mono.className} tabular-nums`}>129</span> pincodes.{" "}
+            <span className={`${mono.className} tabular-nums`}>6</span> dimensions.{" "}
+            <span className="text-amber-700">Air. Essentials. Lifestyle. Connectivity. Density. Affordability.</span>
+          </p>
+          <p className="mt-5 text-sm sm:text-base text-slate-600 italic max-w-2xl leading-relaxed">
+            We&apos;d rather show less, honestly, than more, badly.{" "}
+            <Link
+              href="/methodology"
+              className="not-italic text-amber-700 hover:text-amber-900 underline underline-offset-2 decoration-amber-300 hover:decoration-amber-600 font-semibold transition-colors"
+            >
+              How we score each one →
+            </Link>
+          </p>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-200/70 px-6 py-6 bg-[#fdfcf7]">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="font-semibold text-slate-900 text-sm">
-            Area<span className="text-amber-500">IQ</span>
-          </span>
-          <div className="flex items-center gap-4 text-xs text-slate-400">
-            <a href="#" className="hover:text-slate-600 transition-colors duration-200">Privacy</a>
-            <a href="#" className="hover:text-slate-600 transition-colors duration-200">Terms</a>
-            <span>© {new Date().getFullYear()} AreaIQ. Built for India.</span>
-          </div>
-        </div>
+      <footer className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-gray-200/70 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <span className="font-semibold text-slate-900">
+          Area<span className="text-amber-500">IQ</span>
+        </span>
+        <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+          <FooterLink href="/insights">Insights</FooterLink>
+          <FooterLink href="/compare">Compare</FooterLink>
+          <FooterLink href="/proximity">Reach</FooterLink>
+          <FooterLink href="/methodology">Methodology</FooterLink>
+          <span aria-hidden className="text-slate-300">·</span>
+          <span className={mono.className}>Bangalore · {new Date().getFullYear()}</span>
+        </nav>
       </footer>
     </div>
+  );
+}
+
+// ── Feature panel ────────────────────────────────────────────────────────
+
+function FeaturePanel({
+  num,
+  kicker,
+  headline,
+  body,
+  sub,
+  href,
+  cta,
+  variant,
+  className,
+  staggerIdx,
+}: {
+  num: string;
+  kicker: string;
+  headline: string;
+  body: string;
+  sub: string;
+  href: string;
+  cta: string;
+  variant?: "hero" | "wide";
+  className?: string;
+  staggerIdx: number;
+}) {
+  const isHero = variant === "hero";
+  const isWide = variant === "wide";
+  const headlineSize = isHero
+    ? "text-3xl sm:text-4xl lg:text-5xl"
+    : isWide
+      ? "text-3xl sm:text-4xl"
+      : "text-2xl sm:text-3xl";
+
+  const sharedShell =
+    "group relative bg-white rounded-2xl transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-[2px] active:translate-y-0 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f9f7f3]";
+  const shadowStyle = {
+    boxShadow:
+      "0 1px 2px rgba(15,23,42,0.04), 0 12px 32px -16px rgba(15,23,42,0.10)",
+  };
+
+  if (isWide) {
+    return (
+      <Link
+        href={href}
+        className={`stagger-${staggerIdx} ${sharedShell} p-6 sm:p-8 hover:shadow-[0_2px_4px_rgba(15,23,42,0.06),0_18px_40px_-16px_rgba(15,23,42,0.16)] ${className ?? ""}`}
+        style={shadowStyle}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 lg:gap-12 items-center">
+          <div>
+            <CardKicker num={num} kicker={kicker} monoClass={mono.className} />
+            <h2
+              className={`${headlineSize} font-extrabold tracking-tighter text-slate-900 leading-[1.05] mt-4 mb-2`}
+              style={{ textWrap: "balance" }}
+            >
+              {headline}
+            </h2>
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
+              {body}
+            </p>
+            <p className={`${mono.className} mt-3 ${KICKER} text-slate-400`}>
+              {sub}
+            </p>
+          </div>
+          <div className="lg:justify-self-end">
+            <CTAButton cta={cta} variant="solid" />
+          </div>
+        </div>
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      className={`stagger-${staggerIdx} ${sharedShell} ${isHero ? "p-6 sm:p-8" : "p-5 sm:p-6"} flex flex-col hover:shadow-[0_2px_4px_rgba(15,23,42,0.06),0_18px_40px_-16px_rgba(15,23,42,0.16)] ${className ?? ""}`}
+      style={shadowStyle}
+    >
+      <CardKicker num={num} kicker={kicker} monoClass={mono.className} />
+      <h2
+        className={`${headlineSize} font-extrabold tracking-tighter text-slate-900 leading-[1.05] mt-4 mb-2`}
+        style={{ textWrap: "balance" }}
+      >
+        {headline}
+      </h2>
+      <p className="text-base text-slate-600 leading-relaxed max-w-md">{body}</p>
+      <p className={`${mono.className} mt-3 ${KICKER} text-slate-400`}>{sub}</p>
+      <span className="mt-auto pt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 group-hover:text-amber-700 transition-colors">
+        {cta}
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </span>
+    </Link>
+  );
+}
+
+function CardKicker({
+  num,
+  kicker,
+  monoClass,
+}: {
+  num: string;
+  kicker: string;
+  monoClass: string;
+}) {
+  return (
+    <span className={`${monoClass} ${KICKER} text-slate-400`}>
+      {num} · {kicker}
+    </span>
+  );
+}
+
+function CTAButton({ cta, variant }: { cta: string; variant: "solid" | "ghost" }) {
+  const cls =
+    variant === "solid"
+      ? "bg-slate-900 text-white group-hover:bg-amber-500 group-hover:text-slate-900"
+      : "text-slate-700 group-hover:text-amber-700";
+  return (
+    <span
+      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md ${cls} text-sm font-semibold transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]`}
+    >
+      {cta}
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </span>
+  );
+}
+
+// ── Footer link ──────────────────────────────────────────────────────────
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="hover:text-amber-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f9f7f3] rounded-sm"
+    >
+      {children}
+    </Link>
+  );
+}
+
+// ── Page-rise stagger (CSS-only) ────────────────────────────────────────
+
+function PageStagger() {
+  return (
+    <style>{`
+      .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5, .stagger-6 {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: page-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        will-change: transform, opacity;
+      }
+      .stagger-1 { animation-delay: 0ms; }
+      .stagger-2 { animation-delay: 80ms; }
+      .stagger-3 { animation-delay: 220ms; }
+      .stagger-4 { animation-delay: 300ms; }
+      .stagger-5 { animation-delay: 380ms; }
+      .stagger-6 { animation-delay: 460ms; }
+      @keyframes page-rise {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5, .stagger-6 {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+    `}</style>
+  );
+}
+
+// ── Grain overlay ────────────────────────────────────────────────────────
+
+function GrainOverlay() {
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{
+        opacity: 0.04,
+        mixBlendMode: "multiply",
+        backgroundImage:
+          "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.7'/></svg>\")",
+      }}
+    />
   );
 }

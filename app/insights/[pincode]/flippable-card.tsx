@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { IQv2 } from "../lib";
+import { track } from "../../_lib/track";
 
 const CardMap = dynamic(
   () => import("./card-map").then((m) => m.CardMap),
@@ -25,6 +26,13 @@ interface Props {
   d: IQv2;
   name: string;
   monoClass: string;
+  /**
+   * Where this card is rendered. "insights" (default) = canonical report
+   * card on /insights/[pincode]; fires Pincode Viewed on mount. Anything
+   * else (e.g. "landing-hero") suppresses that event but still tags flips
+   * with the surface so analytics can split engagement by source.
+   */
+  surface?: string;
 }
 
 /**
@@ -35,9 +43,17 @@ interface Props {
  * Idle wobble every 8s suggests the back exists. Pauses when off-screen
  * (IntersectionObserver) and respects prefers-reduced-motion.
  */
-export function FlippableCard({ d, name, monoClass }: Props) {
+export function FlippableCard({ d, name, monoClass, surface = "insights" }: Props) {
   const [flipped, setFlipped] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // Pincode Viewed — only fires from the canonical /insights/[pincode]
+  // surface; decorative renders (landing hero) shouldn't pollute the
+  // "user opened a report card" signal.
+  useEffect(() => {
+    if (surface !== "insights") return;
+    track("Pincode Viewed", { pincode: d.pincode });
+  }, [d.pincode, surface]);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -80,7 +96,17 @@ export function FlippableCard({ d, name, monoClass }: Props) {
       >
         <button
           type="button"
-          onClick={() => setFlipped((f) => !f)}
+          onClick={() => {
+            setFlipped((f) => {
+              const next = !f;
+              track("Card Flipped", {
+                pincode: d.pincode,
+                surface,
+                direction: next ? "front-to-back" : "back-to-front",
+              });
+              return next;
+            });
+          }}
           aria-label={
             flipped
               ? "Show share preview front"

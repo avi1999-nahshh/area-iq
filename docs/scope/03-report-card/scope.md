@@ -8,10 +8,7 @@
 
 ## Routes
 
-- `/area/[pincode]` — current live (Civic Brief direction, oatmeal editorial)
-- `/insights-lab/[pincode]` — locked next-iteration direction (Stitch white-amber SaaS), local-only
-- `/insights/[pincode]` — interim Stitch direction shipped earlier, kept for A/B comparison
-- Eventually one route survives. Decision: pending user sign-off on lab vs live.
+- `/insights/[pincode]` — **canonical report card** (Stitch white-amber direction with flippable share card, 4-card bento, alias-aware search). Both `/area/[pincode]` (Civic Brief) and `/insights-lab/[pincode]` (lab preview) have been removed; `/insights/` is the single source of truth as of 2026-04-25.
 
 ## Page anatomy (lab direction)
 
@@ -24,6 +21,13 @@
 5. **Deep Dive** — 7-row table: Air, Essentials, Lifestyle, Connectivity, Density & Activity, Affordability, Walkability. Each row: score, percentile, mini-bar, contextual blurb. Mobile collapses note under the bar.
 6. **Methodology line** — `Pincode {pc} · {district} · Sources: CPCB · OSM · Census · 99acres · Bengaluru Metro · BMTC` next to the table
 7. **Footer + skip-link**
+
+## Cross-cutting work that lands in this feature
+
+Tracked centrally in [cross-cutting.md](../cross-cutting.md). The pieces that belong on this surface specifically:
+
+- **Share hooks** — OG route `/api/og/insights?pc={pincode}` wired into `generateMetadata`, `<ShareButton>` placed near the FlippableCard + at the bottom of Deep Dive. Share copy: *"{Name} scored {overall}/100 on AreaIQ — {brag_label}. {url}"*
+- **Analytics events** — `Pincode Viewed`, `Card Flipped`, `Search Suggested` (when the autocomplete fires), `Share Clicked` (when share hooks ship)
 
 ## Acceptance criteria — must-have
 
@@ -57,7 +61,7 @@
 
 - **Should the Claim CTA collect email or open a sign-up modal?** Defer until Story 2 is built so we can share the same email-capture infra.
 - **When we expand beyond Bangalore, where does the alias map live?** Per-city files vs denormalized `name_search` field on the Convex `pincodes` table.
-- **Final route name** — `/area/[pincode]` (live) vs `/insights/[pincode]` vs `/insights-lab/[pincode]`. Decision pending user sign-off.
+- ~~**Final route name**~~ — resolved 2026-04-25: `/insights/[pincode]` is canonical. `/area/` and `/insights-lab/` removed.
 
 ## Out of scope (this feature)
 

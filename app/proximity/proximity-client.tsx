@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAction } from "convex/react";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import { api } from "@/convex/_generated/api";
 import type { IQv2 } from "@/app/insights/lib";
 import { displayName } from "@/app/insights/blr-aliases";
@@ -18,12 +18,13 @@ import {
   rankMatches,
   rankFromMinutes,
   gradeFromScore,
+  searchLandmarks,
   type DimKey,
   type Mode,
   type OfficePreset,
 } from "./lib";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const sans = Geist({ subsets: ["latin"] });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 const ProximityMap = dynamic(
@@ -61,6 +62,10 @@ export function ProximityClient({ pincodes }: Props) {
   const [office, setOffice] = useState<OfficePreset>(DEFAULT_OFFICE);
   const [addressText, setAddressText] = useState<string>(DEFAULT_OFFICE.label);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  // While the field is focused, show what the user typed (even if they
+  // cleared it). When unfocused, fall back to the canonical office label
+  // so the field reflects the current selection.
+  const [isEditing, setIsEditing] = useState(false);
   const [maxMinutes, setMaxMinutes] = useState<number>(35);
   const [mode, setMode] = useState<Mode>("transit");
   const [priorities, setPriorities] = useState<Set<DimKey>>(new Set());
@@ -151,18 +156,34 @@ export function ProximityClient({ pincodes }: Props) {
 
   useEffect(() => {
     const q = searchQuery.trim();
+
+    // Step 1 — paint local landmark hits instantly (no debounce, no network).
+    // Covers the bulk of office searches: tech parks + major neighbourhoods.
+    const landmarkHits = searchLandmarks(q);
+    setSearchResults(landmarkHits);
+
     if (q.length < 3) {
-      setSearchResults([]);
       setSearchLoading(false);
       return;
     }
+
+    // Step 2 — fire Nominatim in parallel for the long tail (specific
+    // addresses, less-common landmarks). Merge into the visible list when it
+    // resolves, deduping anything we already had.
     setSearchLoading(true);
     const t = setTimeout(() => {
       geocode({ query: q })
-        .then((results) => setSearchResults(results))
+        .then((nominatimResults) => {
+          const seen = new Set(landmarkHits.map((h) => h.label.toLowerCase()));
+          const merged = [
+            ...landmarkHits,
+            ...nominatimResults.filter((r) => !seen.has(r.label.toLowerCase())),
+          ];
+          setSearchResults(merged);
+        })
         .catch((err) => {
           console.error("[proximity] geocode failed:", err);
-          setSearchResults([]);
+          // Leave the landmark hits visible; don't blank the dropdown.
         })
         .finally(() => setSearchLoading(false));
     }, 800);
@@ -227,11 +248,15 @@ export function ProximityClient({ pincodes }: Props) {
   }
 
   function pickGeocoded(r: GeocodeResult) {
-    track("Search Submitted", {
-      surface: "proximity",
-      source: "geocode",
-      query_length: searchQuery.trim().length,
-    });
+    try {
+      track("Search Submitted", {
+        surface: "proximity",
+        source: "geocode",
+        query_length: searchQuery.trim().length,
+      });
+    } catch (err) {
+      console.warn("[proximity] analytics track failed (non-fatal):", err);
+    }
     const next: OfficePreset = {
       id: `nominatim-${r.placeId}`,
       label: r.label.split(",").slice(0, 2).join(",").trim(), // first two address parts, readable
@@ -243,21 +268,25 @@ export function ProximityClient({ pincodes }: Props) {
     setSearchQuery("");
     setSearchResults([]);
     setDropdownOpen(false);
+    setIsEditing(false);
   }
 
   return (
-    <div className={`${inter.className} flex flex-col gap-6`}>
+    <div className={`${sans.className} flex flex-col gap-6`}>
       <header className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="flex flex-col gap-1.5">
-          <p className={`${mono.className} text-[11px] font-semibold tracking-[0.2em] uppercase text-amber-700`}>
-            Proximity · Bangalore
+          <p className={`${mono.className} text-[11px] font-semibold tracking-[0.22em] uppercase text-amber-700`}>
+            Reach · Bangalore
           </p>
-          <h1 className="text-3xl sm:text-[2.25rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-            Where should you live, given where you work?
+          <h1
+            className="text-[2.5rem] leading-[1.04] sm:text-5xl lg:text-6xl font-extrabold tracking-tighter text-slate-900"
+            style={{ textWrap: "balance" }}
+          >
+            Where in Bangalore{" "}
+            <span className="italic text-amber-600">fits</span> you?
           </h1>
-          <p className="text-base text-slate-600 leading-relaxed max-w-2xl">
-            Tell us where you work, how far you&rsquo;ll commute, and what matters most.
-            We rank Bangalore&rsquo;s urban pincodes by what fits — not by what&rsquo;s marketable.
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed italic max-w-2xl">
+            Tell us where you work, how far you&rsquo;ll commute, and what matters most. We rank Bangalore&rsquo;s urban pincodes by what fits — not by what&rsquo;s marketable.
           </p>
         </div>
         <div className="shrink-0">
@@ -300,8 +329,9 @@ export function ProximityClient({ pincodes }: Props) {
               </span>
               <input
                 type="text"
-                value={searchQuery !== "" ? searchQuery : addressText}
+                value={isEditing ? searchQuery : addressText}
                 onChange={(e) => {
+                  setIsEditing(true);
                   setSearchQuery(e.target.value);
                   setDropdownOpen(true);
                 }}
@@ -312,7 +342,11 @@ export function ProximityClient({ pincodes }: Props) {
                   e.target.select();
                   setDropdownOpen(true);
                 }}
-                onBlur={() => setTimeout(() => setDropdownOpen(false), 200)}
+                onBlur={() => setTimeout(() => {
+                  setDropdownOpen(false);
+                  setIsEditing(false);
+                  setSearchQuery("");
+                }, 200)}
                 placeholder="Type any Bangalore address — MG Road, Indiranagar, your home…"
                 aria-haspopup="listbox"
                 aria-expanded={dropdownOpen}
@@ -335,18 +369,23 @@ export function ProximityClient({ pincodes }: Props) {
               {dropdownOpen && searchQuery.trim().length > 0 && (
                 <div
                   role="listbox"
-                  className="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg overflow-hidden max-h-[28rem] overflow-y-auto"
+                  // z-[1100] beats Leaflet's pane z-indexes (max 1000 for
+                  // controls; tiles 200, markers 600, popups 700). Without this
+                  // the dropdown extends down into the map section and Leaflet
+                  // paints over it because no ancestor establishes a stacking
+                  // context.
+                  className="absolute z-[1100] left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg overflow-hidden max-h-[28rem] overflow-y-auto"
                   style={{ boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 18px 40px -16px rgba(15,23,42,0.18)" }}
                 >
-                  {searchQuery.trim().length < 3 ? (
+                  {searchResults.length === 0 && searchQuery.trim().length < 3 ? (
                     <div className={`${mono.className} px-3 py-3 text-[11px] text-slate-500`}>
-                      Keep typing… <span className="text-slate-400">(at least 3 characters)</span>
+                      Keep typing… <span className="text-slate-400">(at least 3 characters for a full search)</span>
                     </div>
                   ) : (
                     <div>
                       <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
                         {searchLoading
-                          ? "Searching…"
+                          ? `${searchResults.length} found · searching more…`
                           : searchResults.length > 0
                             ? `${searchResults.length} matches in Bangalore`
                             : "No matches"}
@@ -787,7 +826,7 @@ function HoursModal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`${inter.className} bg-white rounded-2xl w-full max-w-md p-6 sm:p-7`}
+        className={`${sans.className} bg-white rounded-2xl w-full max-w-md p-6 sm:p-7`}
         style={{ boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 24px 60px -20px rgba(15,23,42,0.30)" }}
       >
         <div className="flex items-start justify-between gap-3 mb-5">

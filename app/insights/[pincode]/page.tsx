@@ -1,13 +1,16 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { TopNav } from "../top-nav";
 import { getIQv2, type IQv2 } from "../lib";
 import { displayName } from "../blr-aliases";
+import { BragChip } from "../brag-chip";
 import { FlippableCard } from "./flippable-card";
+import { ShareButton } from "../../_components/share-button";
+import { insightsShareText } from "../../_lib/share-copy";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const sans = Geist({ subsets: ["latin"] });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 interface Props { params: Promise<{ pincode: string }> }
@@ -20,6 +23,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // keep meaningful disambiguators like "(EPIP)" or "(Mahadevapura)" so
   // three Whitefield pincodes don't all read as just "Whitefield".
   const name = displayName(d.pincode, d.name).replace(/\s*\(Bangalore\)\s*$/i, "");
+  // OG image — query-param-driven, rendered at edge by /api/og/insights.
+  // Encoded values land on the chat-unfurl card (slate-900 + amber + big mono score).
+  const ogParams = new URLSearchParams({
+    pc: d.pincode,
+    name,
+    overall: String(Math.round(d.scores.overall)),
+    brag: d.brag_label,
+  });
+  const ogUrl = `/api/og/insights?${ogParams.toString()}`;
   return {
     title: `${name} · ${d.brag_label} — AreaIQ`,
     description: d.subhead,
@@ -27,6 +39,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${name}: ${d.brag_label}`,
       description: d.subhead,
       type: "website",
+      images: [{ url: ogUrl, width: 1200, height: 630, alt: `${name} — AreaIQ` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${name}: ${d.brag_label}`,
+      description: d.subhead,
+      images: [ogUrl],
     },
   };
 }
@@ -36,7 +55,7 @@ export default async function InsightsPincode({ params }: Props) {
   const d = getIQv2(pincode);
   if (!d) return notFound();
   return (
-    <div className={`${inter.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-amber-500 focus:text-white focus:rounded-md focus:font-semibold"
@@ -97,17 +116,20 @@ function Bragging({ d }: { d: IQv2 }) {
             {d.subhead}
           </p>
           <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3">
-            <button
-              type="button"
-              disabled
-              aria-disabled="true"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-amber-100 text-amber-800 font-semibold text-sm cursor-not-allowed transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f9f7f3]"
-            >
-              <Award /> Claim your area report
-              <span className="text-[9px] font-semibold tracking-[0.14em] uppercase px-1.5 py-0.5 rounded bg-gray-100 text-slate-500">
-                Soon
-              </span>
-            </button>
+            <ShareButton
+              surface="insights"
+              size="md"
+              variant="amber"
+              label="Claim your area report"
+              icon={<Award />}
+              share={insightsShareText({
+                name,
+                pincode: d.pincode,
+                overall: d.scores.overall,
+                bragLabel: d.brag_label,
+              })}
+              trackProps={{ pincode: d.pincode }}
+            />
             <a
               href="#deep-dive"
               className="text-sm text-slate-600 hover:text-amber-700 inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f9f7f3]"
@@ -214,7 +236,7 @@ function Bragging({ d }: { d: IQv2 }) {
 
       <footer className="mt-16 pt-6 border-t border-gray-200/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <span className="font-semibold text-slate-900">Area<span className="text-amber-500">IQ</span></span>
-        <span className={mono.className}>Bangalore POC · Urban tier · {new Date().getFullYear()}</span>
+        <span className={mono.className}>Bangalore · Urban tier · {new Date().getFullYear()}</span>
       </footer>
     </main>
   );
@@ -387,29 +409,6 @@ function CardStaggerStyle() {
   );
 }
 
-// ── Flag-style brag chip with leading bar ────────────────────────────
-
-function BragChip({ brag }: { brag: string }) {
-  const variant = chipVariant(brag);
-  return (
-    <span className="inline-flex items-stretch overflow-hidden rounded-md text-xs font-semibold tracking-[0.12em] uppercase">
-      <span className={`w-[3px] ${variant.bar}`} />
-      <span className={`flex items-center gap-2 px-3 py-1.5 ${variant.body}`}>
-        {variant.icon}
-        {brag}
-      </span>
-    </span>
-  );
-}
-
-function chipVariant(brag: string): { icon: React.ReactNode; bar: string; body: string } {
-  if (/Bangalore's #1\b/.test(brag)) return { icon: <Trophy />, bar: "bg-amber-500", body: "bg-amber-50 text-amber-800" };
-  if (/Bangalore's #[23]\b/.test(brag)) return { icon: <TrophyOutline />, bar: "bg-amber-400", body: "bg-amber-50 text-amber-800" };
-  if (/Top 5%/.test(brag)) return { icon: <ShieldCheck />, bar: "bg-amber-500", body: "bg-amber-50 text-amber-800" };
-  if (/Top 1[05]%/.test(brag)) return { icon: <Shield />, bar: "bg-amber-300", body: "bg-amber-50 text-amber-700" };
-  return { icon: <Dot />, bar: "bg-slate-500", body: "bg-slate-100 text-slate-700" };
-}
-
 // ── helpers ─────────────────────────────────────────────────────────
 
 function labelOnly(brag: string): string {
@@ -460,24 +459,3 @@ function Award() { return (
     <circle cx="12" cy="8" r="6" /><path d="M15.5 13 17 22l-5-3-5 3 1.5-9" />
   </svg>
 );}
-function Trophy() { return (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-    <path d="M6 4h12v3a6 6 0 0 1-5 5.917V16h2a2 2 0 0 1 2 2v2H7v-2a2 2 0 0 1 2-2h2v-3.083A6 6 0 0 1 6 7V4Zm-2 1h2v2H4a1 1 0 0 1 0-2Zm14 0h2a1 1 0 0 1 0 2h-2V5Z" />
-  </svg>
-);}
-function TrophyOutline() { return (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d="M6 4h12v3a6 6 0 0 1-12 0V4Z" /><path d="M12 13v3" /><path d="M9 20h6" /><path d="M4 5h2M18 5h2" />
-  </svg>
-);}
-function ShieldCheck() { return (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="m9 12 2 2 4-4" />
-  </svg>
-);}
-function Shield() { return (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-  </svg>
-);}
-function Dot() { return <span aria-hidden className="inline-block w-1.5 h-1.5 rounded-full bg-current" />; }

@@ -11,11 +11,13 @@ interface Props {
   /** Optional extra props on the analytics event (e.g. pincode, winner) */
   trackProps?: Record<string, string | number | boolean>;
   /** Visual size */
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
   /** Visual variant */
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "amber" | "ghost";
   /** Override the visible label */
   label?: string;
+  /** Optional leading icon (defaults to the share glyph) */
+  icon?: React.ReactNode;
 }
 
 /**
@@ -30,6 +32,7 @@ export function ShareButton({
   size = "md",
   variant = "primary",
   label = "Share",
+  icon,
 }: Props) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -91,11 +94,17 @@ export function ShareButton({
   }
 
   const sizeCls =
-    size === "sm" ? "px-3 py-1.5 text-xs" : "px-4 py-2.5 text-sm";
+    size === "sm"
+      ? "px-3 py-1.5 text-xs"
+      : size === "lg"
+        ? "px-6 py-3.5 text-base"
+        : "px-4 py-2.5 text-sm";
   const variantCls =
     variant === "primary"
       ? "bg-slate-900 text-white hover:bg-slate-800"
-      : "bg-white text-slate-900 border border-slate-200 hover:border-slate-300";
+      : variant === "amber"
+        ? "bg-amber-500 text-slate-900 hover:bg-amber-400 shadow-[0_2px_4px_rgba(217,119,6,0.18),0_8px_24px_-12px_rgba(217,119,6,0.32)]"
+        : "bg-white text-slate-900 border border-slate-200 hover:border-slate-300";
 
   return (
     <div ref={wrapRef} className="relative inline-block">
@@ -106,7 +115,7 @@ export function ShareButton({
         aria-expanded={open}
         className={`inline-flex items-center justify-center gap-2 rounded-md font-semibold ${sizeCls} ${variantCls} active:translate-y-[1px] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f9f7f3]`}
       >
-        <ShareIcon />
+        {icon ?? <ShareIcon />}
         {copied ? "Copied" : label}
       </button>
 

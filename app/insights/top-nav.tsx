@@ -8,7 +8,7 @@ import { AreaSearch } from "./area-search";
 const TABS: { href: string; label: string; ready: boolean }[] = [
   { href: "/insights", label: "Insights", ready: true },
   { href: "/compare", label: "Compare", ready: true },
-  { href: "/proximity", label: "Proximity", ready: true },
+  { href: "/proximity", label: "Reach", ready: true },
 ];
 
 export function TopNav() {
@@ -65,9 +65,6 @@ export function TopNav() {
         </div>
 
         <div className="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
-          <span className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-white whitespace-nowrap">
-            Early Access
-          </span>
           {/* Mobile hamburger */}
           <button
             type="button"
@@ -136,11 +133,6 @@ export function TopNav() {
                 </Link>
               );
             })}
-            <div className="mt-2 pt-2 border-t border-gray-100">
-              <span className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-white">
-                Early Access
-              </span>
-            </div>
           </nav>
         </div>
       )}

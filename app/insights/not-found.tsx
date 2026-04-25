@@ -1,14 +1,14 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import { TopNav } from "./top-nav";
 import { AreaSearch } from "./area-search";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
+const sans = Geist({ subsets: ["latin"] });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export default function NotFound() {
   return (
-    <div className={`${inter.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
+    <div className={`${sans.className} relative min-h-[100dvh] bg-[#f9f7f3] text-slate-900`}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-1.5 focus:bg-amber-500 focus:text-white focus:rounded-md focus:font-semibold"
@@ -76,7 +76,7 @@ export default function NotFound() {
         <p
           className={`${mono.className} mt-12 text-[11px] tracking-[0.18em] uppercase text-slate-400`}
         >
-          AreaIQ · Bangalore POC
+          AreaIQ · Bangalore
         </p>
       </main>
     </div>

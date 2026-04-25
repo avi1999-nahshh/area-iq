@@ -14,6 +14,13 @@ AreaIQ is a neighbourhood intelligence product. The MVP focuses on one city, one
 
 All three are anchored to the same dimension engine + design system below. **Build the engine once, present it three ways.**
 
+## Cross-cutting concerns
+
+Concerns that touch every feature live in [cross-cutting.md](./cross-cutting.md):
+
+- **Share hooks** — OG image generation (`/api/og/insights`, `/api/og/compare`), `<ShareButton>` with native Web Share API + WhatsApp/X/LinkedIn/Copy fallbacks, share-copy templates per surface
+- **Analytics** — Plausible custom events for the funnel (Feature Click → Search → Pincode Viewed → Card Flipped → Share Clicked), implementation phases, privacy posture
+
 ## POC scope
 
 - **City:** Bangalore only.
