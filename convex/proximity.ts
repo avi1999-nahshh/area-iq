@@ -171,9 +171,60 @@ export const commuteMatrix = action({
 });
 
 // ─── public action: geocode (Nominatim) ─────────────────
-// Bangalore-bounded. Returns up to 5 candidates for free-text address input.
-// Wire this when the office field becomes typeable; it's already deployed so
-// the UI can adopt it without another Convex push.
+// Bangalore-bounded. Multi-pass: first the exact query, then with " Bangalore"
+// appended if results are thin. Aliases like "BIAL" / "ORR" / "ECity" expand
+// before any HTTP call. Hard BLR-bounding-box filter on the merged results.
+
+type RawNominatim = {
+  display_name: string;
+  lat: string;
+  lon: string;
+  place_id: number;
+};
+
+// Common BLR shortcuts that OSM doesn't index. Expand BEFORE hitting Nominatim
+// so the literal text the user typed still matches the intended landmark.
+const QUERY_ALIASES: Record<string, string> = {
+  "bial": "Kempegowda International Airport Bangalore",
+  "blr airport": "Kempegowda International Airport Bangalore",
+  "bangalore airport": "Kempegowda International Airport Bangalore",
+  "orr": "Outer Ring Road Bangalore",
+  "outer ring road": "Outer Ring Road Bangalore",
+  "ecity": "Electronic City Bangalore",
+  "e-city": "Electronic City Bangalore",
+  "e city": "Electronic City Bangalore",
+  "forum": "Forum Mall Koramangala Bangalore",
+  "phoenix": "Phoenix Marketcity Bangalore",
+  "ub city": "UB City Mall Bangalore",
+  "manyata": "Manyata Tech Park Bangalore",
+  "embassy techvillage": "Embassy Tech Village Bangalore",
+  "embassy tech village": "Embassy Tech Village Bangalore",
+  "itpl": "ITPL Whitefield Bangalore",
+  "bagmane": "Bagmane Tech Park Bangalore",
+  "rmz ecospace": "RMZ Ecospace Bellandur Bangalore",
+  "ecospace": "RMZ Ecospace Bellandur Bangalore",
+};
+
+function expandAlias(q: string): string {
+  const key = q.trim().toLowerCase();
+  return QUERY_ALIASES[key] ?? q;
+}
+
+function inBlrBox(r: { lat: number; lng: number }): boolean {
+  return r.lat >= 12.7 && r.lat <= 13.3 && r.lng >= 77.3 && r.lng <= 77.95;
+}
+
+async function nominatimSearch(q: string): Promise<RawNominatim[]> {
+  const url =
+    `${NOMINATIM_BASE}/search?q=${encodeURIComponent(q)}` +
+    `&format=json&countrycodes=in` +
+    `&viewbox=77.30,13.30,77.95,12.70&bounded=0` +
+    `&limit=15&addressdetails=0&dedupe=1`;
+  const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+  if (!resp.ok) return [];
+  return resp.json();
+}
+
 export const geocode = action({
   args: { query: v.string() },
   handler: async (
@@ -183,37 +234,40 @@ export const geocode = action({
     const q = query.trim();
     if (q.length < 3) return [];
 
-    // viewbox = lng_min,lat_max,lng_max,lat_min — widened to catch outer ring,
-    // airport, Whitefield, Hoskote edges, Electronic City extension. Soft
-    // preference (bounded=0) so a slightly mistyped address still resolves;
-    // we filter to a BLR-only box server-side below.
-    const url =
-      `${NOMINATIM_BASE}/search?q=${encodeURIComponent(q)}` +
-      `&format=json&countrycodes=in&viewbox=77.30,13.30,77.95,12.70&bounded=0&limit=10`;
+    const expanded = expandAlias(q);
+    const lowQ = expanded.toLowerCase();
+    const hasCity = lowQ.includes("bangalore") || lowQ.includes("bengaluru");
 
-    const resp = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
-    if (!resp.ok) return [];
-    const data: Array<{
-      display_name: string;
-      lat: string;
-      lon: string;
-      place_id: number;
-    }> = await resp.json();
+    // Pass 1: exact (or alias-expanded) query.
+    const pass1 = await nominatimSearch(expanded);
 
-    // Hard BLR filter: drop anything that crept in from outside the box
-    // (Nominatim with bounded=0 returns viewbox-preferring but not viewbox-only).
-    return data
+    // Pass 2: append "Bangalore" if user didn't include it AND pass 1 was thin.
+    // Forces Nominatim to rank Bangalore matches first; surfaces businesses,
+    // streets, and POIs OSM has indexed but Nominatim wouldn't have ranked
+    // top without the city anchor.
+    let pass2: RawNominatim[] = [];
+    if (!hasCity && pass1.length < 6) {
+      pass2 = await nominatimSearch(`${expanded} Bangalore`);
+    }
+
+    // Merge, dedupe by place_id, hard-filter to BLR bounding box.
+    const seen = new Set<number>();
+    const merged: RawNominatim[] = [];
+    for (const r of [...pass1, ...pass2]) {
+      if (seen.has(r.place_id)) continue;
+      seen.add(r.place_id);
+      merged.push(r);
+    }
+
+    return merged
       .map((r) => ({
         label: r.display_name,
         lat: parseFloat(r.lat),
         lng: parseFloat(r.lon),
         placeId: String(r.place_id),
       }))
-      .filter(
-        (r) =>
-          r.lat >= 12.70 && r.lat <= 13.30 &&
-          r.lng >= 77.30 && r.lng <= 77.95
-      );
+      .filter(inBlrBox)
+      .slice(0, 12); // cap returned set
   },
 });
 
