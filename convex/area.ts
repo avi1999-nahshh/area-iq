@@ -81,3 +81,49 @@ export const searchByPrefix = query({
     }));
   },
 });
+
+/**
+ * Full-text neighbourhood search by area name. Reusable across /insights,
+ * /compare, /proximity. The POC scopes to Bangalore urban via the optional
+ * `metroOnly` filter; pass false to broaden once we expand beyond BLR.
+ */
+export const searchByName = query({
+  args: {
+    q: v.string(),
+    limit: v.optional(v.number()),
+    metroCity: v.optional(v.string()),
+  },
+  handler: async (ctx, { q, limit = 8, metroCity }) => {
+    const term = q.trim();
+    if (term.length < 2) return [];
+    let results = await ctx.db
+      .query("pincodes")
+      .withSearchIndex("search_name", (s) =>
+        metroCity ? s.search("name", term).eq("metro_city", metroCity) : s.search("name", term),
+      )
+      .take(limit * 2);
+
+    // For Bangalore-only POC, also intersect with tier=urban via the scores table.
+    if (metroCity === "Bengaluru") {
+      const filtered: typeof results = [];
+      for (const r of results) {
+        const s = await ctx.db
+          .query("scores")
+          .withIndex("by_pincode", (q2) => q2.eq("pincode", r.pincode))
+          .first();
+        if (s?.tier === "urban") filtered.push(r);
+        if (filtered.length >= limit) break;
+      }
+      results = filtered;
+    } else {
+      results = results.slice(0, limit);
+    }
+
+    return results.map((r) => ({
+      pincode: r.pincode,
+      name: r.name,
+      district: r.district,
+      state: r.state,
+    }));
+  },
+});

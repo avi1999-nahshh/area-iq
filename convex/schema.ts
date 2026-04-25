@@ -22,7 +22,11 @@ export default defineSchema({
   })
     .index("by_pincode", ["pincode"])
     .index("by_district", ["district"])
-    .index("by_state", ["state"]),
+    .index("by_state", ["state"])
+    .searchIndex("search_name", {
+      searchField: "name",
+      filterFields: ["district", "state", "metro_city"],
+    }),
 
   // ── census demographics ──────────────────────────────
   census: defineTable({

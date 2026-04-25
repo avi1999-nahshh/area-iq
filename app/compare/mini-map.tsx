@@ -46,7 +46,7 @@ export function MiniMap({ lat, lng, name, pincode }: Props) {
     <MapContainer
       center={[lat, lng]}
       zoom={13}
-      style={{ height: "100%", width: "100%", borderRadius: "0.75rem" }}
+      style={{ height: "100%", width: "100%", background: "#FAF6EE" }}
       zoomControl={false}
       scrollWheelZoom={false}
       dragging={false}
@@ -60,11 +60,11 @@ export function MiniMap({ lat, lng, name, pincode }: Props) {
       />
       <CircleMarker
         center={[lat, lng]}
-        radius={14}
+        radius={12}
         pathOptions={{
-          fillColor: "#f59e0b",
-          fillOpacity: 0.9,
-          color: "#fff",
+          fillColor: "#C88A1F",
+          fillOpacity: 0.95,
+          color: "#1A2633",
           weight: 2,
         }}
       />
