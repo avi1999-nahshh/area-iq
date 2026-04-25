@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { TopNav } from "@/app/insights/top-nav";
 import { listIQv2 } from "@/app/insights/lib";
@@ -32,13 +33,24 @@ export default function ProximityPage() {
       />
       <TopNav />
       <main id="main" className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <ProximityClient pincodes={pincodes} />
+        {/* Suspense boundary — ProximityClient calls useSearchParams(), which
+            blocks the static prerender unless wrapped (Next.js 16). */}
+        <Suspense
+          fallback={
+            <div
+              className="h-[60vh] rounded-xl bg-amber-50/40"
+              aria-label="Loading proximity search"
+            />
+          }
+        >
+          <ProximityClient pincodes={pincodes} />
+        </Suspense>
       </main>
       <footer className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 mt-8 border-t border-gray-200/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <span className="font-semibold text-slate-900">
           Area<span className="text-amber-500">IQ</span>
         </span>
-        <span>Bangalore POC · Urban tier · {new Date().getFullYear()}</span>
+        <span>Bangalore · Urban tier · {new Date().getFullYear()}</span>
       </footer>
     </div>
   );
