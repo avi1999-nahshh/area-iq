@@ -188,7 +188,7 @@ function Bragging({ d }: { d: IQv2 }) {
         <div className="flex items-end justify-between gap-4 mb-5 sm:mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Deep Dive</h2>
           <p className={`${mono.className} text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
-            All six dimensions
+            All seven scores
           </p>
         </div>
         <div
