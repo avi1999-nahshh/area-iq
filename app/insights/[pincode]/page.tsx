@@ -16,7 +16,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { pincode } = await params;
   const d = getIQv2(pincode);
   if (!d) return { title: "Not in scope — AreaIQ" };
-  const name = displayName(d.pincode, d.name).replace(/\s*\([^)]*\)\s*$/, "");
+  // Strip the redundant "(Bangalore)" tail that India Post appends, but
+  // keep meaningful disambiguators like "(EPIP)" or "(Mahadevapura)" so
+  // three Whitefield pincodes don't all read as just "Whitefield".
+  const name = displayName(d.pincode, d.name).replace(/\s*\(Bangalore\)\s*$/i, "");
   return {
     title: `${name} · ${d.brag_label} — AreaIQ`,
     description: d.subhead,
@@ -52,7 +55,9 @@ export default async function InsightsPincode({ params }: Props) {
 
 function Bragging({ d }: { d: IQv2 }) {
   const overall = Math.round(d.scores.overall);
-  const name = displayName(d.pincode, d.name).replace(/\s*\([^)]*\)\s*$/, "");
+  // Strip only the redundant "(Bangalore)" tag — keep "(EPIP)" /
+  // "(Mahadevapura)" so the three Whitefield pincodes are visually distinct.
+  const name = displayName(d.pincode, d.name).replace(/\s*\(Bangalore\)\s*$/i, "");
 
   return (
     <main id="main" className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-20 sm:pb-24">
