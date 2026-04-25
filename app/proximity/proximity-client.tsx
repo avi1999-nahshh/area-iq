@@ -347,10 +347,62 @@ export function ProximityClient({ pincodes }: Props) {
                   className="absolute z-30 left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg overflow-hidden max-h-[28rem] overflow-y-auto"
                   style={{ boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 18px 40px -16px rgba(15,23,42,0.18)" }}
                 >
-                  {searchQuery.trim().length >= 3 && (
+                  {/* Mode A — empty input: show presets only (no search noise). */}
+                  {searchQuery.trim().length === 0 && (
                     <div>
                       <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
-                        {searchLoading ? "Searching…" : searchResults.length > 0 ? "Search results" : "No matches"}
+                        Quick picks · Bangalore tech parks
+                      </div>
+                      {OFFICE_PRESETS.map((p) => (
+                        <button
+                          key={p.id}
+                          type="button"
+                          role="option"
+                          aria-selected={office.id === p.id}
+                          onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => pickPreset(p)}
+                          className={`w-full text-left px-3 py-2 text-sm hover:bg-amber-50 flex items-center gap-2 transition ${
+                            office.id === p.id ? "bg-amber-50/60" : ""
+                          }`}
+                        >
+                          <span
+                            className={`w-2 h-2 rounded-full shrink-0 ${
+                              office.id === p.id ? "bg-amber-500" : "bg-slate-200"
+                            }`}
+                            aria-hidden
+                          />
+                          <span className="text-slate-800">{p.label}</span>
+                        </button>
+                      ))}
+                      <div className={`${mono.className} px-3 py-2 text-[10px] text-slate-400 border-t border-slate-100`}>
+                        or start typing — any Bangalore address works
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Mode B — typing 1-2 chars: hint, no API call yet. */}
+                  {searchQuery.trim().length > 0 && searchQuery.trim().length < 3 && (
+                    <div className={`${mono.className} px-3 py-3 text-[11px] text-slate-500`}>
+                      Keep typing… <span className="text-slate-400">(at least 3 characters)</span>
+                    </div>
+                  )}
+
+                  {/* Mode C — typing 3+ chars: search results only, no preset clutter. */}
+                  {searchQuery.trim().length >= 3 && (
+                    <div>
+                      <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400 flex items-center justify-between`}>
+                        <span>{searchLoading ? "Searching…" : searchResults.length > 0 ? `${searchResults.length} matches in Bangalore` : "No matches"}</span>
+                        <button
+                          type="button"
+                          onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => {
+                            setSearchQuery("");
+                            setSearchResults([]);
+                          }}
+                          className="text-amber-700 hover:text-amber-900 normal-case tracking-normal text-[10px] font-semibold"
+                        >
+                          ← back to presets
+                        </button>
                       </div>
                       {searchResults.map((r) => (
                         <button
@@ -369,35 +421,15 @@ export function ProximityClient({ pincodes }: Props) {
                           <span className="text-slate-800 leading-snug line-clamp-2">{r.label}</span>
                         </button>
                       ))}
+                      {!searchLoading && searchResults.length === 0 && (
+                        <div className="px-3 py-3 text-[12px] text-slate-500 leading-relaxed">
+                          Try a road name (&ldquo;Sarjapur Road&rdquo;, &ldquo;100 Feet Road&rdquo;) or
+                          a locality (&ldquo;Indiranagar&rdquo;, &ldquo;Bellandur&rdquo;). OSM data is
+                          thin for individual buildings.
+                        </div>
+                      )}
                     </div>
                   )}
-
-                  <div className={searchQuery.trim().length >= 3 ? "border-t border-slate-100" : ""}>
-                    <div className={`${mono.className} px-3 pt-3 pb-1 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400`}>
-                      Quick picks · Bangalore tech parks
-                    </div>
-                    {OFFICE_PRESETS.map((p) => (
-                      <button
-                        key={p.id}
-                        type="button"
-                        role="option"
-                        aria-selected={office.id === p.id}
-                        onMouseDown={(e) => e.preventDefault()}
-                        onClick={() => pickPreset(p)}
-                        className={`w-full text-left px-3 py-2 text-sm hover:bg-amber-50 flex items-center gap-2 transition ${
-                          office.id === p.id ? "bg-amber-50/60" : ""
-                        }`}
-                      >
-                        <span
-                          className={`w-2 h-2 rounded-full shrink-0 ${
-                            office.id === p.id ? "bg-amber-500" : "bg-slate-200"
-                          }`}
-                          aria-hidden
-                        />
-                        <span className="text-slate-800">{p.label}</span>
-                      </button>
-                    ))}
-                  </div>
                 </div>
               )}
             </div>
