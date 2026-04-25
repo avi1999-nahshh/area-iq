@@ -1,42 +1,23 @@
-import { fetchQuery } from "convex/nextjs";
-import { api } from "@/convex/_generated/api";
-import type { Metadata } from "next";
-import { HeadToHead } from "./head-to-head";
+import { redirect } from "next/navigation";
+import { defaultPairSlug, pincodeToSlug } from "./lib";
 
 interface Props {
   searchParams: Promise<{ a?: string; b?: string }>;
 }
 
-export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const { a: pincodeA = "560034", b: pincodeB = "400050" } = await searchParams;
-  return {
-    title: `Compare ${pincodeA} vs ${pincodeB} — AreaIQ Head-to-Head`,
-    description: `Side-by-side comparison of ${pincodeA} and ${pincodeB} — safety, air quality, rent, transit, and more.`,
-  };
-}
-
-export default async function ComparePage({ searchParams }: Props) {
-  const { a: pincodeA = "560034", b: pincodeB = "400050" } = await searchParams;
-
-  const [dataA, dataB] = await Promise.all([
-    fetchQuery(api.area.getByPincode, { pincode: pincodeA }),
-    fetchQuery(api.area.getByPincode, { pincode: pincodeB }),
-  ]);
-
-  // Fallback stub if pincode not found — HeadToHead handles gracefully
-  const fallbackArea = (pincode: string) => ({
-    pincode: { pincode, name: pincode, district: "—", state: "—" },
-    scores: null,
-    airQuality: null,
-    safety: null,
-    infrastructure: null,
-    property: null,
-    archetype: null,
-    trivia: null,
-  });
-
-  const a = dataA ?? fallbackArea(pincodeA);
-  const b = dataB ?? fallbackArea(pincodeB);
-
-  return <HeadToHead a={a} b={b} />;
+/**
+ * Root /compare. Two responsibilities:
+ *  - Redirect to the default pair (`indiranagar-vs-koramangala`) when no
+ *    params are given, so the empty state is itself a shareable URL.
+ *  - Honour legacy `/compare?a=560034&b=400050` shared links by
+ *    301-equivalent redirecting to the slug form.
+ */
+export default async function CompareRoot({ searchParams }: Props) {
+  const { a, b } = await searchParams;
+  if (a && b) {
+    const slugA = pincodeToSlug(a);
+    const slugB = pincodeToSlug(b);
+    redirect(`/compare/${slugA}-vs-${slugB}`);
+  }
+  redirect(`/compare/${defaultPairSlug()}`);
 }

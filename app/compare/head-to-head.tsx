@@ -1,1173 +1,607 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Instrument_Serif, Spectral, Jost, JetBrains_Mono } from "next/font/google";
-import { computeVerdict, type AreaLite, type Verdict } from "./verdict";
+import Link from "next/link";
+import type { IQv2 } from "@/app/insights/lib";
+import { BragChip } from "@/app/insights/brag-chip";
+import { displayName } from "@/app/insights/blr-aliases";
+import { ShareButton } from "@/app/_components/share-button";
+import { compareShareText } from "@/app/_lib/share-copy";
+import { track } from "@/app/_lib/track";
+import { computeVerdict, type DimRow } from "./verdict";
+import { pincodeToSlug, pairSlug as makePairSlug } from "./lib";
+import { AreaPicker } from "./area-picker";
 
-// Fonts — match civic-brief.tsx exactly
-const display = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
-const serif = Spectral({ subsets: ["latin"], weight: ["400", "500", "700"], style: ["normal", "italic"] });
-const ui = Jost({ subsets: ["latin"], weight: ["300", "400", "500", "700"] });
-const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const HeroMap = dynamic(() => import("./hero-map").then((m) => m.HeroMap), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-[#0d1219]" />,
+});
 
-// Dynamically load MiniMap to avoid SSR hydration issues with Leaflet
-const MiniMap = dynamic(
-  () => import("./mini-map").then((m) => m.MiniMap),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full" style={{ minHeight: 200, background: "var(--paper-2)" }} />
-    ),
-  },
-);
-
-// ─── types ────────────────────────────────────────────────────────────────────
-
-type AreaData = AreaLite & {
-  pincode: AreaLite["pincode"] & { lat?: number; lng?: number };
-  infrastructure?:
-    | (NonNullable<AreaLite["infrastructure"]> & {
-        pharmacy_count?: number | null;
-        park_count?: number | null;
-      })
-    | null;
-  trivia?: { facts?: string[] } | null;
-};
+const MONO_KICKER = "font-mono text-[11px] tracking-[0.22em] uppercase font-semibold";
 
 interface Props {
-  a: AreaData;
-  b: AreaData;
+  a: IQv2;
+  b: IQv2;
+  shareUrl: string;
 }
 
-// ─── helpers ──────────────────────────────────────────────────────────────────
+export function HeadToHead({ a, b, shareUrl }: Props) {
+  const router = useRouter();
+  const verdict = useMemo(() => computeVerdict(a, b), [a, b]);
+  const pairSlug = useMemo(() => makePairSlug(a.pincode, b.pincode), [a.pincode, b.pincode]);
 
-function grade(overall: number): string {
-  if (overall >= 90) return "A+";
-  if (overall >= 82) return "A";
-  if (overall >= 75) return "A-";
-  if (overall >= 70) return "B+";
-  if (overall >= 65) return "B";
-  if (overall >= 60) return "B-";
-  if (overall >= 55) return "C+";
-  if (overall >= 50) return "C";
-  if (overall >= 45) return "D+";
-  if (overall >= 40) return "D";
-  return "F";
-}
-
-function scoreColor(score: number) {
-  if (score >= 70) return "var(--ochre)";
-  if (score >= 45) return "var(--ink)";
-  return "var(--alarm)";
-}
-
-// ─── sub-components ───────────────────────────────────────────────────────────
-
-function SideHeader({ area, label }: { area: AreaData; label: string }) {
-  const overallRaw = area.scores?.overall_score ?? 0;
-  const overall = Math.round(overallRaw);
-  const g = area.scores ? grade(overallRaw) : "—";
-  return (
-    <div>
-      <p
-        className={mono.className}
-        style={{
-          fontSize: 10,
-          letterSpacing: "0.3em",
-          textTransform: "uppercase",
-          color: "var(--muted)",
-          fontWeight: 600,
-          marginBottom: 8,
-        }}
-      >
-        <span style={{ color: "var(--ochre)" }}>{label}</span>{" "}
-        · {area.pincode.pincode}
-      </p>
-      <p
-        className={display.className}
-        style={{
-          fontSize: "clamp(1.75rem, 4.5vw, 2.5rem)",
-          fontStyle: "italic",
-          fontWeight: 400,
-          lineHeight: 1,
-          letterSpacing: "-0.03em",
-          color: "var(--ink)",
-          marginBottom: 6,
-        }}
-      >
-        {area.pincode.name}
-      </p>
-      <p
-        className={mono.className}
-        style={{
-          fontSize: 11,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: "var(--muted)",
-          marginBottom: 14,
-        }}
-      >
-        {area.pincode.district} · {area.pincode.state}
-      </p>
-      <div className="flex items-baseline gap-3">
-        <span
-          className={display.className}
-          style={{
-            fontSize: "3.25rem",
-            fontStyle: "italic",
-            fontWeight: 400,
-            lineHeight: 0.9,
-            letterSpacing: "-0.04em",
-            color: scoreColor(overall),
-          }}
-        >
-          {g}
-        </span>
-        <span>
-          <span
-            className={display.className}
-            style={{
-              fontSize: "1.5rem",
-              fontStyle: "italic",
-              color: "var(--muted)",
-              lineHeight: 1,
-            }}
-          >
-            {overall}
-          </span>
-          <span
-            className={mono.className}
-            style={{
-              fontSize: 10,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "var(--muted)",
-              marginLeft: 6,
-            }}
-          >
-            / 100
-          </span>
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function SectionEyebrow({ section, title, right }: { section: string; title: string; right?: React.ReactNode }) {
-  return (
-    <div
-      className="flex flex-wrap items-baseline justify-between gap-2 mb-4"
-      style={{
-        fontSize: 10,
-        letterSpacing: "0.3em",
-        textTransform: "uppercase",
-        color: "var(--muted)",
-        fontWeight: 600,
-      }}
-    >
-      <span className={mono.className}>
-        <span style={{ color: "var(--ochre)", marginRight: 10 }}>{section}</span> {title}
-      </span>
-      {right ? <span className={mono.className}>{right}</span> : null}
-    </div>
-  );
-}
-
-function DimRow({
-  dim,
-  nameA,
-  nameB,
-}: {
-  dim: Verdict["dimDeltas"][number];
-  nameA: string;
-  nameB: string;
-}) {
-  const aWin = dim.winner === "a";
-  const bWin = dim.winner === "b";
-  const colA = aWin ? "var(--ochre)" : scoreColor(dim.a) === "var(--alarm)" ? "var(--alarm)" : "var(--ink)";
-  const colB = bWin ? "var(--ochre)" : scoreColor(dim.b) === "var(--alarm)" ? "var(--alarm)" : "var(--ink)";
-  return (
-    <div
-      className="grid grid-cols-[1fr_auto_1fr] gap-3 sm:gap-5 items-center py-4"
-      style={{ borderBottom: "1px dotted var(--rule)" }}
-    >
-      {/* A side — bar grows right-to-left */}
-      <div className="flex items-center gap-3 justify-end min-w-0">
-        <div
-          className="hidden sm:block"
-          style={{ flex: 1, height: 3, background: "var(--rule)", position: "relative" }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              right: 0,
-              top: 0,
-              width: `${dim.a}%`,
-              height: "100%",
-              background: colA,
-            }}
-          />
-        </div>
-        <span
-          className={display.className}
-          style={{
-            fontSize: "2.25rem",
-            fontStyle: "italic",
-            fontWeight: 400,
-            lineHeight: 1,
-            letterSpacing: "-0.04em",
-            color: colA,
-            fontVariantNumeric: "tabular-nums",
-            minWidth: "2.4ch",
-            textAlign: "right",
-          }}
-        >
-          {dim.a}
-        </span>
-      </div>
-
-      {/* Center label */}
-      <div className="text-center">
-        <p
-          className={mono.className}
-          style={{
-            fontSize: 10,
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: "var(--ink)",
-            fontWeight: 600,
-            whiteSpace: "nowrap",
-          }}
-        >
-          {dim.label}
-        </p>
-        <p
-          className={mono.className}
-          style={{
-            fontSize: 9,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--muted)",
-            marginTop: 4,
-          }}
-        >
-          {dim.winner === "tie"
-            ? "tie"
-            : dim.winner === "a"
-              ? `${nameA.split(" ")[0]} +${Math.abs(dim.a - dim.b)}`
-              : `${nameB.split(" ")[0]} +${Math.abs(dim.a - dim.b)}`}
-        </p>
-      </div>
-
-      {/* B side — bar grows left-to-right */}
-      <div className="flex items-center gap-3 min-w-0">
-        <span
-          className={display.className}
-          style={{
-            fontSize: "2.25rem",
-            fontStyle: "italic",
-            fontWeight: 400,
-            lineHeight: 1,
-            letterSpacing: "-0.04em",
-            color: colB,
-            fontVariantNumeric: "tabular-nums",
-            minWidth: "2.4ch",
-          }}
-        >
-          {dim.b}
-        </span>
-        <div
-          className="hidden sm:block"
-          style={{ flex: 1, height: 3, background: "var(--rule)", position: "relative" }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              width: `${dim.b}%`,
-              height: "100%",
-              background: colB,
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-type NumRow = {
-  label: string;
-  a: string | null;
-  b: string | null;
-  // -1 = lower is better; +1 = higher is better
-  direction: 1 | -1;
-  // raw numbers used purely for comparison (null skips highlighting)
-  rawA: number | null;
-  rawB: number | null;
-};
-
-function NumberTable({ rows, nameA, nameB }: { rows: NumRow[]; nameA: string; nameB: string }) {
-  return (
-    <div>
-      {/* Header */}
-      <div
-        className="grid grid-cols-[1fr_auto_1fr] gap-3 sm:gap-5 pb-3"
-        style={{ borderBottom: "1px solid var(--ink)" }}
-      >
-        <p
-          className={mono.className}
-          style={{
-            fontSize: 10,
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: "var(--muted)",
-            fontWeight: 600,
-            textAlign: "right",
-          }}
-        >
-          {nameA}
-        </p>
-        <p
-          className={mono.className}
-          style={{
-            fontSize: 10,
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "var(--ink)",
-            fontWeight: 700,
-            textAlign: "center",
-            whiteSpace: "nowrap",
-          }}
-        >
-          metric
-        </p>
-        <p
-          className={mono.className}
-          style={{
-            fontSize: 10,
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: "var(--muted)",
-            fontWeight: 600,
-          }}
-        >
-          {nameB}
-        </p>
-      </div>
-      {rows.map((row) => {
-        let aWin = false;
-        let bWin = false;
-        if (row.rawA != null && row.rawB != null && row.rawA !== row.rawB) {
-          if (row.direction === 1) {
-            aWin = row.rawA > row.rawB;
-            bWin = row.rawB > row.rawA;
-          } else {
-            aWin = row.rawA < row.rawB;
-            bWin = row.rawB < row.rawA;
-          }
-        }
-        return (
-          <div
-            key={row.label}
-            className="grid grid-cols-[1fr_auto_1fr] gap-3 sm:gap-5 items-baseline py-3.5"
-            style={{ borderBottom: "1px dotted var(--rule)" }}
-          >
-            <span
-              className={display.className}
-              style={{
-                fontSize: "1.375rem",
-                fontStyle: "italic",
-                fontWeight: 400,
-                lineHeight: 1,
-                color: aWin ? "var(--ochre)" : "var(--ink)",
-                textAlign: "right",
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              {row.a ?? "—"}
-            </span>
-            <span
-              className={mono.className}
-              style={{
-                fontSize: 10,
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                textAlign: "center",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {row.label}
-            </span>
-            <span
-              className={display.className}
-              style={{
-                fontSize: "1.375rem",
-                fontStyle: "italic",
-                fontWeight: 400,
-                lineHeight: 1,
-                color: bWin ? "var(--ochre)" : "var(--ink)",
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              {row.b ?? "—"}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function MapPanel({
-  area,
-  figLabel,
-  amenities,
-}: {
-  area: AreaData;
-  figLabel: string;
-  amenities: { label: string; value: number }[];
-}) {
-  const lat = area.pincode.lat ?? 20.5937;
-  const lng = area.pincode.lng ?? 78.9629;
-  return (
-    <div style={{ border: "1px solid var(--ink)", background: "var(--paper-2)" }}>
-      <div
-        style={{
-          position: "relative",
-          height: "clamp(220px, 38vw, 320px)",
-          borderBottom: "1px solid var(--ink)",
-        }}
-      >
-        <MiniMap lat={lat} lng={lng} name={area.pincode.name} pincode={area.pincode.pincode} />
-        <div
-          className={mono.className}
-          style={{
-            position: "absolute",
-            top: 10,
-            left: 10,
-            background: "var(--ink)",
-            color: "var(--paper)",
-            padding: "5px 9px",
-            fontSize: 10,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            zIndex: 400,
-            maxWidth: "calc(100% - 20px)",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {figLabel} · {area.pincode.name}
-        </div>
-      </div>
-      <div className="px-4 py-3 sm:px-5 sm:py-4">
-        <p
-          className={mono.className}
-          style={{
-            fontSize: 9,
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "var(--muted)",
-            fontWeight: 600,
-            marginBottom: 8,
-          }}
-        >
-          Within the pincode
-        </p>
-        <div className="flex flex-wrap gap-x-4 gap-y-1">
-          {amenities.map((a) => (
-            <div key={a.label} className="flex items-baseline gap-1.5">
-              <span
-                className={display.className}
-                style={{
-                  fontSize: "1.125rem",
-                  fontStyle: "italic",
-                  color: "var(--ink)",
-                  fontVariantNumeric: "tabular-nums",
-                  lineHeight: 1,
-                }}
-              >
-                {a.value}
-              </span>
-              <span
-                className={serif.className}
-                style={{
-                  fontSize: 12,
-                  fontStyle: "italic",
-                  color: "var(--muted)",
-                }}
-              >
-                {a.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── main component ───────────────────────────────────────────────────────────
-
-export function HeadToHead({ a, b }: Props) {
-  const verdict = computeVerdict(a, b);
-  const [copied, setCopied] = useState(false);
-
-  function handleShare() {
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    navigator.clipboard.writeText(url).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+  // Plausible "Compare Viewed" — fires once per render with the pair, the
+  // winner, and the magnitude. Pincode is a public administrative code, so
+  // it's safe; no PII.
+  useEffect(() => {
+    const winner_pincode =
+      verdict.winnerSide === "tie" ? "tie" : verdict.winnerSide === "a" ? a.pincode : b.pincode;
+    track("Compare Viewed", {
+      pincode_a: a.pincode,
+      pincode_b: b.pincode,
+      winner_pincode,
+      delta: verdict.delta,
+      tie: verdict.tie,
     });
-  }
+  }, [a.pincode, b.pincode, verdict.winnerSide, verdict.delta, verdict.tie]);
 
-  // Concrete number rows
-  const aqiA = a.airQuality?.aqi ?? null;
-  const aqiB = b.airQuality?.aqi ?? null;
-  const crimeA = a.safety?.crime_rate_per_lakh ?? null;
-  const crimeB = b.safety?.crime_rate_per_lakh ?? null;
-  const rentA = a.property?.city_rent_median_2bhk ?? null;
-  const rentB = b.property?.city_rent_median_2bhk ?? null;
-  const metroA = a.transit?.nearest_metro_km ?? null;
-  const metroB = b.transit?.nearest_metro_km ?? null;
-  const cafeA = a.infrastructure?.cafe_count ?? null;
-  const cafeB = b.infrastructure?.cafe_count ?? null;
-  const restA = a.infrastructure?.restaurant_count ?? null;
-  const restB = b.infrastructure?.restaurant_count ?? null;
-
-  const numberRows: NumRow[] = ([
-    {
-      label: "rent · 2bhk",
-      a: rentA != null ? `₹${Math.round(rentA / 1000)}k` : null,
-      b: rentB != null ? `₹${Math.round(rentB / 1000)}k` : null,
-      direction: -1 as const,
-      rawA: rentA,
-      rawB: rentB,
-    },
-    {
-      label: "aqi",
-      a: aqiA != null ? `${aqiA}` : null,
-      b: aqiB != null ? `${aqiB}` : null,
-      direction: -1 as const,
-      rawA: aqiA,
-      rawB: aqiB,
-    },
-    {
-      label: "crime / lakh",
-      a: crimeA != null ? `${Math.round(crimeA).toLocaleString()}` : null,
-      b: crimeB != null ? `${Math.round(crimeB).toLocaleString()}` : null,
-      direction: -1 as const,
-      rawA: crimeA,
-      rawB: crimeB,
-    },
-    {
-      label: "metro distance",
-      a: metroA != null ? `${metroA.toFixed(1)} km` : null,
-      b: metroB != null ? `${metroB.toFixed(1)} km` : null,
-      direction: -1 as const,
-      rawA: metroA,
-      rawB: metroB,
-    },
-    {
-      label: "cafés",
-      a: cafeA != null ? `${cafeA}` : null,
-      b: cafeB != null ? `${cafeB}` : null,
-      direction: 1 as const,
-      rawA: cafeA,
-      rawB: cafeB,
-    },
-    {
-      label: "restaurants",
-      a: restA != null ? `${restA}` : null,
-      b: restB != null ? `${restB}` : null,
-      direction: 1 as const,
-      rawA: restA,
-      rawB: restB,
-    },
-  ] satisfies NumRow[]).filter((r) => r.a != null || r.b != null);
-
-  const amenitiesA = [
-    { label: "cafés", value: a.infrastructure?.cafe_count ?? 0 },
-    { label: "restaurants", value: a.infrastructure?.restaurant_count ?? 0 },
-    { label: "pharmacies", value: a.infrastructure?.pharmacy_count ?? 0 },
-    { label: "parks", value: a.infrastructure?.park_count ?? 0 },
-  ];
-  const amenitiesB = [
-    { label: "cafés", value: b.infrastructure?.cafe_count ?? 0 },
-    { label: "restaurants", value: b.infrastructure?.restaurant_count ?? 0 },
-    { label: "pharmacies", value: b.infrastructure?.pharmacy_count ?? 0 },
-    { label: "parks", value: b.infrastructure?.park_count ?? 0 },
-  ];
-
-  // Headline: split it visually so the winner name picks up ochre italic
-  const headline = verdict.headline;
-  const winnerName = verdict.winner.pincode.name;
-  let headlineNode: React.ReactNode = headline;
-  if (!verdict.tie && headline.startsWith(winnerName)) {
-    const rest = headline.slice(winnerName.length);
-    headlineNode = (
-      <>
-        <span style={{ fontStyle: "italic", color: "var(--ochre)" }}>{winnerName}</span>
-        {rest}
-      </>
-    );
-  } else if (verdict.tie) {
-    // "X vs Y: dead heat."
-    headlineNode = (
-      <>
-        {a.pincode.name} <span style={{ fontStyle: "italic", color: "var(--muted)" }}>vs</span>{" "}
-        {b.pincode.name}: <span style={{ fontStyle: "italic", color: "var(--ochre)" }}>dead heat.</span>
-      </>
-    );
-  }
-
-  // Right-side eyebrow context: shared state, else "two states"
-  const sharedState = a.pincode.state === b.pincode.state ? a.pincode.state : "Two states";
+  const navigateTo = (slugA: string, slugB: string) => {
+    if (slugA === slugB) return;
+    router.push(`/compare/${slugA}-vs-${slugB}`);
+  };
+  const onPickA = (pin: string) => {
+    track("Compare Picker Changed", { side: "a", from_pincode: a.pincode, to_pincode: pin });
+    navigateTo(pincodeToSlug(pin), pincodeToSlug(b.pincode));
+  };
+  const onPickB = (pin: string) => {
+    track("Compare Picker Changed", { side: "b", from_pincode: b.pincode, to_pincode: pin });
+    navigateTo(pincodeToSlug(a.pincode), pincodeToSlug(pin));
+  };
 
   return (
-    <div
-      className={ui.className}
-      style={{
-        minHeight: "100dvh",
-        background: "var(--paper)",
-        color: "var(--ink)",
-        position: "relative",
-        ["--paper" as string]: "#FAF6EE",
-        ["--paper-2" as string]: "#F0E9D6",
-        ["--rule" as string]: "#D9D1B8",
-        ["--ink" as string]: "#1A2633",
-        ["--muted" as string]: "#706B5D",
-        ["--ochre" as string]: "#C88A1F",
-        ["--ochre-dark" as string]: "#8B5E12",
-        ["--alarm" as string]: "#B84B3A",
-      } as React.CSSProperties}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-24">
+      <Breadcrumb a={a} b={b} />
+
+      {/* Asymmetric hero: heading left, hero map right (lg+); stacks on mobile */}
+      <section className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center mt-2">
+        <div className="text-center lg:text-left">
+          <p className={`${MONO_KICKER} text-amber-700`}>Bangalore's Oldest Debate</p>
+          <h1
+            className="mt-4 text-[2.5rem] leading-[1.04] sm:text-6xl lg:text-[5.25rem] font-extrabold tracking-tight text-slate-900"
+            style={{ textWrap: "balance" }}
+          >
+            Whose area <span className="italic text-amber-600">actually</span> wins?
+          </h1>
+          <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+            HSR vs Whitefield. Indiranagar vs Koramangala. JP Nagar vs Jayanagar. The argument your group chat won't end — we'll call it.
+          </p>
+        </div>
+
+        <div className="relative pt-6 lg:pt-0">
+          <div
+            className="relative w-full overflow-hidden rounded-2xl"
+            style={{ aspectRatio: "5 / 4" }}
+          >
+            <HeroMap
+              a={{ lat: a.lat, lng: a.lng, name: cleanShort(a) }}
+              b={{ lat: b.lat, lng: b.lng, name: cleanShort(b) }}
+            />
+          </div>
+          <p className={`${MONO_KICKER} text-slate-400 mt-3 text-center lg:text-left`}>
+            {haversineKm(a.lat, a.lng, b.lat, b.lng).toFixed(1)} km apart · same Bangalore
+          </p>
+        </div>
+      </section>
+
+      {/* Picker row — full width below the hero */}
+      <section className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-3 sm:gap-4 items-center">
+        <AreaPicker label="A" initialPincode={a.pincode} onPick={onPickA} highlightTone="amber" />
+        <span
+          className="hidden sm:inline-flex items-center justify-center h-10 w-10 rounded-full bg-slate-900 text-white text-xs font-bold tracking-[0.18em]"
+          aria-hidden
+        >
+          VS
+        </span>
+        <AreaPicker label="B" initialPincode={b.pincode} onPick={onPickB} highlightTone="slate" />
+      </section>
+
+      {/* Verdict card — the screenshot artifact */}
+      <VerdictCard a={a} b={b} verdict={verdict} shareUrl={shareUrl} pairSlug={pairSlug} />
+
+      {/* Bento — three quick deltas */}
+      <BentoStrip a={a} b={b} verdict={verdict} />
+
+      {/* Tale of the Tape */}
+      <Receipts a={a} b={b} dims={verdict.dims} />
+
+      {/* CTA links */}
+      <CtaRow a={a} b={b} />
+
+      <CardStaggerStyle />
+    </div>
+  );
+}
+
+// ── Breadcrumb ─────────────────────────────────────────────────────────
+
+function Breadcrumb({ a, b }: { a: IQv2; b: IQv2 }) {
+  return (
+    <nav
+      className={`${MONO_KICKER} flex items-center justify-center lg:justify-start gap-2 text-slate-500 mb-6`}
+      aria-label="Breadcrumb"
     >
-      {/* paper-noise overlay (lifted from civic-brief reference convention) */}
-      <svg
-        aria-hidden
+      <Link href="/compare" className="hover:text-amber-700 transition-colors">
+        Compare
+      </Link>
+      <span aria-hidden className="text-slate-400">/</span>
+      <span className="text-slate-700">Bangalore</span>
+      <span aria-hidden className="text-slate-400">/</span>
+      <span className="text-slate-900 truncate max-w-[40ch]">
+        {cleanShort(a)} vs {cleanShort(b)}
+      </span>
+    </nav>
+  );
+}
+
+// ── Verdict card ───────────────────────────────────────────────────────
+
+function VerdictCard({
+  a,
+  b,
+  verdict,
+  shareUrl,
+  pairSlug,
+}: {
+  a: IQv2;
+  b: IQv2;
+  verdict: ReturnType<typeof computeVerdict>;
+  shareUrl: string;
+  pairSlug: string;
+}) {
+  const winnerSide = verdict.winnerSide;
+
+  return (
+    <section className="mt-12 sm:mt-16">
+      <article
+        className="bg-white rounded-2xl overflow-hidden"
         style={{
-          position: "fixed",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          pointerEvents: "none",
-          opacity: 0.06,
-          mixBlendMode: "multiply",
-          zIndex: 1,
+          boxShadow:
+            "0 1px 2px rgba(15,23,42,0.04), 0 12px 32px -16px rgba(15,23,42,0.10)",
         }}
       >
-        <filter id="ht-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
-          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#ht-noise)" />
-      </svg>
-
-      <div className="max-w-[1180px] mx-auto px-5 sm:px-8 md:px-12 pt-6 sm:pt-8 pb-20 sm:pb-24" style={{ position: "relative", zIndex: 2 }}>
-
-        {/* ── classification ribbon ── */}
-        <div
-          className={`${mono.className} flex flex-wrap items-stretch`}
-          style={{
-            background: "var(--ink)",
-            color: "var(--paper)",
-            fontSize: 11,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-          }}
-        >
-          <span
-            className="shrink-0"
-            style={{ padding: "10px 14px", background: "var(--ochre)", color: "var(--ink)" }}
+        {/* Headline + share line */}
+        <div className="px-6 sm:px-10 pt-8 sm:pt-10 pb-6">
+          <p className={`${MONO_KICKER} text-amber-700`}>The Verdict</p>
+          <h2
+            className="mt-3 text-3xl sm:text-5xl lg:text-[56px] font-extrabold tracking-tight text-slate-900 leading-[1.05]"
+            style={{ textWrap: "balance" }}
           >
-            Battle · #{a.pincode.pincode} × #{b.pincode.pincode}
-          </span>
-          <span
-            className="flex-1 min-w-0"
-            style={{
-              padding: "10px 14px",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            Head-to-Head · <span style={{ color: "var(--ochre)" }}>{a.pincode.district}</span> vs{" "}
-            <span style={{ color: "var(--ochre)" }}>{b.pincode.district}</span>
-          </span>
-          <span
-            className="hidden sm:inline shrink-0"
-            style={{ padding: "10px 14px", opacity: 0.65 }}
-          >
-            AreaIQ Civic Brief · Compare
-          </span>
+            {verdict.headline}
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-slate-700 leading-relaxed italic max-w-2xl">
+            {verdict.shareLine}
+          </p>
+          <div className="mt-5">
+            <span className="inline-flex items-stretch overflow-hidden rounded-md text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="w-[3px] bg-amber-500" />
+              <span className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 text-amber-800">
+                {verdict.audienceLine}
+              </span>
+            </span>
+          </div>
         </div>
 
-        {/* ── masthead ── */}
-        <div
-          className="flex items-baseline justify-between pt-5 pb-5 mb-12 md:mb-16"
+        {/* Score blocks: A, big VS, B */}
+        <div className="px-6 sm:px-10 py-6 border-t border-gray-100 grid grid-cols-[1fr_auto_1fr] gap-4 sm:gap-8 items-center">
+          <ScoreBlock area={a} side="a" winning={winnerSide === "a"} align="left" />
+          <span
+            className={`${MONO_KICKER} inline-flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-slate-900 text-amber-200`}
+            aria-hidden
+          >
+            VS
+          </span>
+          <ScoreBlock area={b} side="b" winning={winnerSide === "b"} align="right" />
+        </div>
+
+        {/* Wordmark + URL footer + share */}
+        <div className="px-6 sm:px-10 py-4 border-t border-gray-100 flex items-center justify-between gap-3">
+          <span className="text-sm font-semibold text-slate-900">
+            Area<span className="text-amber-600">IQ</span>
+          </span>
+          <span className={`${MONO_KICKER} text-slate-400 truncate hidden sm:inline-block`}>
+            {shareUrl.replace(/^https?:\/\//, "")}
+          </span>
+          <ShareButton
+            surface="compare"
+            size="sm"
+            variant="primary"
+            label="Share"
+            share={compareShareText({
+              winner: verdict.winnerName,
+              loser: verdict.loserName,
+              trashTalk: verdict.shareLine,
+              pairSlug,
+            })}
+            trackProps={{
+              pincode_a: a.pincode,
+              pincode_b: b.pincode,
+              winner_pincode:
+                verdict.winnerSide === "tie"
+                  ? "tie"
+                  : verdict.winnerSide === "a"
+                    ? a.pincode
+                    : b.pincode,
+            }}
+          />
+        </div>
+      </article>
+    </section>
+  );
+}
+
+function ScoreBlock({
+  area,
+  side,
+  winning,
+  align,
+}: {
+  area: IQv2;
+  side: "a" | "b";
+  winning: boolean;
+  align: "left" | "right";
+}) {
+  const score = Math.round(area.scores.overall);
+  const alignClass = align === "right" ? "text-right items-end" : "text-left items-start";
+  return (
+    <div className={`flex flex-col gap-2 ${alignClass} min-w-0`}>
+      <div className={`flex ${align === "right" ? "justify-end" : "justify-start"} w-full`}>
+        <BragChip brag={area.brag_label} size="sm" />
+      </div>
+      <div className="flex items-baseline gap-2">
+        <span
+          className={`font-mono text-5xl sm:text-6xl font-extrabold tabular-nums leading-none ${
+            winning ? "text-amber-600" : "text-slate-900"
+          }`}
+        >
+          {score}
+        </span>
+        <span className={`${MONO_KICKER} text-slate-400`}>/100</span>
+      </div>
+      <h3 className="text-base sm:text-lg font-bold tracking-tight text-slate-900 truncate w-full">
+        {cleanShort(area)}
+        <span className={`${MONO_KICKER} block text-slate-400 mt-0.5 normal-case tracking-wide font-medium`}>
+          Side {side === "a" ? "A" : "B"} · {area.pincode}
+        </span>
+      </h3>
+    </div>
+  );
+}
+
+// ── Bento — three quick deltas ─────────────────────────────────────────
+
+function BentoStrip({
+  a,
+  b,
+  verdict,
+}: {
+  a: IQv2;
+  b: IQv2;
+  verdict: ReturnType<typeof computeVerdict>;
+}) {
+  const aName = cleanShort(a);
+  const bName = cleanShort(b);
+
+  // Lifestyle: F&B count delta + winner
+  const fbA = a.counts.cafes + a.counts.restaurants;
+  const fbB = b.counts.cafes + b.counts.restaurants;
+  const fbWinner = fbA >= fbB ? aName : bName;
+  const fbDelta = Math.abs(fbA - fbB);
+  const fbWinnerCounts = fbA >= fbB ? a.counts : b.counts;
+
+  // Rent
+  const rentA = a.raw.rent_2bhk;
+  const rentB = b.raw.rent_2bhk;
+  const rentDelta =
+    rentA != null && rentB != null ? Math.abs(rentA - rentB) : null;
+  const rentCheaper =
+    rentA != null && rentB != null ? (rentA < rentB ? aName : bName) : null;
+  const aIsFallback = isFallbackMatch(a.raw.rent_match);
+  const bIsFallback = isFallbackMatch(b.raw.rent_match);
+  const bothFallback = aIsFallback && bIsFallback;
+  const oneFallback = aIsFallback !== bIsFallback;
+
+  // Air
+  const aqiA = a.raw.aqi;
+  const aqiB = b.raw.aqi;
+  const aqiDelta =
+    aqiA != null && aqiB != null ? Math.abs(aqiA - aqiB) : null;
+  const aqiCleaner =
+    aqiA != null && aqiB != null ? (aqiA < aqiB ? aName : bName) : null;
+
+  return (
+    <section className="mt-12 sm:mt-16">
+      <div className="flex items-end justify-between gap-4 mb-5">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">The headlines</h2>
+        <p className={`${MONO_KICKER} text-slate-400`}>Three biggest gaps</p>
+      </div>
+      <div
+        className="card-stagger grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] gap-5 sm:gap-6"
+        style={{ ["--stagger" as string]: "80ms" }}
+      >
+        {/* Lifestyle gap — hero amber card */}
+        <article
+          className="stagger-item rounded-2xl p-6 sm:p-8 bg-amber-50 text-slate-900 flex flex-col"
           style={{
-            borderBottom: "1px solid var(--rule)",
-            fontSize: 10,
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: "var(--muted)",
+            ["--i" as string]: 0,
+            boxShadow:
+              "0 1px 2px rgba(217,119,6,0.06), 0 8px 24px -12px rgba(217,119,6,0.16)",
           }}
         >
-          <span className={mono.className}>
-            <a href="/" style={{ color: "var(--muted)" }}>AreaIQ</a>{" "}
-            <span
-              className={display.className}
-              style={{
-                fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "none",
-                letterSpacing: 0,
-                fontSize: 15,
-                color: "var(--ink)",
-              }}
-            >
-              Compare
+          <span className={`${MONO_KICKER} text-amber-700`}>Lifestyle Gap</span>
+          <div className="mt-4 flex items-baseline gap-2">
+            <span className="font-mono text-5xl sm:text-6xl lg:text-7xl font-extrabold tabular-nums leading-[0.95] text-slate-900">
+              +{fbDelta}
+            </span>
+            <span className={`${MONO_KICKER} text-amber-700`}>F&B POIs</span>
+          </div>
+          <h3 className="mt-3 text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+            {fbWinner} runs the strip.
+          </h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+            {fbWinnerCounts.cafes} cafés · {fbWinnerCounts.restaurants} restaurants · {fbWinnerCounts.parks} parks within the pincode.
+          </p>
+        </article>
+
+        {/* Rent gap — dark slate card */}
+        <article
+          className="stagger-item rounded-2xl p-5 sm:p-6 bg-slate-900 text-white flex flex-col"
+          style={{
+            ["--i" as string]: 1,
+            boxShadow:
+              "0 1px 2px rgba(15,23,42,0.18), 0 12px 32px -12px rgba(15,23,42,0.30)",
+          }}
+        >
+          <span className={`${MONO_KICKER} text-amber-300`}>Rent Gap</span>
+          <div className="mt-4 flex items-baseline gap-1">
+            <span className="font-mono text-4xl sm:text-5xl font-extrabold tabular-nums leading-[0.95]">
+              {bothFallback
+                ? "—"
+                : rentDelta != null
+                  ? `₹${Math.round(rentDelta / 1000)}k`
+                  : "—"}
+            </span>
+            <span className={`${MONO_KICKER} text-amber-200`}>/mo</span>
+          </div>
+          <h3 className="mt-3 text-base sm:text-lg font-bold tracking-tight">
+            {bothFallback
+              ? "Locality data unavailable."
+              : rentCheaper
+                ? `${rentCheaper} costs less.`
+                : "No rent data."}
+          </h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
+            {bothFallback ? (
+              "Both pincodes fall back to the BLR city median (₹16k/mo)."
+            ) : rentA != null && rentB != null ? (
+              oneFallback ? (
+                <>
+                  {aIsFallback ? (
+                    <em className="not-italic text-slate-400">
+                      {aName} ₹{Math.round(rentA / 1000)}k (city median)
+                    </em>
+                  ) : (
+                    <>{aName} ₹{Math.round(rentA / 1000)}k</>
+                  )}
+                  {" · "}
+                  {bIsFallback ? (
+                    <em className="not-italic text-slate-400">
+                      {bName} ₹{Math.round(rentB / 1000)}k (city median)
+                    </em>
+                  ) : (
+                    <>{bName} ₹{Math.round(rentB / 1000)}k</>
+                  )}
+                  {" (2BHK)."}
+                </>
+              ) : (
+                `${aName} ₹${Math.round(rentA / 1000)}k · ${bName} ₹${Math.round(rentB / 1000)}k (2BHK).`
+              )
+            ) : (
+              "99acres locality match unavailable."
+            )}
+          </p>
+        </article>
+
+        {/* Air gap — white card */}
+        <article
+          className="stagger-item rounded-2xl p-5 sm:p-6 bg-white text-slate-900 flex flex-col"
+          style={{
+            ["--i" as string]: 2,
+            boxShadow:
+              "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -12px rgba(15,23,42,0.10)",
+          }}
+        >
+          <span className={`${MONO_KICKER} text-slate-500`}>Air Gap</span>
+          <div className="mt-4 flex items-baseline gap-1">
+            <span className="font-mono text-4xl sm:text-5xl font-extrabold tabular-nums leading-[0.95]">
+              {aqiDelta != null ? `${Math.round(aqiDelta)}` : "—"}
+            </span>
+            <span className={`${MONO_KICKER} text-slate-500`}>AQI</span>
+          </div>
+          <h3 className="mt-3 text-base sm:text-lg font-bold tracking-tight">
+            {aqiCleaner ? `${aqiCleaner} breathes easier.` : "No AQI signal."}
+          </h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
+            {aqiA != null && aqiB != null
+              ? `${aName} AQI ${Math.round(aqiA)} · ${bName} AQI ${Math.round(aqiB)} (IDW-blended).`
+              : "CPCB stations out of range."}
+          </p>
+        </article>
+      </div>
+    </section>
+  );
+}
+
+// ── Tale of the Tape ───────────────────────────────────────────────────
+
+function Receipts({ a, b, dims }: { a: IQv2; b: IQv2; dims: DimRow[] }) {
+  const aName = cleanShort(a);
+  const bName = cleanShort(b);
+  return (
+    <section className="mt-12 sm:mt-16">
+      <div className="flex items-end justify-between gap-4 mb-5">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Tale of the Tape</h2>
+        <p className={`${MONO_KICKER} text-slate-400`}>Six dimensions, side by side</p>
+      </div>
+      <div
+        className="bg-white rounded-xl overflow-hidden"
+        style={{
+          boxShadow:
+            "0 1px 2px rgba(15,23,42,0.04), 0 12px 32px -16px rgba(15,23,42,0.10)",
+        }}
+      >
+        <div className={`hidden sm:grid grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] px-5 py-3 border-b border-gray-100 ${MONO_KICKER} text-slate-400`}>
+          <span>Dimension</span>
+          <span className="text-right">{aName}</span>
+          <span className="text-right">{bName}</span>
+        </div>
+        {dims.map((d, i) => (
+          <ReceiptRow key={d.key} d={d} a={a} b={b} idx={i} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ReceiptRow({ d, a, b, idx }: { d: DimRow; a: IQv2; b: IQv2; idx: number }) {
+  const pctA = a.percentile_blr[d.key] ?? 50;
+  const pctB = b.percentile_blr[d.key] ?? 50;
+  const softA =
+    d.key === "affordability" && isFallbackMatch(a.raw.rent_match)
+      ? "(city median)"
+      : undefined;
+  const softB =
+    d.key === "affordability" && isFallbackMatch(b.raw.rent_match)
+      ? "(city median)"
+      : undefined;
+  return (
+    <div
+      className="px-5 py-5 grid grid-cols-1 sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] gap-4 sm:gap-6 items-start sm:items-center border-b border-gray-100 last:border-0"
+      style={{ ["--i" as string]: idx }}
+    >
+      <div className="min-w-0">
+        <p className="text-sm font-semibold text-slate-900">{d.label}</p>
+        <p className="mt-1 text-xs text-slate-500 leading-snug">{d.description}</p>
+      </div>
+      <DimSide value={d.a} pct={pctA} winner={d.winner === "a"} softLabel={softA} />
+      <DimSide value={d.b} pct={pctB} winner={d.winner === "b"} softLabel={softB} />
+    </div>
+  );
+}
+
+function DimSide({
+  value,
+  pct,
+  winner,
+  softLabel,
+}: {
+  value: number;
+  pct: number;
+  winner: boolean;
+  softLabel?: string;
+}) {
+  const v = Math.round(value);
+  const valueColor = winner ? "text-amber-600" : "text-slate-900";
+  const barColor = winner ? "bg-amber-500" : "bg-slate-300";
+  const topPct = Math.max(1, Math.round(100 - pct));
+  return (
+    <div className="flex flex-col gap-1.5 sm:items-end">
+      <div className="flex items-baseline gap-2 sm:flex-row-reverse">
+        <span className={`${MONO_KICKER} text-slate-400 normal-case tracking-[0.12em] font-medium`}>
+          Top {topPct}% in BLR
+        </span>
+        <span className={`font-mono text-2xl sm:text-3xl font-extrabold tabular-nums ${valueColor}`}>
+          {v}
+        </span>
+      </div>
+      <div className="w-full sm:w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+        <div className={`h-full rounded-full ${barColor}`} style={{ width: `${Math.max(2, v)}%` }} />
+      </div>
+      {softLabel ? (
+        <span className="text-slate-400 normal-case tracking-[0.12em] font-medium text-[10px]">
+          {softLabel}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+// ── CTA row ────────────────────────────────────────────────────────────
+
+function CtaRow({ a, b }: { a: IQv2; b: IQv2 }) {
+  return (
+    <section className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {[a, b].map((area) => (
+        <Link
+          key={area.pincode}
+          href={`/insights/${area.pincode}`}
+          className="group flex items-center justify-between gap-2 px-5 py-4 rounded-xl bg-white border border-slate-200 hover:border-amber-400 transition-colors"
+        >
+          <span className="flex flex-col min-w-0">
+            <span className="text-sm font-semibold text-slate-800 truncate">
+              Read the {cleanShort(area)} report
+            </span>
+            <span className={`${MONO_KICKER} text-slate-400 normal-case tracking-[0.14em] font-medium`}>
+              /insights/{area.pincode}
             </span>
           </span>
-          <span className={`${mono.className} hidden sm:inline`}>
-            {sharedState} · Volume II · Head-to-Head
+          <span className="text-amber-600 group-hover:translate-x-0.5 transition-transform" aria-hidden>
+            →
           </span>
-        </div>
+        </Link>
+      ))}
+    </section>
+  );
+}
 
-        {/* ── hero verdict block ── */}
-        <header className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-8 md:gap-12 items-start mb-14 md:mb-20">
-          <div>
-            <div
-              className="mb-5 flex items-center gap-4"
-              style={{
-                fontSize: 10,
-                letterSpacing: "0.4em",
-                color: "var(--muted)",
-                fontWeight: 500,
-                textTransform: "uppercase",
-              }}
-            >
-              <span style={{ display: "inline-block", width: 32, height: 1, background: "var(--ochre)" }} />
-              <span className={mono.className}>Head-to-Head · {sharedState}</span>
-            </div>
+// ── helpers ────────────────────────────────────────────────────────────
 
-            <p
-              className={serif.className}
-              style={{
-                fontStyle: "italic",
-                fontSize: "1.25rem",
-                color: "var(--muted)",
-                marginBottom: "0.5rem",
-                fontWeight: 400,
-              }}
-            >
-              The verdict is in.
-            </p>
+function cleanShort(d: IQv2): string {
+  return displayName(d.pincode, d.name).replace(/\s*\(Bangalore\)\s*$/i, "");
+}
 
-            <h1
-              className={display.className}
-              style={{
-                fontSize: "clamp(2.25rem, 7.5vw, 5.5rem)",
-                lineHeight: 0.95,
-                fontWeight: 400,
-                letterSpacing: "-0.03em",
-                color: "var(--ink)",
-                marginBottom: "1.5rem",
-              }}
-            >
-              {headlineNode}
-            </h1>
+function isFallbackMatch(match: string | null | undefined): boolean {
+  return match === "city" || match === "city_inferred";
+}
 
-            <p
-              className={serif.className}
-              style={{
-                fontSize: "1.375rem",
-                lineHeight: 1.5,
-                color: "var(--ink)",
-                fontWeight: 400,
-                fontStyle: "italic",
-                maxWidth: 620,
-                marginBottom: "1.5rem",
-              }}
-            >
-              {verdict.trashTalk}
-            </p>
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const toRad = (x: number) => (x * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
 
-            <p
-              className={mono.className}
-              style={{
-                fontSize: 11,
-                letterSpacing: "0.22em",
-                color: "var(--muted)",
-                textTransform: "uppercase",
-                fontWeight: 500,
-              }}
-            >
-              #{a.pincode.pincode} · {a.pincode.name}{" "}
-              <span style={{ color: "var(--ochre)" }}>×</span>{" "}
-              #{b.pincode.pincode} · {b.pincode.name}
-            </p>
-          </div>
-
-          {/* Vs panel */}
-          <aside
-            style={{
-              border: "1px solid var(--ink)",
-              background: "var(--paper-2)",
-              padding: "1.5rem",
-              position: "relative",
-            }}
-          >
-            <div
-              className={mono.className}
-              style={{
-                position: "absolute",
-                top: -1,
-                right: -1,
-                background: "var(--ink)",
-                color: "var(--paper)",
-                padding: "6px 12px",
-                fontSize: 10,
-                letterSpacing: "0.24em",
-                fontWeight: 600,
-                textTransform: "uppercase",
-              }}
-            >
-              Scorecard
-            </div>
-            <div className="mt-3">
-              <SideHeader area={a} label="Side A" />
-            </div>
-            <div
-              className="my-5 flex items-center gap-3"
-              style={{
-                fontSize: 10,
-                letterSpacing: "0.4em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-              }}
-            >
-              <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
-              <span
-                className={display.className}
-                style={{
-                  fontSize: "1.125rem",
-                  fontStyle: "italic",
-                  color: "var(--ochre)",
-                  letterSpacing: 0,
-                  textTransform: "lowercase",
-                }}
-              >
-                versus
-              </span>
-              <span style={{ flex: 1, height: 1, background: "var(--rule)" }} />
-            </div>
-            <SideHeader area={b} label="Side B" />
-            {!verdict.tie ? (
-              <div
-                className={mono.className}
-                style={{
-                  marginTop: "1.5rem",
-                  padding: "0.75rem 0.875rem",
-                  background: "var(--ochre)",
-                  color: "var(--ink)",
-                  fontSize: 10,
-                  letterSpacing: "0.24em",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                }}
-              >
-                {verdict.winner.pincode.name} · +{verdict.overallDelta} pts
-              </div>
-            ) : (
-              <div
-                className={mono.className}
-                style={{
-                  marginTop: "1.5rem",
-                  padding: "0.75rem 0.875rem",
-                  background: "var(--ink)",
-                  color: "var(--paper)",
-                  fontSize: 10,
-                  letterSpacing: "0.24em",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                }}
-              >
-                Dead heat · pick by feel
-              </div>
-            )}
-          </aside>
-        </header>
-
-        {/* ── § I The Battlefield ── */}
-        <section className="mb-14 md:mb-20">
-          <SectionEyebrow
-            section="§ I"
-            title="The Battlefield"
-            right={<span className="hidden sm:inline">r. 1.5km · per side</span>}
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            <MapPanel area={a} figLabel="Fig. 1A" amenities={amenitiesA} />
-            <MapPanel area={b} figLabel="Fig. 1B" amenities={amenitiesB} />
-          </div>
-        </section>
-
-        {/* ── § II Six Dimensions · Head-to-Head ── */}
-        <section
-          className="mb-14 md:mb-20"
-          style={{
-            borderTop: "1px solid var(--ink)",
-            borderBottom: "1px solid var(--ink)",
-            padding: "1.5rem 0",
-          }}
-        >
-          <SectionEyebrow
-            section="§ II"
-            title="Five Dimensions · Head-to-Head"
-            right={
-              <span className="hidden sm:inline">
-                {verdict.tie
-                  ? "split decision"
-                  : `${verdict.dimWins.winner}-${verdict.dimWins.loser} on dims`}
-              </span>
-            }
-          />
-          <div>
-            {verdict.dimDeltas.map((dim) => (
-              <DimRow key={dim.key} dim={dim} nameA={a.pincode.name} nameB={b.pincode.name} />
-            ))}
-          </div>
-        </section>
-
-        {/* ── § III Concrete numbers ── */}
-        {numberRows.length > 0 && (
-          <section className="mb-14 md:mb-20">
-            <SectionEyebrow
-              section="§ III"
-              title="The Receipts"
-              right={<span className="hidden sm:inline">cited figures</span>}
-            />
-            <NumberTable rows={numberRows} nameA={a.pincode.name} nameB={b.pincode.name} />
-          </section>
-        )}
-
-        {/* ── § IV Verdict ── */}
-        <section className="mb-12 md:mb-16">
-          <SectionEyebrow section="§ IV" title="The Verdict" />
-          <div
-            style={{
-              border: "1px solid var(--ink)",
-              background: "var(--paper-2)",
-              padding: "1.5rem 1.5rem 1.75rem",
-            }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-start">
-              {/* Big ratio */}
-              <div>
-                <p
-                  className={mono.className}
-                  style={{
-                    fontSize: 10,
-                    letterSpacing: "0.3em",
-                    textTransform: "uppercase",
-                    color: "var(--muted)",
-                    fontWeight: 600,
-                    marginBottom: 6,
-                  }}
-                >
-                  Dimensions won
-                </p>
-                <p
-                  className={display.className}
-                  style={{
-                    fontSize: "clamp(3.5rem, 8vw, 5.5rem)",
-                    fontStyle: "italic",
-                    fontWeight: 400,
-                    lineHeight: 0.9,
-                    letterSpacing: "-0.04em",
-                    color: verdict.tie ? "var(--muted)" : "var(--ochre)",
-                  }}
-                >
-                  {verdict.dimWins.winner}
-                  <span style={{ color: "var(--muted)", fontSize: "0.55em" }}>
-                    {" / "}
-                    {verdict.dimWins.total}
-                  </span>
-                </p>
-                <p
-                  className={mono.className}
-                  style={{
-                    marginTop: 8,
-                    fontSize: 11,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: "var(--ink)",
-                  }}
-                >
-                  {verdict.tie ? a.pincode.name + " · " + b.pincode.name : verdict.winner.pincode.name}
-                </p>
-              </div>
-
-              {/* Right column */}
-              <div>
-                <p
-                  className={serif.className}
-                  style={{
-                    fontStyle: "italic",
-                    fontSize: "1.25rem",
-                    lineHeight: 1.5,
-                    color: "var(--ink)",
-                    marginBottom: "1rem",
-                    fontWeight: 400,
-                  }}
-                >
-                  {verdict.audienceLine}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {!verdict.tie && (
-                    <span
-                      className={mono.className}
-                      style={{
-                        fontSize: 10,
-                        letterSpacing: "0.24em",
-                        textTransform: "uppercase",
-                        background: "var(--ink)",
-                        color: "var(--paper)",
-                        padding: "6px 10px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      +{verdict.overallDelta} overall
-                    </span>
-                  )}
-                  <span
-                    className={mono.className}
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: "0.24em",
-                      textTransform: "uppercase",
-                      background: "var(--ochre)",
-                      color: "var(--ink)",
-                      padding: "6px 10px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {verdict.audience}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={handleShare}
-                    className={mono.className}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 8,
-                      minHeight: 40,
-                      padding: "10px 14px",
-                      fontSize: 11,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                      background: copied ? "var(--ochre)" : "var(--ink)",
-                      color: copied ? "var(--ink)" : "var(--paper)",
-                      border: "1px solid var(--ink)",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {copied ? (
-                      <>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        Link copied
-                      </>
-                    ) : (
-                      <>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                        </svg>
-                        Share this battle
-                      </>
-                    )}
-                  </button>
-                  <a
-                    href={`/insights/${a.pincode.pincode}`}
-                    className={mono.className}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 6,
-                      minHeight: 40,
-                      padding: "10px 14px",
-                      fontSize: 11,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                      background: "var(--paper)",
-                      color: "var(--ink)",
-                      border: "1px solid var(--ink)",
-                    }}
-                  >
-                    {a.pincode.name} brief →
-                  </a>
-                  <a
-                    href={`/insights/${b.pincode.pincode}`}
-                    className={mono.className}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 6,
-                      minHeight: 40,
-                      padding: "10px 14px",
-                      fontSize: 11,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      fontWeight: 600,
-                      background: "var(--paper)",
-                      color: "var(--ink)",
-                      border: "1px solid var(--ink)",
-                    }}
-                  >
-                    {b.pincode.name} brief →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── colophon ── */}
-        <footer
-          style={{
-            marginTop: "4rem",
-            paddingTop: "1rem",
-            borderTop: "1px solid var(--rule)",
-            fontSize: 10,
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            color: "var(--muted)",
-          }}
-          className={`${mono.className} flex flex-wrap justify-between gap-y-2 gap-x-4`}
-        >
-          <span className="min-w-0">
-            <span className="hidden sm:inline">Methodology · </span>
-            Census · CPCB · NCRB · OSM · Swachh · MyNeta
-          </span>
-          <span className="shrink-0">
-            Battle · #{a.pincode.pincode} × #{b.pincode.pincode}
-          </span>
-        </footer>
-      </div>
-    </div>
+function CardStaggerStyle() {
+  return (
+    <style>{`
+      .card-stagger .stagger-item {
+        opacity: 0;
+        transform: translateY(8px);
+        animation: stagger-rise 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: calc(var(--i, 0) * var(--stagger, 80ms));
+        will-change: transform, opacity;
+      }
+      @keyframes stagger-rise {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .card-stagger .stagger-item { animation: none; opacity: 1; transform: none; }
+      }
+    `}</style>
   );
 }

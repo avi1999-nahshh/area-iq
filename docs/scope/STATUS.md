@@ -8,7 +8,7 @@ Last updated: 2026-04-26.
 
 | Story | Live in prod? | Live URL | Lab preview | Detail |
 |---|---|---|---|---|
-| 1 — Compare | partial | https://area-iq-one.vercel.app/compare | — | [01-compare/status.md](./01-compare/status.md) |
+| 1 — Compare | yes | https://area-iq-one.vercel.app/compare · /compare/{slug-a}-vs-{slug-b} | — | [01-compare/status.md](./01-compare/status.md) |
 | 2 — Proximity | yes | https://area-iq-one.vercel.app/proximity | — | [02-proximity/status.md](./02-proximity/status.md) |
 | 3 — Report card | yes | https://area-iq-one.vercel.app/insights · /{pincode} | — | [03-report-card/status.md](./03-report-card/status.md) |
 
@@ -35,6 +35,7 @@ Cross-cutting items that don't belong inside a single feature's status. Move the
 
 ## Recent rollouts
 
+- 2026-04-25 — **Story 1 (Compare) shipped end-to-end redesign.** `/compare` is now the canonical route with slug-form URLs (`/compare/indiranagar-vs-koramangala`); legacy `?a=&b=` URLs 307 to slug. New page anatomy: asymmetric hero with light single-map plate (CARTO Positron, both pincodes pinned + dashed amber connector), two-bar autocomplete picker row, dramatic verdict card with `<ShareButton>`, three-card delta bento (Lifestyle / Rent / Air), six-dim "Tale of the Tape". Engine fixes: IDW air-quality smoothing across K=3 nearest CPCB stations, IDW rent smoothing across K=3 nearest locality-confident pincodes (rent coverage 45% → 86%), confidence-aware `(city median)` UI tags. Plausible analytics wired: `Compare Viewed`, `Compare Picker Changed`, `Share Clicked`. TopNav `Compare` flipped to `ready=true`.
 - 2026-04-25 — `/methodology` page documented Proximity. New section "How proximity search works" (3-step user-friendly explainer + honest limits). Sources table picks up OpenStreetMap routing + Nominatim entries. Stale "starts with straight-line" bullet in Limitations corrected.
 - 2026-04-25 — **Story 2 (Proximity) shipped Phase A.** New route `/proximity` with typeable office combobox (Nominatim geocoding, Bangalore-bounded), commute-window slider, transport toggle, 5 priority chips (Air / Lifestyle / Essentials / Connectivity / Affordability), Leaflet map with double-click pin → `/insights/[pincode]` navigation, ranked match cards with inline grade ladders. Backend: `convex/proximity.ts` (commuteMatrix + geocode + prewarmPresets actions, `commute_cache` table with 7-day TTL and 110m origin bucketing). Real OSRM road-network routing (free-flow; no traffic model — Phase B = Mapbox). 6 BLR tech parks × 3 modes pre-warmed (18/18 cells).
 - 2026-04-25 — `/area/[pincode]` (Civic Brief) **removed**. `/insights/[pincode]` is now the sole canonical report-card route. Proximity cards, proximity map double-click, and compare CTAs all repointed. Convex `area.getByPincode` query unchanged (still backs `/insights/`).

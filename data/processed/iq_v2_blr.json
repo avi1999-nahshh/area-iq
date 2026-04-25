@@ -17,8 +17,8 @@
       "buses": 38
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 6.98,
+      "aqi": 65.5,
+      "station_distance_km": 6.140316931396894,
       "metro_km": 0.16,
       "rail_km": 1.04,
       "rent_2bhk": 18400.5,
@@ -30,40 +30,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 79.1,
       "air_confident": true,
       "amenities": 79.5,
       "essentials": 70.2,
       "lifestyle": 88.8,
       "connectivity": 79.6,
       "density": 45.4,
-      "affordability": 15.2,
+      "affordability": 34.5,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 69.4
+      "overall": 67.9
     },
     "ranks": {
-      "air": 1,
+      "air": 5,
       "amenities": 25,
       "essentials": 39,
       "lifestyle": 15,
       "connectivity": 2,
       "density": 82,
-      "affordability": 110,
+      "affordability": 85,
       "walkability": 7
     },
     "percentile_blr": {
-      "air": 100.0,
+      "air": 96.9,
       "amenities": 81.4,
       "essentials": 70.5,
       "lifestyle": 89.1,
       "connectivity": 99.2,
       "density": 37.2,
-      "affordability": 15.5,
+      "affordability": 34.9,
       "walkability": 95.3
     },
-    "brag_label": "Bangalore's #1 Cleanest Air",
-    "subhead": "Your neighbourhood outperforms 100% of Bangalore on air quality."
+    "brag_label": "Bangalore's #2 Connectivity Hub",
+    "subhead": "Your neighbourhood outperforms 99% of Bangalore on transit access."
   },
   {
     "pincode": "560043",
@@ -83,8 +83,8 @@
       "buses": 94
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 10.69,
+      "aqi": 129.6,
+      "station_distance_km": 10.132186198529439,
       "metro_km": 2.97,
       "rail_km": 2.46,
       "rent_2bhk": 17197.0,
@@ -96,40 +96,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 41.4,
+      "air_confident": false,
       "amenities": 95.7,
       "essentials": 98.1,
       "lifestyle": 93.4,
       "connectivity": 57.8,
       "density": 45.1,
-      "affordability": 19.1,
+      "affordability": 41.5,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 69.0
+      "overall": 58.7
     },
     "ranks": {
-      "air": 2,
+      "air": 27,
       "amenities": 3,
       "essentials": 3,
       "lifestyle": 9,
       "connectivity": 46,
       "density": 83,
-      "affordability": 105,
+      "affordability": 76,
       "walkability": 22
     },
     "percentile_blr": {
-      "air": 99.2,
+      "air": 79.8,
       "amenities": 98.4,
       "essentials": 98.4,
       "lifestyle": 93.8,
       "connectivity": 65.1,
       "density": 36.4,
-      "affordability": 19.4,
+      "affordability": 41.9,
       "walkability": 83.7
     },
-    "brag_label": "Bangalore's #2 Cleanest Air",
-    "subhead": "Your neighbourhood outperforms 99% of Bangalore on air quality."
+    "brag_label": "Bangalore's #3 Essentials Coverage",
+    "subhead": "Your neighbourhood outperforms 98% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560062",
@@ -149,52 +149,54 @@
       "buses": 67
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 12.63,
+      "aqi": 167.9,
+      "station_distance_km": 12.107053447050985,
       "metro_km": 1.17,
       "rail_km": 6.97,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 11906,
+      "rent_match": "locality_inferred",
       "pop_density": 27693.337432228498,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 4.05
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 63.8,
       "essentials": 55.8,
       "lifestyle": 71.7,
       "connectivity": 61.2,
       "density": 40.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 88.8,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 43.7
+      "overall": 51.1
     },
     "ranks": {
-      "air": 40,
+      "air": 94,
       "amenities": 42,
       "essentials": 57,
       "lifestyle": 37,
       "connectivity": 29,
       "density": 102,
-      "affordability": 35,
+      "affordability": 15,
       "walkability": 51
     },
     "percentile_blr": {
-      "air": 69.8,
+      "air": 27.9,
       "amenities": 68.2,
       "essentials": 56.6,
       "lifestyle": 72.1,
       "connectivity": 78.3,
       "density": 21.7,
-      "affordability": 73.6,
+      "affordability": 89.1,
       "walkability": 61.2
     },
-    "brag_label": "Top 25% Connectivity Hub in Bangalore",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 78% of Bangalore on transit access."
   },
   {
@@ -215,49 +217,51 @@
       "buses": 70
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.01,
+      "aqi": 129.4,
+      "station_distance_km": 10.940966422374538,
       "metro_km": 1.1,
       "rail_km": 5.68,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 12671,
+      "rent_match": "locality_inferred",
       "pop_density": 23309.802168850412,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 4.35
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 41.5,
+      "air_confident": false,
       "amenities": 88.0,
       "essentials": 88.0,
       "lifestyle": 88.0,
       "connectivity": 63.8,
       "density": 39.7,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 85.7,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 50.0
+      "overall": 62.6
     },
     "ranks": {
-      "air": 41,
+      "air": 26,
       "amenities": 18,
       "essentials": 16,
       "lifestyle": 16,
       "connectivity": 21,
       "density": 103,
-      "affordability": 36,
+      "affordability": 19,
       "walkability": 23
     },
     "percentile_blr": {
-      "air": 69.0,
+      "air": 80.6,
       "amenities": 86.8,
       "essentials": 88.4,
       "lifestyle": 88.4,
       "connectivity": 84.5,
       "density": 20.9,
-      "affordability": 72.9,
+      "affordability": 86.0,
       "walkability": 82.9
     },
     "brag_label": "Top 25% Essentials Coverage in Bangalore",
@@ -281,8 +285,8 @@
       "buses": 38
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 12.52,
+      "aqi": 140.2,
+      "station_distance_km": 10.309154669318898,
       "metro_km": 3.17,
       "rail_km": 2.27,
       "rent_2bhk": 15640.0,
@@ -294,39 +298,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 35.2,
+      "air_confident": false,
       "amenities": 70.2,
       "essentials": 76.4,
       "lifestyle": 64.0,
       "connectivity": 51.6,
       "density": 50.5,
-      "affordability": 77.0,
+      "affordability": 64.0,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 48.6
+      "overall": 53.4
     },
     "ranks": {
-      "air": 42,
+      "air": 32,
       "amenities": 35,
       "essentials": 31,
       "lifestyle": 47,
       "connectivity": 64,
       "density": 63,
-      "affordability": 30,
+      "affordability": 47,
       "walkability": 24
     },
     "percentile_blr": {
-      "air": 68.2,
+      "air": 76.0,
       "amenities": 73.6,
       "essentials": 76.7,
       "lifestyle": 64.3,
       "connectivity": 51.2,
       "density": 51.9,
-      "affordability": 77.5,
+      "affordability": 64.3,
       "walkability": 82.2
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Top 25% Essentials Coverage in Bangalore",
     "subhead": "Your neighbourhood outperforms 77% of Bangalore on essentials coverage."
   },
   {
@@ -347,8 +351,8 @@
       "buses": 49
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 3.09,
+      "aqi": 105.7,
+      "station_distance_km": 4.73547183182776,
       "metro_km": 2.55,
       "rail_km": 6.21,
       "rent_2bhk": 19635.0,
@@ -360,36 +364,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 55.5,
       "air_confident": true,
       "amenities": 89.9,
       "essentials": 83.3,
       "lifestyle": 96.5,
       "connectivity": 50.6,
       "density": 48.6,
-      "affordability": 12.9,
+      "affordability": 29.8,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 45.1
+      "overall": 58.4
     },
     "ranks": {
-      "air": 43,
+      "air": 16,
       "amenities": 12,
       "essentials": 22,
       "lifestyle": 5,
       "connectivity": 70,
       "density": 70,
-      "affordability": 113,
+      "affordability": 91,
       "walkability": 52
     },
     "percentile_blr": {
-      "air": 67.4,
+      "air": 88.4,
       "amenities": 91.5,
       "essentials": 83.7,
       "lifestyle": 96.9,
       "connectivity": 46.5,
       "density": 46.5,
-      "affordability": 13.2,
+      "affordability": 30.2,
       "walkability": 60.5
     },
     "brag_label": "Top 5% Lifestyle Density in Bangalore",
@@ -413,8 +417,8 @@
       "buses": 22
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 22.4,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 5.1,
       "rail_km": 2.23,
       "rent_2bhk": 7703.5,
@@ -426,20 +430,20 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 18.4,
       "essentials": 15.9,
       "lifestyle": 20.9,
       "connectivity": 42.8,
       "density": 43.8,
-      "affordability": 98.0,
+      "affordability": 98.1,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 35.6
+      "overall": 40.4
     },
     "ranks": {
-      "air": 44,
+      "air": 41,
       "amenities": 109,
       "essentials": 108,
       "lifestyle": 101,
@@ -449,7 +453,7 @@
       "walkability": 80
     },
     "percentile_blr": {
-      "air": 66.7,
+      "air": 69.0,
       "amenities": 16.3,
       "essentials": 17.1,
       "lifestyle": 22.5,
@@ -479,49 +483,51 @@
       "buses": 77
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 7.61,
+      "aqi": 157.1,
+      "station_distance_km": 5.14304046555611,
       "metro_km": 0.35,
       "rail_km": 1.6,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 36874,
+      "rent_match": "locality_inferred",
       "pop_density": 139763.46967559945,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 10,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.26
     },
     "scores": {
-      "air": 8.8,
+      "air": 25.2,
       "air_confident": true,
       "amenities": 95.0,
       "essentials": 91.1,
       "lifestyle": 98.8,
       "connectivity": 82.1,
       "density": 48.9,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 1.2,
+      "affordability_confident": true,
       "walkability": 86.4,
-      "overall": 57.4
+      "overall": 55.9
     },
     "ranks": {
-      "air": 45,
+      "air": 82,
       "amenities": 4,
       "essentials": 12,
       "lifestyle": 2,
       "connectivity": 1,
       "density": 69,
-      "affordability": 37,
+      "affordability": 128,
       "walkability": 1
     },
     "percentile_blr": {
-      "air": 65.9,
+      "air": 37.2,
       "amenities": 97.7,
       "essentials": 91.5,
       "lifestyle": 99.2,
       "connectivity": 100.0,
       "density": 47.3,
-      "affordability": 72.1,
+      "affordability": 1.6,
       "walkability": 100.0
     },
     "brag_label": "Bangalore's #1 Connectivity Hub",
@@ -545,53 +551,55 @@
       "buses": 39
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 13.12,
+      "aqi": 134.9,
+      "station_distance_km": 11.373104061611349,
       "metro_km": 0.72,
       "rail_km": 3.52,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 16038,
+      "rent_match": "locality_inferred",
       "pop_density": 98082.05483519747,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.5
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 38.3,
+      "air_confident": false,
       "amenities": 66.3,
       "essentials": 58.9,
       "lifestyle": 73.6,
       "connectivity": 67.5,
       "density": 46.7,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 58.5,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 67.7
+      "overall": 55.4
     },
     "ranks": {
-      "air": 3,
+      "air": 29,
       "amenities": 39,
       "essentials": 51,
       "lifestyle": 34,
       "connectivity": 14,
       "density": 77,
-      "affordability": 38,
+      "affordability": 54,
       "walkability": 81
     },
     "percentile_blr": {
-      "air": 98.4,
+      "air": 78.3,
       "amenities": 70.5,
       "essentials": 61.2,
       "lifestyle": 74.4,
       "connectivity": 89.9,
       "density": 41.1,
-      "affordability": 71.3,
+      "affordability": 58.9,
       "walkability": 38.0
     },
-    "brag_label": "Bangalore's #3 Cleanest Air",
-    "subhead": "Your neighbourhood outperforms 98% of Bangalore on air quality."
+    "brag_label": "Top 25% Connectivity Hub in Bangalore",
+    "subhead": "Your neighbourhood outperforms 90% of Bangalore on transit access."
   },
   {
     "pincode": "560065",
@@ -611,52 +619,54 @@
       "buses": 12
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 19.33,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 7.09,
       "rail_km": 2.48,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 13404,
+      "rent_match": "locality_inferred",
       "pop_density": 111804.46801308813,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.56
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 49.2,
       "essentials": 45.0,
       "lifestyle": 53.5,
       "connectivity": 35.1,
       "density": 47.6,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 81.8,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 35.8
+      "overall": 44.8
     },
     "ranks": {
-      "air": 46,
+      "air": 42,
       "amenities": 66,
       "essentials": 71,
       "lifestyle": 59,
       "connectivity": 107,
       "density": 74,
-      "affordability": 39,
+      "affordability": 24,
       "walkability": 53
     },
     "percentile_blr": {
-      "air": 65.1,
+      "air": 68.2,
       "amenities": 49.6,
       "essentials": 45.7,
       "lifestyle": 55.0,
       "connectivity": 17.8,
       "density": 43.4,
-      "affordability": 70.5,
+      "affordability": 82.2,
       "walkability": 59.7
     },
-    "brag_label": "Lifestyle Density · #59 of 129",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 55% of Bangalore on lifestyle density."
   },
   {
@@ -677,52 +687,54 @@
       "buses": 35
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.5,
+      "aqi": 138.2,
+      "station_distance_km": 12.2864725552401,
       "metro_km": 3.03,
       "rail_km": 1.32,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 15682,
+      "rent_match": "locality_inferred",
       "pop_density": 109120.47131373198,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.98
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 36.4,
+      "air_confident": false,
       "amenities": 57.6,
       "essentials": 53.9,
       "lifestyle": 61.2,
       "connectivity": 53.7,
       "density": 47.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 63.2,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 41.8
+      "overall": 50.4
     },
     "ranks": {
-      "air": 47,
+      "air": 30,
       "amenities": 52,
       "essentials": 59,
       "lifestyle": 50,
       "connectivity": 58,
       "density": 76,
-      "affordability": 40,
+      "affordability": 48,
       "walkability": 8
     },
     "percentile_blr": {
-      "air": 64.3,
+      "air": 77.5,
       "amenities": 60.5,
       "essentials": 55.0,
       "lifestyle": 62.0,
       "connectivity": 55.8,
       "density": 41.9,
-      "affordability": 69.8,
+      "affordability": 63.6,
       "walkability": 94.6
     },
-    "brag_label": "Lifestyle Density · #50 of 129",
+    "brag_label": "Affordable Living · #48 of 129",
     "subhead": "Your neighbourhood outperforms 62% of Bangalore on lifestyle density."
   },
   {
@@ -743,8 +755,8 @@
       "buses": 89
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 21.83,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 11.82,
       "rail_km": 7.16,
       "rent_2bhk": 16464,
@@ -753,39 +765,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 1
     },
     "scores": {
-      "air": 95.3,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 47.3,
       "essentials": 34.9,
       "lifestyle": 59.7,
       "connectivity": 39.7,
       "density": 34.8,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 54.8
+      "overall": 39.3
     },
     "ranks": {
-      "air": 4,
+      "air": 43,
       "amenities": 70,
       "essentials": 84,
       "lifestyle": 52,
       "connectivity": 96,
       "density": 121,
-      "affordability": 41,
+      "affordability": 56,
       "walkability": 25
     },
     "percentile_blr": {
-      "air": 97.7,
+      "air": 67.4,
       "amenities": 46.5,
       "essentials": 35.7,
       "lifestyle": 60.5,
       "connectivity": 26.4,
       "density": 7.0,
-      "affordability": 69.0,
+      "affordability": 57.4,
       "walkability": 81.4
     },
     "brag_label": "Lifestyle Density · #52 of 129",
@@ -809,53 +822,55 @@
       "buses": 49
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 9.29,
+      "aqi": 88.5,
+      "station_distance_km": 8.590847350120997,
       "metro_km": 2.08,
       "rail_km": 1.7,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 16197,
+      "rent_match": "locality_inferred",
       "pop_density": 59237.38641798182,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.41
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 65.6,
+      "air_confident": false,
       "amenities": 63.6,
       "essentials": 81.8,
       "lifestyle": 45.3,
       "connectivity": 63.2,
       "density": 44.3,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 57.8,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 65.6
+      "overall": 59.8
     },
     "ranks": {
-      "air": 5,
+      "air": 10,
       "amenities": 43,
       "essentials": 24,
       "lifestyle": 71,
       "connectivity": 23,
       "density": 86,
-      "affordability": 42,
+      "affordability": 55,
       "walkability": 9
     },
     "percentile_blr": {
-      "air": 96.9,
+      "air": 93.0,
       "amenities": 67.4,
       "essentials": 82.2,
       "lifestyle": 45.7,
       "connectivity": 82.9,
       "density": 34.1,
-      "affordability": 68.2,
+      "affordability": 58.1,
       "walkability": 93.8
     },
-    "brag_label": "Top 5% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 97% of Bangalore on air quality."
+    "brag_label": "Top 25% Connectivity Hub in Bangalore",
+    "subhead": "Your neighbourhood outperforms 83% of Bangalore on transit access."
   },
   {
     "pincode": "560022",
@@ -875,8 +890,8 @@
       "buses": 46
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.76,
+      "aqi": 167.9,
+      "station_distance_km": 12.08013481318816,
       "metro_km": 0.51,
       "rail_km": 0.58,
       "rent_2bhk": 26073.0,
@@ -888,36 +903,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 59.9,
       "essentials": 53.9,
       "lifestyle": 65.9,
       "connectivity": 79.0,
       "density": 50.8,
-      "affordability": 5.1,
+      "affordability": 15.1,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 43.6
+      "overall": 47.2
     },
     "ranks": {
-      "air": 48,
+      "air": 95,
       "amenities": 50,
       "essentials": 60,
       "lifestyle": 44,
       "connectivity": 3,
       "density": 62,
-      "affordability": 123,
+      "affordability": 110,
       "walkability": 2
     },
     "percentile_blr": {
-      "air": 63.6,
+      "air": 27.1,
       "amenities": 62.0,
       "essentials": 54.3,
       "lifestyle": 66.7,
       "connectivity": 98.4,
       "density": 52.7,
-      "affordability": 5.4,
+      "affordability": 15.5,
       "walkability": 99.2
     },
     "brag_label": "Bangalore's #3 Connectivity Hub",
@@ -941,8 +956,8 @@
       "buses": 106
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 18.18,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 1.09,
       "rail_km": 2.93,
       "rent_2bhk": 10295.5,
@@ -954,7 +969,7 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 51.4,
       "essentials": 58.9,
@@ -964,10 +979,10 @@
       "affordability": 92.6,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 47.7
+      "overall": 52.5
     },
     "ranks": {
-      "air": 49,
+      "air": 44,
       "amenities": 62,
       "essentials": 52,
       "lifestyle": 72,
@@ -977,7 +992,7 @@
       "walkability": 26
     },
     "percentile_blr": {
-      "air": 62.8,
+      "air": 66.7,
       "amenities": 52.7,
       "essentials": 60.5,
       "lifestyle": 45.0,
@@ -1007,8 +1022,8 @@
       "buses": 63
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.95,
+      "aqi": 164.4,
+      "station_distance_km": 4.866652722904762,
       "metro_km": 1.32,
       "rail_km": 8.2,
       "rent_2bhk": 17392.0,
@@ -1020,36 +1035,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 20.9,
       "air_confident": true,
       "amenities": 96.9,
       "essentials": 98.8,
       "lifestyle": 95.0,
       "connectivity": 58.4,
       "density": 45.9,
-      "affordability": 17.6,
+      "affordability": 39.9,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 48.6
+      "overall": 54.2
     },
     "ranks": {
-      "air": 50,
+      "air": 89,
       "amenities": 2,
       "essentials": 2,
       "lifestyle": 7,
       "connectivity": 43,
       "density": 80,
-      "affordability": 107,
+      "affordability": 78,
       "walkability": 10
     },
     "percentile_blr": {
-      "air": 62.0,
+      "air": 31.8,
       "amenities": 99.2,
       "essentials": 99.2,
       "lifestyle": 95.3,
       "connectivity": 67.4,
       "density": 38.8,
-      "affordability": 17.8,
+      "affordability": 40.3,
       "walkability": 93.0
     },
     "brag_label": "Bangalore's #2 Essentials Coverage",
@@ -1073,8 +1088,8 @@
       "buses": 24
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 6.64,
+      "aqi": 113.3,
+      "station_distance_km": 6.14076976473062,
       "metro_km": 0.37,
       "rail_km": 1.7,
       "rent_2bhk": 24926.0,
@@ -1086,39 +1101,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 51.0,
       "air_confident": true,
       "amenities": 94.0,
       "essentials": 92.2,
       "lifestyle": 95.7,
       "connectivity": 72.2,
       "density": 61.4,
-      "affordability": 5.9,
+      "affordability": 17.4,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 73.1
+      "overall": 63.8
     },
     "ranks": {
-      "air": 6,
+      "air": 18,
       "amenities": 8,
       "essentials": 10,
       "lifestyle": 6,
       "connectivity": 7,
       "density": 23,
-      "affordability": 122,
+      "affordability": 107,
       "walkability": 11
     },
     "percentile_blr": {
-      "air": 96.1,
+      "air": 86.8,
       "amenities": 94.6,
       "essentials": 93.0,
       "lifestyle": 96.1,
       "connectivity": 95.3,
       "density": 82.9,
-      "affordability": 6.2,
+      "affordability": 17.8,
       "walkability": 92.2
     },
-    "brag_label": "Top 5% Cleanest Air in Bangalore",
+    "brag_label": "Top 5% Lifestyle Density in Bangalore",
     "subhead": "Your neighbourhood outperforms 96% of Bangalore on lifestyle density."
   },
   {
@@ -1139,52 +1154,54 @@
       "buses": 13
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 8.72,
+      "aqi": 78.6,
+      "station_distance_km": 7.94127318739385,
       "metro_km": 1.79,
       "rail_km": 2.69,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 17703,
+      "rent_match": "locality_inferred",
       "pop_density": 140956.33001422475,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.95
     },
     "scores": {
-      "air": 95.3,
+      "air": 71.4,
       "air_confident": true,
       "amenities": 49.0,
       "essentials": 74.0,
       "lifestyle": 24.0,
       "connectivity": 51.5,
       "density": 49.2,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 37.6,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 60.4
+      "overall": 53.6
     },
     "ranks": {
-      "air": 7,
+      "air": 8,
       "amenities": 68,
       "essentials": 34,
       "lifestyle": 98,
       "connectivity": 65,
       "density": 68,
-      "affordability": 43,
+      "affordability": 81,
       "walkability": 82
     },
     "percentile_blr": {
-      "air": 95.3,
+      "air": 94.6,
       "amenities": 48.1,
       "essentials": 74.4,
       "lifestyle": 24.8,
       "connectivity": 50.4,
       "density": 48.1,
-      "affordability": 67.4,
+      "affordability": 38.0,
       "walkability": 37.2
     },
-    "brag_label": "Top 5% Cleanest Air in Bangalore",
+    "brag_label": "Top 10% Cleanest Air in Bangalore",
     "subhead": "Your neighbourhood outperforms 95% of Bangalore on air quality."
   },
   {
@@ -1205,8 +1222,8 @@
       "buses": 23
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 4.81,
+      "aqi": 66.6,
+      "station_distance_km": 5.341651224049396,
       "metro_km": 5.88,
       "rail_km": 1.43,
       "rent_2bhk": 21172.0,
@@ -1218,40 +1235,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 78.5,
       "air_confident": true,
       "amenities": 64.5,
       "essentials": 58.9,
       "lifestyle": 70.2,
       "connectivity": 44.3,
       "density": 42.4,
-      "affordability": 12.1,
+      "affordability": 29.1,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 57.2
+      "overall": 55.2
     },
     "ranks": {
-      "air": 8,
+      "air": 6,
       "amenities": 41,
       "essentials": 53,
       "lifestyle": 38,
       "connectivity": 83,
       "density": 93,
-      "affordability": 114,
+      "affordability": 92,
       "walkability": 27
     },
     "percentile_blr": {
-      "air": 94.6,
+      "air": 96.1,
       "amenities": 69.0,
       "essentials": 59.7,
       "lifestyle": 71.3,
       "connectivity": 36.4,
       "density": 28.7,
-      "affordability": 12.4,
+      "affordability": 29.5,
       "walkability": 79.8
     },
-    "brag_label": "Top 10% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 95% of Bangalore on air quality."
+    "brag_label": "Top 5% Cleanest Air in Bangalore",
+    "subhead": "Your neighbourhood outperforms 96% of Bangalore on air quality."
   },
   {
     "pincode": "560034",
@@ -1271,8 +1288,8 @@
       "buses": 51
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 1.31,
+      "aqi": 159.7,
+      "station_distance_km": 2.760718436515365,
       "metro_km": 1.55,
       "rail_km": 7.66,
       "rent_2bhk": 27965.0,
@@ -1284,36 +1301,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 23.7,
       "air_confident": true,
       "amenities": 85.7,
       "essentials": 87.2,
       "lifestyle": 84.1,
       "connectivity": 56.0,
       "density": 53.8,
-      "affordability": 3.9,
+      "affordability": 11.6,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 45.1
+      "overall": 49.6
     },
     "ranks": {
-      "air": 51,
+      "air": 84,
       "amenities": 20,
       "essentials": 17,
       "lifestyle": 21,
       "connectivity": 50,
       "density": 51,
-      "affordability": 124,
+      "affordability": 114,
       "walkability": 12
     },
     "percentile_blr": {
-      "air": 61.2,
+      "air": 35.7,
       "amenities": 85.3,
       "essentials": 87.6,
       "lifestyle": 84.5,
       "connectivity": 62.0,
       "density": 61.2,
-      "affordability": 4.7,
+      "affordability": 12.4,
       "walkability": 91.5
     },
     "brag_label": "Top 25% Essentials Coverage in Bangalore",
@@ -1337,8 +1354,8 @@
       "buses": 27
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 3.45,
+      "aqi": 178.8,
+      "station_distance_km": 2.1495836155047683,
       "metro_km": 0.84,
       "rail_km": 6.6,
       "rent_2bhk": 21505.0,
@@ -1350,36 +1367,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 12.5,
       "air_confident": true,
       "amenities": 79.5,
       "essentials": 77.9,
       "lifestyle": 81.0,
       "connectivity": 59.3,
       "density": 60.3,
-      "affordability": 9.4,
+      "affordability": 26.0,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 46.2
+      "overall": 49.1
     },
     "ranks": {
-      "air": 52,
+      "air": 127,
       "amenities": 26,
       "essentials": 29,
       "lifestyle": 25,
       "connectivity": 38,
       "density": 27,
-      "affordability": 116,
+      "affordability": 94,
       "walkability": 3
     },
     "percentile_blr": {
-      "air": 60.5,
+      "air": 2.3,
       "amenities": 80.6,
       "essentials": 78.3,
       "lifestyle": 81.4,
       "connectivity": 71.3,
       "density": 79.8,
-      "affordability": 10.9,
+      "affordability": 27.9,
       "walkability": 98.4
     },
     "brag_label": "Top 25% Lifestyle Density in Bangalore",
@@ -1403,8 +1420,8 @@
       "buses": 8
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 3.55,
+      "aqi": 182.5,
+      "station_distance_km": 1.112314061120244,
       "metro_km": 3.05,
       "rail_km": 5.48,
       "rent_2bhk": 14880.5,
@@ -1416,36 +1433,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 10.3,
       "air_confident": true,
       "amenities": 40.9,
       "essentials": 43.4,
       "lifestyle": 38.4,
       "connectivity": 35.0,
       "density": 62.8,
-      "affordability": 78.5,
+      "affordability": 67.1,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 40.3
+      "overall": 39.3
     },
     "ranks": {
-      "air": 53,
+      "air": 128,
       "amenities": 80,
       "essentials": 73,
       "lifestyle": 78,
       "connectivity": 108,
       "density": 18,
-      "affordability": 28,
+      "affordability": 43,
       "walkability": 83
     },
     "percentile_blr": {
-      "air": 59.7,
+      "air": 1.6,
       "amenities": 38.8,
       "essentials": 44.2,
       "lifestyle": 40.3,
       "connectivity": 17.1,
       "density": 86.8,
-      "affordability": 79.1,
+      "affordability": 67.4,
       "walkability": 36.4
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -1469,8 +1486,8 @@
       "buses": 35
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 2.44,
+      "aqi": 184.0,
+      "station_distance_km": 0.7123606453398197,
       "metro_km": 1.51,
       "rail_km": 6.66,
       "rent_2bhk": 17765.0,
@@ -1482,36 +1499,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 9.4,
       "air_confident": true,
       "amenities": 81.2,
       "essentials": 84.9,
       "lifestyle": 77.5,
       "connectivity": 53.3,
       "density": 55.4,
-      "affordability": 16.8,
+      "affordability": 36.8,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 45.3
+      "overall": 47.9
     },
     "ranks": {
-      "air": 54,
+      "air": 129,
       "amenities": 24,
       "essentials": 20,
       "lifestyle": 29,
       "connectivity": 62,
       "density": 45,
-      "affordability": 108,
+      "affordability": 82,
       "walkability": 28
     },
     "percentile_blr": {
-      "air": 58.9,
+      "air": 0.8,
       "amenities": 82.2,
       "essentials": 85.3,
       "lifestyle": 78.3,
       "connectivity": 52.7,
       "density": 65.9,
-      "affordability": 17.1,
+      "affordability": 37.2,
       "walkability": 79.1
     },
     "brag_label": "Top 25% Essentials Coverage in Bangalore",
@@ -1535,8 +1552,8 @@
       "buses": 31
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 5.25,
+      "aqi": 175.0,
+      "station_distance_km": 2.647987783031644,
       "metro_km": 1.95,
       "rail_km": 3.8,
       "rent_2bhk": 13670.0,
@@ -1548,39 +1565,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 14.7,
       "air_confident": true,
       "amenities": 78.3,
       "essentials": 80.6,
       "lifestyle": 76.0,
       "connectivity": 53.4,
       "density": 58.1,
-      "affordability": 88.7,
+      "affordability": 80.2,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 53.8
+      "overall": 54.2
     },
     "ranks": {
-      "air": 55,
+      "air": 124,
       "amenities": 27,
       "essentials": 25,
       "lifestyle": 31,
       "connectivity": 61,
       "density": 35,
-      "affordability": 15,
+      "affordability": 26,
       "walkability": 54
     },
     "percentile_blr": {
-      "air": 58.1,
+      "air": 4.7,
       "amenities": 79.8,
       "essentials": 81.4,
       "lifestyle": 76.7,
       "connectivity": 53.5,
       "density": 73.6,
-      "affordability": 89.1,
+      "affordability": 80.6,
       "walkability": 58.9
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Top 25% Essentials Coverage in Bangalore",
     "subhead": "Your neighbourhood outperforms 81% of Bangalore on essentials coverage."
   },
   {
@@ -1601,49 +1618,51 @@
       "buses": 30
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.48,
+      "aqi": 167.9,
+      "station_distance_km": 7.036086084195323,
       "metro_km": 1.06,
       "rail_km": 3.15,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 14320,
+      "rent_match": "locality_inferred",
       "pop_density": 178319.7768580169,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.74
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 40.3,
       "essentials": 47.7,
       "lifestyle": 32.9,
       "connectivity": 62.5,
       "density": 52.7,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 73.3,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 40.7
+      "overall": 46.2
     },
     "ranks": {
-      "air": 56,
+      "air": 96,
       "amenities": 81,
       "essentials": 66,
       "lifestyle": 87,
       "connectivity": 24,
       "density": 55,
-      "affordability": 44,
+      "affordability": 35,
       "walkability": 84
     },
     "percentile_blr": {
-      "air": 57.4,
+      "air": 26.4,
       "amenities": 38.0,
       "essentials": 49.6,
       "lifestyle": 33.3,
       "connectivity": 82.2,
       "density": 58.1,
-      "affordability": 66.7,
+      "affordability": 73.6,
       "walkability": 35.7
     },
     "brag_label": "Top 25% Connectivity Hub in Bangalore",
@@ -1667,49 +1686,51 @@
       "buses": 34
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 5.5,
+      "aqi": 167.6,
+      "station_distance_km": 3.218957554051494,
       "metro_km": 1.26,
       "rail_km": 3.42,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 15062,
+      "rent_match": "locality_inferred",
       "pop_density": 309663.4375,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.61
     },
     "scores": {
-      "air": 8.8,
+      "air": 19.1,
       "air_confident": true,
       "amenities": 88.8,
       "essentials": 85.7,
       "lifestyle": 91.9,
       "connectivity": 59.0,
       "density": 59.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 66.3,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 52.6
+      "overall": 57.4
     },
     "ranks": {
-      "air": 57,
+      "air": 93,
       "amenities": 16,
       "essentials": 19,
       "lifestyle": 11,
       "connectivity": 41,
       "density": 32,
-      "affordability": 45,
+      "affordability": 44,
       "walkability": 13
     },
     "percentile_blr": {
-      "air": 56.6,
+      "air": 28.7,
       "amenities": 88.4,
       "essentials": 86.0,
       "lifestyle": 92.2,
       "connectivity": 69.0,
       "density": 76.0,
-      "affordability": 65.9,
+      "affordability": 66.7,
       "walkability": 90.7
     },
     "brag_label": "Top 10% Lifestyle Density in Bangalore",
@@ -1733,49 +1754,51 @@
       "buses": 29
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.57,
+      "aqi": 156.7,
+      "station_distance_km": 6.911926407200671,
       "metro_km": 0.36,
       "rail_km": 1.32,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 28419,
+      "rent_match": "locality_inferred",
       "pop_density": 279369.32619114744,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.0
     },
     "scores": {
-      "air": 8.8,
+      "air": 25.5,
       "air_confident": true,
       "amenities": 51.0,
       "essentials": 40.7,
       "lifestyle": 61.2,
       "connectivity": 74.6,
       "density": 56.8,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 10.5,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 46.6
+      "overall": 46.2
     },
     "ranks": {
-      "air": 58,
+      "air": 81,
       "amenities": 63,
       "essentials": 76,
       "lifestyle": 51,
       "connectivity": 4,
       "density": 40,
-      "affordability": 46,
+      "affordability": 116,
       "walkability": 55
     },
     "percentile_blr": {
-      "air": 55.8,
+      "air": 38.0,
       "amenities": 51.9,
       "essentials": 41.9,
       "lifestyle": 61.2,
       "connectivity": 97.7,
       "density": 69.8,
-      "affordability": 65.1,
+      "affordability": 10.9,
       "walkability": 58.1
     },
     "brag_label": "Top 5% Connectivity Hub in Bangalore",
@@ -1799,49 +1822,51 @@
       "buses": 13
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 7.2,
+      "aqi": 144.8,
+      "station_distance_km": 5.264579442817408,
       "metro_km": 0.98,
       "rail_km": 2.15,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 26681,
+      "rent_match": "locality_inferred",
       "pop_density": 612058.6781964175,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.68
     },
     "scores": {
-      "air": 8.8,
+      "air": 32.5,
       "air_confident": true,
       "amenities": 52.7,
       "essentials": 47.7,
       "lifestyle": 57.8,
       "connectivity": 60.6,
       "density": 63.8,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 14.3,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 45.2
+      "overall": 47.0
     },
     "ranks": {
-      "air": 59,
+      "air": 36,
       "amenities": 59,
       "essentials": 67,
       "lifestyle": 55,
       "connectivity": 34,
       "density": 14,
-      "affordability": 47,
+      "affordability": 111,
       "walkability": 56
     },
     "percentile_blr": {
-      "air": 55.0,
+      "air": 72.9,
       "amenities": 55.0,
       "essentials": 48.8,
       "lifestyle": 58.1,
       "connectivity": 74.4,
       "density": 89.9,
-      "affordability": 64.3,
+      "affordability": 14.7,
       "walkability": 57.4
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -1865,8 +1890,8 @@
       "buses": 15
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 11.19,
+      "aqi": 167.9,
+      "station_distance_km": 9.038153876282536,
       "metro_km": 0.23,
       "rail_km": 0.43,
       "rent_2bhk": 13706.0,
@@ -1878,36 +1903,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 31.2,
       "essentials": 15.9,
       "lifestyle": 46.5,
       "connectivity": 73.3,
       "density": 57.9,
-      "affordability": 87.5,
+      "affordability": 79.1,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 46.6
+      "overall": 48.0
     },
     "ranks": {
-      "air": 60,
+      "air": 97,
       "amenities": 88,
       "essentials": 109,
       "lifestyle": 69,
       "connectivity": 5,
       "density": 36,
-      "affordability": 16,
+      "affordability": 27,
       "walkability": 57
     },
     "percentile_blr": {
-      "air": 54.3,
+      "air": 25.6,
       "amenities": 32.6,
       "essentials": 16.3,
       "lifestyle": 47.3,
       "connectivity": 96.9,
       "density": 72.9,
-      "affordability": 88.4,
+      "affordability": 79.8,
       "walkability": 56.6
     },
     "brag_label": "Top 5% Connectivity Hub in Bangalore",
@@ -1931,8 +1956,8 @@
       "buses": 40
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 11.36,
+      "aqi": 167.9,
+      "station_distance_km": 8.81201439688796,
       "metro_km": 0.53,
       "rail_km": 3.12,
       "rent_2bhk": 14025.0,
@@ -1944,36 +1969,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 89.9,
       "essentials": 96.5,
       "lifestyle": 83.3,
       "connectivity": 70.2,
       "density": 55.2,
-      "affordability": 84.8,
+      "affordability": 75.6,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 59.2
+      "overall": 60.5
     },
     "ranks": {
-      "air": 61,
+      "air": 98,
       "amenities": 13,
       "essentials": 5,
       "lifestyle": 22,
       "connectivity": 10,
       "density": 46,
-      "affordability": 19,
+      "affordability": 31,
       "walkability": 14
     },
     "percentile_blr": {
-      "air": 53.5,
+      "air": 24.8,
       "amenities": 90.7,
       "essentials": 96.9,
       "lifestyle": 83.7,
       "connectivity": 93.0,
       "density": 65.1,
-      "affordability": 86.0,
+      "affordability": 76.7,
       "walkability": 89.9
     },
     "brag_label": "Top 5% Essentials Coverage in Bangalore",
@@ -1997,49 +2022,51 @@
       "buses": 8
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 11.43,
+      "aqi": 141.5,
+      "station_distance_km": 8.917977369144658,
       "metro_km": 2.33,
       "rail_km": 2.03,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 29275,
+      "rent_match": "locality_inferred",
       "pop_density": 860923.5447437011,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.24
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 34.4,
+      "air_confident": false,
       "amenities": 53.5,
       "essentials": 51.2,
       "lifestyle": 55.8,
       "connectivity": 46.0,
       "density": 66.3,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 7.4,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 42.6
+      "overall": 44.0
     },
     "ranks": {
-      "air": 62,
+      "air": 34,
       "amenities": 58,
       "essentials": 62,
       "lifestyle": 57,
       "connectivity": 78,
       "density": 5,
-      "affordability": 48,
+      "affordability": 120,
       "walkability": 29
     },
     "percentile_blr": {
-      "air": 52.7,
+      "air": 74.4,
       "amenities": 55.8,
       "essentials": 52.7,
       "lifestyle": 56.6,
       "connectivity": 40.3,
       "density": 96.9,
-      "affordability": 63.6,
+      "affordability": 7.8,
       "walkability": 78.3
     },
     "brag_label": "Top 5% Density & Activity in Bangalore",
@@ -2063,8 +2090,8 @@
       "buses": 44
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.33,
+      "aqi": 167.9,
+      "station_distance_km": 8.169795563920003,
       "metro_km": 2.54,
       "rail_km": 4.68,
       "rent_2bhk": 11459.0,
@@ -2076,36 +2103,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 57.6,
       "essentials": 67.1,
       "lifestyle": 48.1,
       "connectivity": 51.5,
       "density": 47.3,
-      "affordability": 91.8,
+      "affordability": 90.3,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 46.8
+      "overall": 49.0
     },
     "ranks": {
-      "air": 63,
+      "air": 99,
       "amenities": 53,
       "essentials": 43,
       "lifestyle": 67,
       "connectivity": 66,
       "density": 75,
-      "affordability": 11,
+      "affordability": 13,
       "walkability": 30
     },
     "percentile_blr": {
-      "air": 51.9,
+      "air": 24.0,
       "amenities": 59.7,
       "essentials": 67.4,
       "lifestyle": 48.8,
       "connectivity": 49.6,
       "density": 42.6,
-      "affordability": 92.2,
+      "affordability": 90.7,
       "walkability": 77.5
     },
     "brag_label": "Top 10% Affordable Living in Bangalore",
@@ -2129,52 +2156,54 @@
       "buses": 8
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.14,
+      "aqi": 167.9,
+      "station_distance_km": 12.22910027251823,
       "metro_km": 0.29,
       "rail_km": 1.5,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 12130,
+      "rent_match": "locality_inferred",
       "pop_density": 500719.05002526526,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.6
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 31.2,
       "essentials": 24.0,
       "lifestyle": 38.4,
       "connectivity": 66.6,
       "density": 62.5,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 88.0,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 41.1
+      "overall": 48.5
     },
     "ranks": {
-      "air": 64,
+      "air": 100,
       "amenities": 89,
       "essentials": 95,
       "lifestyle": 79,
       "connectivity": 16,
       "density": 19,
-      "affordability": 49,
+      "affordability": 16,
       "walkability": 85
     },
     "percentile_blr": {
-      "air": 51.2,
+      "air": 23.3,
       "amenities": 31.8,
       "essentials": 27.1,
       "lifestyle": 39.5,
       "connectivity": 88.4,
       "density": 86.0,
-      "affordability": 62.8,
+      "affordability": 88.4,
       "walkability": 34.9
     },
-    "brag_label": "Top 25% Connectivity Hub in Bangalore",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 88% of Bangalore on transit access."
   },
   {
@@ -2195,8 +2224,8 @@
       "buses": 12
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.71,
+      "aqi": 126.6,
+      "station_distance_km": 4.154941882720589,
       "metro_km": 2.47,
       "rail_km": 4.11,
       "rent_2bhk": 29580.0,
@@ -2208,36 +2237,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 43.2,
       "air_confident": true,
       "amenities": 63.4,
       "essentials": 58.9,
       "lifestyle": 67.8,
       "connectivity": 42.2,
       "density": 64.9,
-      "affordability": 2.0,
+      "affordability": 6.6,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 38.5
+      "overall": 47.3
     },
     "ranks": {
-      "air": 65,
+      "air": 23,
       "amenities": 44,
       "essentials": 54,
       "lifestyle": 42,
       "connectivity": 91,
       "density": 10,
-      "affordability": 127,
+      "affordability": 121,
       "walkability": 31
     },
     "percentile_blr": {
-      "air": 50.4,
+      "air": 82.9,
       "amenities": 66.7,
       "essentials": 58.9,
       "lifestyle": 68.2,
       "connectivity": 30.2,
       "density": 93.0,
-      "affordability": 2.3,
+      "affordability": 7.0,
       "walkability": 76.7
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
@@ -2261,49 +2290,51 @@
       "buses": 63
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 16.92,
+      "aqi": 167.9,
+      "station_distance_km": 14.157349899294545,
       "metro_km": 1.92,
       "rail_km": 4.14,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 16882,
+      "rent_match": "locality_inferred",
       "pop_density": 54279.30543382997,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.53
     },
     "scores": {
-      "air": 8.8,
+      "air": 18.9,
       "air_confident": false,
       "amenities": 44.8,
       "essentials": 51.2,
       "lifestyle": 38.4,
       "connectivity": 59.3,
       "density": 43.5,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 43.0,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 39.4
+      "overall": 41.3
     },
     "ranks": {
-      "air": 66,
+      "air": 101,
       "amenities": 74,
       "essentials": 63,
       "lifestyle": 80,
       "connectivity": 39,
       "density": 89,
-      "affordability": 50,
+      "affordability": 74,
       "walkability": 58
     },
     "percentile_blr": {
-      "air": 49.6,
+      "air": 22.5,
       "amenities": 43.4,
       "essentials": 51.9,
       "lifestyle": 38.8,
       "connectivity": 70.5,
       "density": 31.8,
-      "affordability": 62.0,
+      "affordability": 43.4,
       "walkability": 55.8
     },
     "brag_label": "Connectivity Hub · #39 of 129",
@@ -2327,8 +2358,8 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 18.8,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 0.32,
       "rail_km": 3.29,
       "rent_2bhk": 14025.0,
@@ -2340,39 +2371,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 20.5,
       "essentials": 24.0,
       "lifestyle": 17.1,
       "connectivity": 63.3,
       "density": 59.2,
-      "affordability": 84.8,
+      "affordability": 75.6,
       "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 41.8
+      "overall": 45.5
     },
     "ranks": {
-      "air": 67,
+      "air": 45,
       "amenities": 105,
       "essentials": 96,
       "lifestyle": 105,
       "connectivity": 22,
       "density": 31,
-      "affordability": 20,
+      "affordability": 32,
       "walkability": 99
     },
     "percentile_blr": {
-      "air": 48.8,
+      "air": 65.9,
       "amenities": 19.4,
       "essentials": 26.4,
       "lifestyle": 19.4,
       "connectivity": 83.7,
       "density": 76.7,
-      "affordability": 85.3,
+      "affordability": 76.0,
       "walkability": 24.0
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Top 25% Connectivity Hub in Bangalore",
     "subhead": "Your neighbourhood outperforms 84% of Bangalore on transit access."
   },
   {
@@ -2393,8 +2424,8 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.85,
+      "aqi": 149.8,
+      "station_distance_km": 6.404310821267181,
       "metro_km": 1.25,
       "rail_km": 0.73,
       "rent_2bhk": 42542.5,
@@ -2406,7 +2437,7 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 29.5,
       "air_confident": true,
       "amenities": 71.7,
       "essentials": 63.6,
@@ -2416,10 +2447,10 @@
       "affordability": 0.4,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 43.9
+      "overall": 48.8
     },
     "ranks": {
-      "air": 68,
+      "air": 39,
       "amenities": 34,
       "essentials": 46,
       "lifestyle": 26,
@@ -2429,7 +2460,7 @@
       "walkability": 32
     },
     "percentile_blr": {
-      "air": 48.1,
+      "air": 70.5,
       "amenities": 74.4,
       "essentials": 65.1,
       "lifestyle": 80.6,
@@ -2459,49 +2490,51 @@
       "buses": 9
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.91,
+      "aqi": 167.9,
+      "station_distance_km": 12.302482978247744,
       "metro_km": 1.48,
       "rail_km": 1.21,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 21647,
+      "rent_match": "locality_inferred",
       "pop_density": 356832.1930140439,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.58
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 62.0,
       "essentials": 53.9,
       "lifestyle": 70.2,
       "connectivity": 54.7,
       "density": 60.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 23.6,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 45.5
+      "overall": 45.1
     },
     "ranks": {
-      "air": 69,
+      "air": 102,
       "amenities": 48,
       "essentials": 61,
       "lifestyle": 39,
       "connectivity": 56,
       "density": 28,
-      "affordability": 51,
+      "affordability": 99,
       "walkability": 59
     },
     "percentile_blr": {
-      "air": 47.3,
+      "air": 21.7,
       "amenities": 63.6,
       "essentials": 53.5,
       "lifestyle": 70.5,
       "connectivity": 57.4,
       "density": 79.1,
-      "affordability": 61.2,
+      "affordability": 24.0,
       "walkability": 55.0
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -2525,49 +2558,51 @@
       "buses": 5
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.1,
+      "aqi": 162.0,
+      "station_distance_km": 5.458173022010918,
       "metro_km": 0.44,
       "rail_km": 1.07,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 30551,
+      "rent_match": "locality_inferred",
       "pop_density": 588084.8664688427,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.25
     },
     "scores": {
-      "air": 8.8,
+      "air": 22.4,
       "air_confident": true,
       "amenities": 50.6,
       "essentials": 47.7,
       "lifestyle": 53.5,
       "connectivity": 64.4,
       "density": 63.6,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 5.8,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 45.5
+      "overall": 43.8
     },
     "ranks": {
-      "air": 70,
+      "air": 86,
       "amenities": 64,
       "essentials": 68,
       "lifestyle": 60,
       "connectivity": 20,
       "density": 15,
-      "affordability": 52,
+      "affordability": 122,
       "walkability": 86
     },
     "percentile_blr": {
-      "air": 46.5,
+      "air": 34.1,
       "amenities": 51.2,
       "essentials": 48.1,
       "lifestyle": 54.3,
       "connectivity": 85.3,
       "density": 89.1,
-      "affordability": 60.5,
+      "affordability": 6.2,
       "walkability": 34.1
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -2591,8 +2626,8 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.02,
+      "aqi": 163.6,
+      "station_distance_km": 5.805884794260903,
       "metro_km": 2.3,
       "rail_km": 3.73,
       "rent_2bhk": 14790.0,
@@ -2604,36 +2639,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 21.4,
       "air_confident": true,
       "amenities": 55.2,
       "essentials": 69.0,
       "lifestyle": 41.5,
       "connectivity": 43.2,
       "density": 63.3,
-      "affordability": 80.1,
+      "affordability": 68.6,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 45.9
+      "overall": 47.5
     },
     "ranks": {
-      "air": 71,
+      "air": 87,
       "amenities": 57,
       "essentials": 40,
       "lifestyle": 76,
       "connectivity": 85,
       "density": 16,
-      "affordability": 26,
+      "affordability": 41,
       "walkability": 60
     },
     "percentile_blr": {
-      "air": 45.7,
+      "air": 33.3,
       "amenities": 56.6,
       "essentials": 69.8,
       "lifestyle": 41.9,
       "connectivity": 34.9,
       "density": 88.4,
-      "affordability": 80.6,
+      "affordability": 69.0,
       "walkability": 54.3
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -2657,8 +2692,8 @@
       "buses": 58
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 14.94,
+      "aqi": 94.5,
+      "station_distance_km": 14.083310724858508,
       "metro_km": 7.75,
       "rail_km": 7.25,
       "rent_2bhk": 16464,
@@ -2667,43 +2702,44 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 62.1,
+      "air_confident": false,
       "amenities": 34.1,
       "essentials": 32.6,
       "lifestyle": 35.7,
       "connectivity": 38.8,
       "density": 37.5,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 52.0
+      "overall": 44.4
     },
     "ranks": {
-      "air": 9,
+      "air": 11,
       "amenities": 83,
       "essentials": 86,
       "lifestyle": 83,
       "connectivity": 101,
       "density": 111,
-      "affordability": 53,
+      "affordability": 57,
       "walkability": 61
     },
     "percentile_blr": {
-      "air": 93.8,
+      "air": 92.2,
       "amenities": 36.4,
       "essentials": 34.1,
       "lifestyle": 36.4,
       "connectivity": 22.5,
       "density": 14.7,
-      "affordability": 59.7,
+      "affordability": 56.6,
       "walkability": 53.5
     },
-    "brag_label": "Top 10% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 94% of Bangalore on air quality."
+    "brag_label": "Lifestyle Density · #83 of 129",
+    "subhead": "Your neighbourhood outperforms 36% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560047",
@@ -2723,49 +2759,51 @@
       "buses": 18
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.43,
+      "aqi": 169.9,
+      "station_distance_km": 2.557898343794398,
       "metro_km": 1.81,
       "rail_km": 4.6,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 17554,
+      "rent_match": "locality_inferred",
       "pop_density": 446764.2019837692,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.62
     },
     "scores": {
-      "air": 8.8,
+      "air": 17.7,
       "air_confident": true,
       "amenities": 58.5,
       "essentials": 74.8,
       "lifestyle": 42.2,
       "connectivity": 48.9,
       "density": 61.9,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 38.4,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 43.7
+      "overall": 44.8
     },
     "ranks": {
-      "air": 72,
+      "air": 122,
       "amenities": 51,
       "essentials": 33,
       "lifestyle": 75,
       "connectivity": 73,
       "density": 21,
-      "affordability": 54,
+      "affordability": 80,
       "walkability": 87
     },
     "percentile_blr": {
-      "air": 45.0,
+      "air": 6.2,
       "amenities": 61.2,
       "essentials": 75.2,
       "lifestyle": 42.6,
       "connectivity": 44.2,
       "density": 84.5,
-      "affordability": 58.9,
+      "affordability": 38.8,
       "walkability": 33.3
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -2789,49 +2827,51 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 12.25,
+      "aqi": 167.9,
+      "station_distance_km": 9.596540530556132,
       "metro_km": 1.01,
       "rail_km": 0.89,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 28725,
+      "rent_match": "locality_inferred",
       "pop_density": 712381.7397555715,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.56
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 73.3,
       "essentials": 67.8,
       "lifestyle": 78.7,
       "connectivity": 62.2,
       "density": 65.2,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 8.1,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 50.7
+      "overall": 48.5
     },
     "ranks": {
-      "air": 73,
+      "air": 103,
       "amenities": 32,
       "essentials": 42,
       "lifestyle": 28,
       "connectivity": 25,
       "density": 9,
-      "affordability": 55,
+      "affordability": 119,
       "walkability": 62
     },
     "percentile_blr": {
-      "air": 44.2,
+      "air": 20.9,
       "amenities": 76.0,
       "essentials": 68.2,
       "lifestyle": 79.1,
       "connectivity": 81.4,
       "density": 93.8,
-      "affordability": 58.1,
+      "affordability": 8.5,
       "walkability": 52.7
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
@@ -2855,49 +2895,51 @@
       "buses": 29
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 10.62,
+      "aqi": 150.3,
+      "station_distance_km": 7.949459217778866,
       "metro_km": 0.52,
       "rail_km": 0.97,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 32299,
+      "rent_match": "locality_inferred",
       "pop_density": 353522.2975383518,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.44
     },
     "scores": {
-      "air": 8.8,
+      "air": 29.2,
       "air_confident": true,
       "amenities": 46.5,
       "essentials": 43.4,
       "lifestyle": 49.6,
       "connectivity": 72.9,
       "density": 59.8,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 5.0,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 45.7
+      "overall": 45.6
     },
     "ranks": {
-      "air": 74,
+      "air": 40,
       "amenities": 72,
       "essentials": 74,
       "lifestyle": 65,
       "connectivity": 6,
       "density": 29,
-      "affordability": 56,
+      "affordability": 123,
       "walkability": 33
     },
     "percentile_blr": {
-      "air": 43.4,
+      "air": 69.8,
       "amenities": 45.0,
       "essentials": 43.4,
       "lifestyle": 50.4,
       "connectivity": 96.1,
       "density": 78.3,
-      "affordability": 57.4,
+      "affordability": 5.4,
       "walkability": 75.2
     },
     "brag_label": "Top 5% Connectivity Hub in Bangalore",
@@ -2921,49 +2963,51 @@
       "buses": 14
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 7.97,
+      "aqi": 163.9,
+      "station_distance_km": 5.41502751270615,
       "metro_km": 1.23,
       "rail_km": 2.3,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 22355,
+      "rent_match": "locality_inferred",
       "pop_density": 723301.4598540146,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.94
     },
     "scores": {
-      "air": 8.8,
+      "air": 21.2,
       "air_confident": true,
       "amenities": 50.0,
       "essentials": 65.9,
       "lifestyle": 34.1,
       "connectivity": 56.0,
       "density": 65.7,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 22.1,
+      "affordability_confident": true,
       "walkability": 62.4,
       "overall": 43.9
     },
     "ranks": {
-      "air": 75,
+      "air": 88,
       "amenities": 65,
       "essentials": 44,
       "lifestyle": 85,
       "connectivity": 51,
       "density": 7,
-      "affordability": 57,
+      "affordability": 101,
       "walkability": 63
     },
     "percentile_blr": {
-      "air": 42.6,
+      "air": 32.6,
       "amenities": 50.4,
       "essentials": 66.7,
       "lifestyle": 34.9,
       "connectivity": 61.2,
       "density": 95.3,
-      "affordability": 56.6,
+      "affordability": 22.5,
       "walkability": 51.9
     },
     "brag_label": "Top 5% Density & Activity in Bangalore",
@@ -2987,53 +3031,55 @@
       "buses": 20
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 2.87,
+      "aqi": 59.3,
+      "station_distance_km": 2.640592420209575,
       "metro_km": 3.89,
       "rail_km": 4.34,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 23220,
+      "rent_match": "locality_inferred",
       "pop_density": 90354.97401294793,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.96
     },
     "scores": {
-      "air": 95.3,
+      "air": 82.8,
       "air_confident": true,
       "amenities": 72.5,
       "essentials": 71.3,
       "lifestyle": 73.6,
       "connectivity": 38.9,
       "density": 46.5,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 19.8,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 62.8
+      "overall": 56.6
     },
     "ranks": {
-      "air": 10,
+      "air": 3,
       "amenities": 33,
       "essentials": 37,
       "lifestyle": 35,
       "connectivity": 100,
       "density": 78,
-      "affordability": 58,
+      "affordability": 104,
       "walkability": 64
     },
     "percentile_blr": {
-      "air": 93.0,
+      "air": 98.4,
       "amenities": 75.2,
       "essentials": 72.1,
       "lifestyle": 73.6,
       "connectivity": 23.3,
       "density": 40.3,
-      "affordability": 55.8,
+      "affordability": 20.2,
       "walkability": 51.2
     },
-    "brag_label": "Top 10% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 93% of Bangalore on air quality."
+    "brag_label": "Bangalore's #3 Cleanest Air",
+    "subhead": "Your neighbourhood outperforms 98% of Bangalore on air quality."
   },
   {
     "pincode": "560002",
@@ -3053,49 +3099,51 @@
       "buses": 22
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 6.89,
+      "aqi": 167.3,
+      "station_distance_km": 4.253398217600955,
       "metro_km": 0.7,
       "rail_km": 2.11,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 23410,
+      "rent_match": "locality_inferred",
       "pop_density": 385873.4423676012,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.76
     },
     "scores": {
-      "air": 8.8,
+      "air": 19.2,
       "air_confident": true,
       "amenities": 52.7,
       "essentials": 61.6,
       "lifestyle": 43.8,
       "connectivity": 66.8,
       "density": 61.1,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 19.0,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 46.1
+      "overall": 45.2
     },
     "ranks": {
-      "air": 76,
+      "air": 92,
       "amenities": 60,
       "essentials": 50,
       "lifestyle": 73,
       "connectivity": 15,
       "density": 24,
-      "affordability": 59,
+      "affordability": 105,
       "walkability": 34
     },
     "percentile_blr": {
-      "air": 41.9,
+      "air": 29.5,
       "amenities": 54.3,
       "essentials": 62.0,
       "lifestyle": 44.2,
       "connectivity": 89.1,
       "density": 82.2,
-      "affordability": 55.0,
+      "affordability": 19.4,
       "walkability": 74.4
     },
     "brag_label": "Top 25% Connectivity Hub in Bangalore",
@@ -3119,49 +3167,51 @@
       "buses": 20
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.43,
+      "aqi": 177.4,
+      "station_distance_km": 2.5436958426682224,
       "metro_km": 0.56,
       "rail_km": 5.61,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 21505,
+      "rent_match": "locality_inferred",
       "pop_density": 641374.1100323625,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.09
     },
     "scores": {
-      "air": 8.8,
+      "air": 13.3,
       "air_confident": true,
       "amenities": 76.6,
       "essentials": 75.6,
       "lifestyle": 77.5,
       "connectivity": 59.9,
       "density": 64.4,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 26.0,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 50.9
+      "overall": 49.4
     },
     "ranks": {
-      "air": 77,
+      "air": 125,
       "amenities": 28,
       "essentials": 32,
       "lifestyle": 30,
       "connectivity": 36,
       "density": 12,
-      "affordability": 60,
+      "affordability": 95,
       "walkability": 15
     },
     "percentile_blr": {
-      "air": 41.1,
+      "air": 3.9,
       "amenities": 79.1,
       "essentials": 76.0,
       "lifestyle": 77.5,
       "connectivity": 72.9,
       "density": 91.5,
-      "affordability": 54.3,
+      "affordability": 27.1,
       "walkability": 89.1
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
@@ -3185,8 +3235,8 @@
       "buses": 30
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 10.86,
+      "aqi": 146.3,
+      "station_distance_km": 8.265899818316633,
       "metro_km": 1.15,
       "rail_km": 1.0,
       "rent_2bhk": 28560.0,
@@ -3198,36 +3248,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 31.6,
+      "air_confident": false,
       "amenities": 91.1,
       "essentials": 95.7,
       "lifestyle": 86.4,
       "connectivity": 66.0,
       "density": 59.5,
-      "affordability": 2.7,
+      "affordability": 9.7,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 49.5
+      "overall": 55.8
     },
     "ranks": {
-      "air": 78,
+      "air": 37,
       "amenities": 10,
       "essentials": 6,
       "lifestyle": 18,
       "connectivity": 17,
       "density": 30,
-      "affordability": 126,
+      "affordability": 117,
       "walkability": 4
     },
     "percentile_blr": {
-      "air": 40.3,
+      "air": 72.1,
       "amenities": 93.0,
       "essentials": 96.1,
       "lifestyle": 86.8,
       "connectivity": 87.6,
       "density": 77.5,
-      "affordability": 3.1,
+      "affordability": 10.1,
       "walkability": 97.7
     },
     "brag_label": "Top 5% Essentials Coverage in Bangalore",
@@ -3251,49 +3301,51 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.53,
+      "aqi": 141.1,
+      "station_distance_km": 7.264184382206346,
       "metro_km": 2.2,
       "rail_km": 0.83,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 32583,
+      "rent_match": "locality_inferred",
       "pop_density": 451857.27314181486,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 4,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.47
     },
     "scores": {
-      "air": 8.8,
+      "air": 34.6,
       "air_confident": true,
       "amenities": 26.7,
       "essentials": 29.5,
       "lifestyle": 24.0,
       "connectivity": 51.7,
       "density": 62.2,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 4.3,
+      "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 36.7
+      "overall": 37.8
     },
     "ranks": {
-      "air": 79,
+      "air": 33,
       "amenities": 97,
       "essentials": 91,
       "lifestyle": 99,
       "connectivity": 63,
       "density": 20,
-      "affordability": 61,
+      "affordability": 124,
       "walkability": 100
     },
     "percentile_blr": {
-      "air": 39.5,
+      "air": 75.2,
       "amenities": 25.6,
       "essentials": 30.2,
       "lifestyle": 24.0,
       "connectivity": 51.9,
       "density": 85.3,
-      "affordability": 53.5,
+      "affordability": 4.7,
       "walkability": 23.3
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -3317,8 +3369,8 @@
       "buses": 38
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 6.07,
+      "aqi": 172.1,
+      "station_distance_km": 3.653707233201755,
       "metro_km": 0.48,
       "rail_km": 3.73,
       "rent_2bhk": 21505.0,
@@ -3330,36 +3382,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 16.4,
       "air_confident": true,
       "amenities": 90.3,
       "essentials": 93.4,
       "lifestyle": 87.2,
       "connectivity": 69.2,
       "density": 54.9,
-      "affordability": 9.4,
+      "affordability": 26.0,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 50.0
+      "overall": 53.8
     },
     "ranks": {
-      "air": 80,
+      "air": 123,
       "amenities": 11,
       "essentials": 9,
       "lifestyle": 17,
       "connectivity": 12,
       "density": 47,
-      "affordability": 117,
+      "affordability": 96,
       "walkability": 35
     },
     "percentile_blr": {
-      "air": 38.8,
+      "air": 5.4,
       "amenities": 92.2,
       "essentials": 93.8,
       "lifestyle": 87.6,
       "connectivity": 91.5,
       "density": 64.3,
-      "affordability": 10.1,
+      "affordability": 26.4,
       "walkability": 73.6
     },
     "brag_label": "Top 10% Essentials Coverage in Bangalore",
@@ -3383,8 +3435,8 @@
       "buses": 36
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.84,
+      "aqi": 133.0,
+      "station_distance_km": 6.941058231635233,
       "metro_km": 2.41,
       "rail_km": 0.49,
       "rent_2bhk": 21972.5,
@@ -3396,36 +3448,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 39.4,
       "air_confident": true,
       "amenities": 82.8,
       "essentials": 80.6,
       "lifestyle": 84.9,
       "connectivity": 60.0,
       "density": 57.6,
-      "affordability": 7.4,
+      "affordability": 22.9,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 46.4
+      "overall": 55.6
     },
     "ranks": {
-      "air": 81,
+      "air": 28,
       "amenities": 22,
       "essentials": 26,
       "lifestyle": 20,
       "connectivity": 35,
       "density": 37,
-      "affordability": 120,
+      "affordability": 100,
       "walkability": 65
     },
     "percentile_blr": {
-      "air": 38.0,
+      "air": 79.1,
       "amenities": 83.7,
       "essentials": 80.6,
       "lifestyle": 85.3,
       "connectivity": 73.6,
       "density": 72.1,
-      "affordability": 7.8,
+      "affordability": 23.3,
       "walkability": 50.4
     },
     "brag_label": "Top 25% Lifestyle Density in Bangalore",
@@ -3449,8 +3501,8 @@
       "buses": 18
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 8.01,
+      "aqi": 106.0,
+      "station_distance_km": 7.521910740017895,
       "metro_km": 1.06,
       "rail_km": 0.58,
       "rent_2bhk": 17340.0,
@@ -3462,40 +3514,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 55.3,
       "air_confident": true,
       "amenities": 41.3,
       "essentials": 24.0,
       "lifestyle": 58.5,
       "connectivity": 65.1,
       "density": 54.6,
-      "affordability": 18.4,
+      "affordability": 40.7,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 59.1
+      "overall": 52.2
     },
     "ranks": {
-      "air": 11,
+      "air": 17,
       "amenities": 79,
       "essentials": 97,
       "lifestyle": 54,
       "connectivity": 19,
       "density": 48,
-      "affordability": 106,
+      "affordability": 77,
       "walkability": 66
     },
     "percentile_blr": {
-      "air": 92.2,
+      "air": 87.6,
       "amenities": 39.5,
       "essentials": 25.6,
       "lifestyle": 58.9,
       "connectivity": 86.0,
       "density": 63.6,
-      "affordability": 18.6,
+      "affordability": 41.1,
       "walkability": 49.6
     },
-    "brag_label": "Top 10% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 92% of Bangalore on air quality."
+    "brag_label": "Top 25% Connectivity Hub in Bangalore",
+    "subhead": "Your neighbourhood outperforms 86% of Bangalore on transit access."
   },
   {
     "pincode": "560015",
@@ -3515,8 +3567,8 @@
       "buses": 19
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 19.43,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 2.66,
       "rail_km": 2.63,
       "rent_2bhk": 14739.0,
@@ -3528,39 +3580,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 20.5,
       "essentials": 24.0,
       "lifestyle": 17.1,
       "connectivity": 46.9,
       "density": 48.1,
-      "affordability": 81.6,
+      "affordability": 70.2,
       "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 35.8
+      "overall": 39.3
     },
     "ranks": {
-      "air": 82,
+      "air": 46,
       "amenities": 106,
       "essentials": 98,
       "lifestyle": 106,
       "connectivity": 75,
       "density": 72,
-      "affordability": 23,
+      "affordability": 38,
       "walkability": 101
     },
     "percentile_blr": {
-      "air": 37.2,
+      "air": 65.1,
       "amenities": 18.6,
       "essentials": 24.8,
       "lifestyle": 18.6,
       "connectivity": 42.6,
       "density": 45.0,
-      "affordability": 82.9,
+      "affordability": 71.3,
       "walkability": 22.5
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Affordable Living · #38 of 129",
     "subhead": "Your neighbourhood outperforms 43% of Bangalore on transit access."
   },
   {
@@ -3581,49 +3633,51 @@
       "buses": 9
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.69,
+      "aqi": 150.9,
+      "station_distance_km": 7.095791666541132,
       "metro_km": 0.72,
       "rail_km": 1.71,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 33986,
+      "rent_match": "locality_inferred",
       "pop_density": 1156269.544924154,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.17
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": true,
       "amenities": 48.1,
       "essentials": 39.1,
       "lifestyle": 57.0,
       "connectivity": 61.1,
       "density": 67.4,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 3.5,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 44.9
+      "overall": 44.5
     },
     "ranks": {
-      "air": 83,
+      "air": 47,
       "amenities": 69,
       "essentials": 79,
       "lifestyle": 56,
       "connectivity": 31,
       "density": 1,
-      "affordability": 62,
+      "affordability": 125,
       "walkability": 67
     },
     "percentile_blr": {
-      "air": 36.4,
+      "air": 64.3,
       "amenities": 47.3,
       "essentials": 39.5,
       "lifestyle": 57.4,
       "connectivity": 76.7,
       "density": 100.0,
-      "affordability": 52.7,
+      "affordability": 3.9,
       "walkability": 48.8
     },
     "brag_label": "Bangalore's #1 Density & Activity",
@@ -3647,8 +3701,8 @@
       "buses": 8
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 19.34,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 4.56,
       "rail_km": 3.64,
       "rent_2bhk": 14739.0,
@@ -3660,39 +3714,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 14.1,
       "essentials": 19.0,
       "lifestyle": 9.3,
       "connectivity": 32.5,
       "density": 57.1,
-      "affordability": 81.6,
+      "affordability": 70.2,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 32.7
+      "overall": 36.2
     },
     "ranks": {
-      "air": 84,
+      "air": 48,
       "amenities": 115,
       "essentials": 103,
       "lifestyle": 114,
       "connectivity": 112,
       "density": 39,
-      "affordability": 24,
+      "affordability": 39,
       "walkability": 88
     },
     "percentile_blr": {
-      "air": 35.7,
+      "air": 63.6,
       "amenities": 11.6,
       "essentials": 20.9,
       "lifestyle": 12.4,
       "connectivity": 14.0,
       "density": 70.5,
-      "affordability": 82.2,
+      "affordability": 70.5,
       "walkability": 32.6
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Affordable Living · #39 of 129",
     "subhead": "Your neighbourhood outperforms 21% of Bangalore on essentials coverage."
   },
   {
@@ -3713,8 +3767,8 @@
       "buses": 36
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 16.65,
+      "aqi": 167.9,
+      "station_distance_km": 14.056222747480954,
       "metro_km": 2.79,
       "rail_km": 1.38,
       "rent_2bhk": 14739.0,
@@ -3726,39 +3780,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 18.9,
       "air_confident": false,
       "amenities": 31.4,
       "essentials": 32.6,
       "lifestyle": 30.2,
       "connectivity": 54.8,
       "density": 51.9,
-      "affordability": 81.6,
+      "affordability": 70.2,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 40.9
+      "overall": 41.9
     },
     "ranks": {
-      "air": 85,
+      "air": 104,
       "amenities": 87,
       "essentials": 87,
       "lifestyle": 90,
       "connectivity": 53,
       "density": 58,
-      "affordability": 25,
+      "affordability": 40,
       "walkability": 89
     },
     "percentile_blr": {
-      "air": 34.9,
+      "air": 20.2,
       "amenities": 33.3,
       "essentials": 33.3,
       "lifestyle": 31.0,
       "connectivity": 59.7,
       "density": 55.8,
-      "affordability": 81.4,
+      "affordability": 69.8,
       "walkability": 31.8
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Affordable Living · #40 of 129",
     "subhead": "Your neighbourhood outperforms 60% of Bangalore on transit access."
   },
   {
@@ -3779,49 +3833,51 @@
       "buses": 19
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 12.9,
+      "aqi": 167.9,
+      "station_distance_km": 10.3211746906495,
       "metro_km": 1.59,
       "rail_km": 1.93,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 25633,
+      "rent_match": "locality_inferred",
       "pop_density": 306882.3165066584,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.1
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 62.4,
       "essentials": 71.3,
       "lifestyle": 53.5,
       "connectivity": 56.6,
       "density": 58.4,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 15.9,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 45.7
+      "overall": 44.4
     },
     "ranks": {
-      "air": 86,
+      "air": 105,
       "amenities": 46,
       "essentials": 38,
       "lifestyle": 61,
       "connectivity": 47,
       "density": 34,
-      "affordability": 63,
+      "affordability": 109,
       "walkability": 36
     },
     "percentile_blr": {
-      "air": 34.1,
+      "air": 19.4,
       "amenities": 65.1,
       "essentials": 71.3,
       "lifestyle": 53.5,
       "connectivity": 64.3,
       "density": 74.4,
-      "affordability": 51.9,
+      "affordability": 16.3,
       "walkability": 72.9
     },
     "brag_label": "Density & Activity · #34 of 129",
@@ -3845,52 +3901,54 @@
       "buses": 42
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 3.36,
+      "aqi": 46.5,
+      "station_distance_km": 2.5420685938622203,
       "metro_km": 2.58,
       "rail_km": 2.51,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 19628,
+      "rent_match": "locality_inferred",
       "pop_density": 56992.17806407085,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 9,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.66
     },
     "scores": {
-      "air": 95.3,
+      "air": 90.3,
       "air_confident": true,
       "amenities": 97.3,
       "essentials": 95.0,
       "lifestyle": 99.6,
       "connectivity": 54.8,
       "density": 44.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 30.6,
+      "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 71.8
+      "overall": 68.7
     },
     "ranks": {
-      "air": 12,
+      "air": 1,
       "amenities": 1,
       "essentials": 7,
       "lifestyle": 1,
       "connectivity": 54,
       "density": 87,
-      "affordability": 64,
+      "affordability": 90,
       "walkability": 5
     },
     "percentile_blr": {
-      "air": 91.5,
+      "air": 100.0,
       "amenities": 100.0,
       "essentials": 95.3,
       "lifestyle": 100.0,
       "connectivity": 58.9,
       "density": 33.3,
-      "affordability": 51.2,
+      "affordability": 31.0,
       "walkability": 96.9
     },
-    "brag_label": "Bangalore's #1 Lifestyle Density",
+    "brag_label": "Bangalore's #1 Cleanest Air",
     "subhead": "Your neighbourhood outperforms 100% of Bangalore on lifestyle density."
   },
   {
@@ -3911,8 +3969,8 @@
       "buses": 15
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.55,
+      "aqi": 157.9,
+      "station_distance_km": 5.9171169124054765,
       "metro_km": 0.5,
       "rail_km": 0.75,
       "rent_2bhk": 35496.0,
@@ -3924,36 +3982,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 24.8,
       "air_confident": true,
       "amenities": 52.3,
       "essentials": 37.6,
       "lifestyle": 67.1,
       "connectivity": 69.2,
       "density": 66.0,
-      "affordability": 1.2,
+      "affordability": 2.7,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 41.9
+      "overall": 45.9
     },
     "ranks": {
-      "air": 87,
+      "air": 83,
       "amenities": 61,
       "essentials": 81,
       "lifestyle": 43,
       "connectivity": 13,
       "density": 6,
-      "affordability": 128,
+      "affordability": 126,
       "walkability": 90
     },
     "percentile_blr": {
-      "air": 33.3,
+      "air": 36.4,
       "amenities": 53.5,
       "essentials": 38.0,
       "lifestyle": 67.4,
       "connectivity": 90.7,
       "density": 96.1,
-      "affordability": 1.6,
+      "affordability": 3.1,
       "walkability": 31.0
     },
     "brag_label": "Top 5% Density & Activity in Bangalore",
@@ -3977,49 +4035,51 @@
       "buses": 11
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 7.49,
+      "aqi": 166.0,
+      "station_distance_km": 5.112773108373452,
       "metro_km": 1.31,
       "rail_km": 3.54,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 17411,
+      "rent_match": "locality_inferred",
       "pop_density": 531611.051502146,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.04
     },
     "scores": {
-      "air": 8.8,
+      "air": 20.0,
       "air_confident": true,
       "amenities": 44.2,
       "essentials": 47.7,
       "lifestyle": 40.7,
       "connectivity": 51.2,
       "density": 63.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 39.1,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 40.9
+      "overall": 42.7
     },
     "ranks": {
-      "air": 88,
+      "air": 91,
       "amenities": 76,
       "essentials": 69,
       "lifestyle": 77,
       "connectivity": 68,
       "density": 17,
-      "affordability": 65,
+      "affordability": 79,
       "walkability": 91
     },
     "percentile_blr": {
-      "air": 32.6,
+      "air": 30.2,
       "amenities": 41.9,
       "essentials": 47.3,
       "lifestyle": 41.1,
       "connectivity": 48.1,
       "density": 87.6,
-      "affordability": 50.4,
+      "affordability": 39.5,
       "walkability": 30.2
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -4043,49 +4103,51 @@
       "buses": 35
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 6.8,
+      "aqi": 125.5,
+      "station_distance_km": 5.505479424508435,
       "metro_km": 0.43,
       "rail_km": 2.42,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 25019,
+      "rent_match": "locality_inferred",
       "pop_density": 157865.70017524294,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 0.77
     },
     "scores": {
-      "air": 8.8,
+      "air": 43.8,
       "air_confident": true,
       "amenities": 89.5,
       "essentials": 86.4,
       "lifestyle": 92.6,
       "connectivity": 71.8,
       "density": 50.3,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 16.7,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 54.1
+      "overall": 58.9
     },
     "ranks": {
-      "air": 89,
+      "air": 21,
       "amenities": 14,
       "essentials": 18,
       "lifestyle": 10,
       "connectivity": 8,
       "density": 64,
-      "affordability": 66,
+      "affordability": 108,
       "walkability": 68
     },
     "percentile_blr": {
-      "air": 31.8,
+      "air": 84.5,
       "amenities": 89.9,
       "essentials": 86.8,
       "lifestyle": 93.0,
       "connectivity": 94.6,
       "density": 51.2,
-      "affordability": 49.6,
+      "affordability": 17.1,
       "walkability": 48.1
     },
     "brag_label": "Top 10% Connectivity Hub in Bangalore",
@@ -4109,49 +4171,51 @@
       "buses": 20
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.52,
+      "aqi": 152.1,
+      "station_distance_km": 3.3643581918642633,
       "metro_km": 2.13,
       "rail_km": 4.51,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 27442,
+      "rent_match": "locality_inferred",
       "pop_density": 196377.9231074118,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 4,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.16
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.2,
       "air_confident": true,
       "amenities": 27.5,
       "essentials": 11.2,
       "lifestyle": 43.8,
       "connectivity": 48.3,
       "density": 54.1,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 12.8,
+      "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 34.7
+      "overall": 35.3
     },
     "ranks": {
-      "air": 90,
+      "air": 80,
       "amenities": 95,
       "essentials": 113,
       "lifestyle": 74,
       "connectivity": 74,
       "density": 50,
-      "affordability": 67,
+      "affordability": 113,
       "walkability": 102
     },
     "percentile_blr": {
-      "air": 31.0,
+      "air": 38.8,
       "amenities": 27.1,
       "essentials": 13.2,
       "lifestyle": 43.4,
       "connectivity": 43.4,
       "density": 62.0,
-      "affordability": 48.8,
+      "affordability": 13.2,
       "walkability": 21.7
     },
     "brag_label": "Density & Activity · #50 of 129",
@@ -4175,49 +4239,51 @@
       "buses": 4
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.13,
+      "aqi": 148.6,
+      "station_distance_km": 5.8542906427938215,
       "metro_km": 0.98,
       "rail_km": 0.88,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 36588,
+      "rent_match": "locality_inferred",
       "pop_density": 1093733.995584989,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.25
     },
     "scores": {
-      "air": 8.8,
+      "air": 30.2,
       "air_confident": true,
       "amenities": 27.9,
       "essentials": 24.0,
       "lifestyle": 31.8,
       "connectivity": 59.7,
       "density": 67.1,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 1.9,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 39.7
+      "overall": 39.4
     },
     "ranks": {
-      "air": 91,
+      "air": 38,
       "amenities": 94,
       "essentials": 99,
       "lifestyle": 88,
       "connectivity": 37,
       "density": 2,
-      "affordability": 68,
+      "affordability": 127,
       "walkability": 92
     },
     "percentile_blr": {
-      "air": 30.2,
+      "air": 71.3,
       "amenities": 27.9,
       "essentials": 24.0,
       "lifestyle": 32.6,
       "connectivity": 72.1,
       "density": 99.2,
-      "affordability": 48.1,
+      "affordability": 2.3,
       "walkability": 29.5
     },
     "brag_label": "Bangalore's #2 Density & Activity",
@@ -4241,49 +4307,51 @@
       "buses": 42
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 10.95,
+      "aqi": 139.0,
+      "station_distance_km": 8.572509671720303,
       "metro_km": 3.2,
       "rail_km": 2.03,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 28617,
+      "rent_match": "locality_inferred",
       "pop_density": 183878.82724067545,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.14
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 35.9,
+      "air_confident": false,
       "amenities": 25.4,
       "essentials": 19.0,
       "lifestyle": 31.8,
       "connectivity": 53.7,
       "density": 53.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 8.9,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 35.2
+      "overall": 37.1
     },
     "ranks": {
-      "air": 92,
+      "air": 31,
       "amenities": 100,
       "essentials": 104,
       "lifestyle": 89,
       "connectivity": 59,
       "density": 54,
-      "affordability": 69,
+      "affordability": 118,
       "walkability": 93
     },
     "percentile_blr": {
-      "air": 29.5,
+      "air": 76.7,
       "amenities": 23.3,
       "essentials": 20.2,
       "lifestyle": 31.8,
       "connectivity": 55.0,
       "density": 58.9,
-      "affordability": 47.3,
+      "affordability": 9.3,
       "walkability": 28.7
     },
     "brag_label": "Density & Activity · #54 of 129",
@@ -4307,49 +4375,51 @@
       "buses": 58
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 11.37,
+      "aqi": 167.9,
+      "station_distance_km": 8.68292559976802,
       "metro_km": 1.07,
       "rail_km": 1.74,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 26979,
+      "rent_match": "locality_inferred",
       "pop_density": 259132.58368200838,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.57
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 89.0,
       "essentials": 92.2,
       "lifestyle": 85.7,
       "connectivity": 71.2,
       "density": 56.2,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 13.6,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 54.9
+      "overall": 53.3
     },
     "ranks": {
-      "air": 93,
+      "air": 106,
       "amenities": 15,
       "essentials": 11,
       "lifestyle": 19,
       "connectivity": 9,
       "density": 42,
-      "affordability": 70,
+      "affordability": 112,
       "walkability": 16
     },
     "percentile_blr": {
-      "air": 28.7,
+      "air": 18.6,
       "amenities": 89.1,
       "essentials": 92.2,
       "lifestyle": 86.0,
       "connectivity": 93.8,
       "density": 68.2,
-      "affordability": 46.5,
+      "affordability": 14.0,
       "walkability": 88.4
     },
     "brag_label": "Top 10% Connectivity Hub in Bangalore",
@@ -4373,8 +4443,8 @@
       "buses": 7
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 23.15,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 10.01,
       "rail_km": 3.62,
       "rent_2bhk": 15884.5,
@@ -4386,39 +4456,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 23.4,
       "essentials": 19.0,
       "lifestyle": 27.9,
       "connectivity": 27.4,
       "density": 48.4,
-      "affordability": 75.8,
+      "affordability": 61.2,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 52.3
+      "overall": 34.7
     },
     "ranks": {
-      "air": 13,
+      "air": 49,
       "amenities": 101,
       "essentials": 105,
       "lifestyle": 93,
       "connectivity": 120,
       "density": 71,
-      "affordability": 31,
+      "affordability": 50,
       "walkability": 94
     },
     "percentile_blr": {
-      "air": 90.7,
+      "air": 62.8,
       "amenities": 22.5,
       "essentials": 19.4,
       "lifestyle": 28.7,
       "connectivity": 7.8,
       "density": 45.7,
-      "affordability": 76.7,
+      "affordability": 62.0,
       "walkability": 27.9
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Affordable Living · #50 of 129",
     "subhead": "Your neighbourhood outperforms 29% of Bangalore on lifestyle density."
   },
   {
@@ -4439,8 +4509,8 @@
       "buses": 123
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 25.4,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 12.35,
       "rail_km": 3.91,
       "rent_2bhk": 15884.5,
@@ -4452,36 +4522,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 94.2,
       "essentials": 97.3,
       "lifestyle": 91.1,
       "connectivity": 42.9,
       "density": 35.9,
-      "affordability": 75.8,
+      "affordability": 61.2,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 49.7
+      "overall": 52.8
     },
     "ranks": {
-      "air": 94,
+      "air": 50,
       "amenities": 6,
       "essentials": 4,
       "lifestyle": 12,
       "connectivity": 87,
       "density": 117,
-      "affordability": 32,
+      "affordability": 51,
       "walkability": 6
     },
     "percentile_blr": {
-      "air": 27.9,
+      "air": 62.0,
       "amenities": 96.1,
       "essentials": 97.7,
       "lifestyle": 91.5,
       "connectivity": 33.3,
       "density": 10.1,
-      "affordability": 76.0,
+      "affordability": 61.2,
       "walkability": 96.1
     },
     "brag_label": "Top 5% Essentials Coverage in Bangalore",
@@ -4505,49 +4575,51 @@
       "buses": 62
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 7.91,
+      "aqi": 94.5,
+      "station_distance_km": 7.114234073505125,
       "metro_km": 1.86,
       "rail_km": 3.6,
-      "rent_2bhk": null,
-      "rent_match": null,
+      "rent_2bhk": 16998,
+      "rent_match": "locality_inferred",
       "pop_density": 48958.646245059295,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 2,
+      "rent_nearest_locality_km": 4.18
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 62.1,
+      "air_confident": false,
       "amenities": 93.0,
       "essentials": 88.8,
       "lifestyle": 97.3,
       "connectivity": 60.8,
       "density": 42.7,
-      "affordability": 50.0,
-      "affordability_confident": false,
+      "affordability": 42.2,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 72.3
+      "overall": 63.3
     },
     "ranks": {
-      "air": 14,
+      "air": 12,
       "amenities": 9,
       "essentials": 15,
       "lifestyle": 4,
       "connectivity": 33,
       "density": 92,
-      "affordability": 34,
+      "affordability": 75,
       "walkability": 37
     },
     "percentile_blr": {
-      "air": 89.9,
+      "air": 91.5,
       "amenities": 93.8,
       "essentials": 89.1,
       "lifestyle": 97.7,
       "connectivity": 75.2,
       "density": 29.5,
-      "affordability": 74.4,
+      "affordability": 42.6,
       "walkability": 72.1
     },
     "brag_label": "Top 5% Lifestyle Density in Bangalore",
@@ -4571,8 +4643,8 @@
       "buses": 16
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 27.73,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 31.5,
       "rail_km": 4.79,
       "rent_2bhk": 16464,
@@ -4581,39 +4653,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 22.7,
       "essentials": 42.2,
       "lifestyle": 3.1,
       "connectivity": 24.7,
       "density": 33.2,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 31.4
+      "overall": 29.8
     },
     "ranks": {
-      "air": 29,
+      "air": 51,
       "amenities": 102,
       "essentials": 75,
       "lifestyle": 122,
       "connectivity": 124,
       "density": 127,
-      "affordability": 71,
+      "affordability": 58,
       "walkability": 114
     },
     "percentile_blr": {
-      "air": 78.3,
+      "air": 61.2,
       "amenities": 21.7,
       "essentials": 42.6,
       "lifestyle": 6.2,
       "connectivity": 4.7,
       "density": 2.3,
-      "affordability": 45.7,
+      "affordability": 55.8,
       "walkability": 12.4
     },
     "brag_label": "Essentials Coverage · #75 of 129",
@@ -4637,8 +4710,8 @@
       "buses": 43
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 25.74,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 19.48,
       "rail_km": 3.24,
       "rent_2bhk": 16464,
@@ -4647,39 +4720,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 33.7,
       "essentials": 2.7,
       "lifestyle": 64.7,
       "connectivity": 39.2,
       "density": 41.3,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 38.7
+      "overall": 37.1
     },
     "ranks": {
-      "air": 30,
+      "air": 52,
       "amenities": 84,
       "essentials": 123,
       "lifestyle": 46,
       "connectivity": 97,
       "density": 97,
-      "affordability": 72,
+      "affordability": 59,
       "walkability": 115
     },
     "percentile_blr": {
-      "air": 77.5,
+      "air": 60.5,
       "amenities": 35.7,
       "essentials": 5.4,
       "lifestyle": 65.1,
       "connectivity": 25.6,
       "density": 25.6,
-      "affordability": 45.0,
+      "affordability": 55.0,
       "walkability": 11.6
     },
     "brag_label": "Lifestyle Density · #46 of 129",
@@ -4703,49 +4777,51 @@
       "buses": 0
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 7.18,
+      "aqi": 105.3,
+      "station_distance_km": 8.896287134535545,
       "metro_km": 0.36,
       "rail_km": 5.55,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 15129,
+      "rent_match": "locality_inferred",
       "pop_density": 1031137.3569198751,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 4,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.97
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 55.7,
+      "air_confident": false,
       "amenities": 20.5,
       "essentials": 24.0,
       "lifestyle": 17.1,
       "connectivity": 54.8,
       "density": 66.8,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 65.5,
+      "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 36.8
+      "overall": 50.2
     },
     "ranks": {
-      "air": 95,
+      "air": 15,
       "amenities": 107,
       "essentials": 100,
       "lifestyle": 107,
       "connectivity": 55,
       "density": 3,
-      "affordability": 73,
+      "affordability": 45,
       "walkability": 103
     },
     "percentile_blr": {
-      "air": 27.1,
+      "air": 89.1,
       "amenities": 17.8,
       "essentials": 23.3,
       "lifestyle": 17.8,
       "connectivity": 58.1,
       "density": 98.4,
-      "affordability": 44.2,
+      "affordability": 65.9,
       "walkability": 20.9
     },
     "brag_label": "Bangalore's #3 Density & Activity",
@@ -4769,8 +4845,8 @@
       "buses": 5
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.78,
+      "aqi": 127.2,
+      "station_distance_km": 7.215416313944058,
       "metro_km": 1.09,
       "rail_km": 8.48,
       "rent_2bhk": 14025.0,
@@ -4782,36 +4858,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 42.8,
       "air_confident": true,
       "amenities": 40.3,
       "essentials": 45.0,
       "lifestyle": 35.7,
       "connectivity": 44.6,
       "density": 51.4,
-      "affordability": 84.8,
+      "affordability": 75.6,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 41.0
+      "overall": 48.1
     },
     "ranks": {
-      "air": 96,
+      "air": 24,
       "amenities": 82,
       "essentials": 72,
       "lifestyle": 84,
       "connectivity": 81,
       "density": 60,
-      "affordability": 21,
+      "affordability": 33,
       "walkability": 95
     },
     "percentile_blr": {
-      "air": 26.4,
+      "air": 82.2,
       "amenities": 37.2,
       "essentials": 45.0,
       "lifestyle": 35.7,
       "connectivity": 38.0,
       "density": 54.3,
-      "affordability": 84.5,
+      "affordability": 75.2,
       "walkability": 27.1
     },
     "brag_label": "Top 25% Affordable Living in Bangalore",
@@ -4835,8 +4911,8 @@
       "buses": 21
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 6.92,
+      "aqi": 160.8,
+      "station_distance_km": 6.20508439562553,
       "metro_km": 1.01,
       "rail_km": 6.42,
       "rent_2bhk": 18275.0,
@@ -4848,36 +4924,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 23.1,
       "air_confident": true,
       "amenities": 57.4,
       "essentials": 63.6,
       "lifestyle": 51.2,
       "connectivity": 56.2,
       "density": 56.0,
-      "affordability": 16.0,
+      "affordability": 35.3,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 40.3
+      "overall": 46.0
     },
     "ranks": {
-      "air": 97,
+      "air": 85,
       "amenities": 54,
       "essentials": 47,
       "lifestyle": 63,
       "connectivity": 49,
       "density": 43,
-      "affordability": 109,
+      "affordability": 84,
       "walkability": 38
     },
     "percentile_blr": {
-      "air": 25.6,
+      "air": 34.9,
       "amenities": 58.9,
       "essentials": 64.3,
       "lifestyle": 51.9,
       "connectivity": 62.8,
       "density": 67.4,
-      "affordability": 16.3,
+      "affordability": 35.7,
       "walkability": 71.3
     },
     "brag_label": "Density & Activity · #43 of 129",
@@ -4901,8 +4977,8 @@
       "buses": 58
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 20.71,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 10.47,
       "rail_km": 13.31,
       "rent_2bhk": 16464,
@@ -4911,39 +4987,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 25.8,
       "essentials": 30.6,
       "lifestyle": 20.9,
       "connectivity": 36.3,
       "density": 37.8,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 28.7
+      "overall": 34.0
     },
     "ranks": {
-      "air": 98,
+      "air": 53,
       "amenities": 99,
       "essentials": 90,
       "lifestyle": 102,
       "connectivity": 106,
       "density": 110,
-      "affordability": 74,
+      "affordability": 60,
       "walkability": 96
     },
     "percentile_blr": {
-      "air": 24.8,
+      "air": 59.7,
       "amenities": 24.0,
       "essentials": 31.0,
       "lifestyle": 21.7,
       "connectivity": 18.6,
       "density": 15.5,
-      "affordability": 43.4,
+      "affordability": 54.3,
       "walkability": 26.4
     },
     "brag_label": "Essentials Coverage · #90 of 129",
@@ -4967,52 +5044,54 @@
       "buses": 4
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 16.72,
+      "aqi": 167.9,
+      "station_distance_km": 14.379409816312245,
       "metro_km": 3.91,
       "rail_km": 3.87,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 12549,
+      "rent_match": "locality_inferred",
       "pop_density": 187143.15391879133,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 4,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.28
     },
     "scores": {
-      "air": 8.8,
+      "air": 18.9,
       "air_confident": false,
       "amenities": 11.0,
       "essentials": 19.0,
       "lifestyle": 3.1,
       "connectivity": 31.6,
       "density": 53.3,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 86.4,
+      "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 26.9
+      "overall": 34.1
     },
     "ranks": {
-      "air": 99,
+      "air": 107,
       "amenities": 117,
       "essentials": 106,
       "lifestyle": 123,
       "connectivity": 113,
       "density": 53,
-      "affordability": 75,
+      "affordability": 18,
       "walkability": 104
     },
     "percentile_blr": {
-      "air": 24.0,
+      "air": 17.8,
       "amenities": 10.1,
       "essentials": 18.6,
       "lifestyle": 5.4,
       "connectivity": 13.2,
       "density": 59.7,
-      "affordability": 42.6,
+      "affordability": 86.8,
       "walkability": 20.2
     },
-    "brag_label": "Density & Activity · #53 of 129",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 19% of Bangalore on essentials coverage."
   },
   {
@@ -5033,52 +5112,54 @@
       "buses": 8
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 12.41,
+      "aqi": 167.9,
+      "station_distance_km": 11.939473619333697,
       "metro_km": 0.88,
       "rail_km": 7.21,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 11796,
+      "rent_match": "locality_inferred",
       "pop_density": 196572.70382860542,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.75
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 15.1,
       "essentials": 7.4,
       "lifestyle": 22.9,
       "connectivity": 49.9,
       "density": 54.3,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 89.5,
+      "affordability_confident": true,
       "walkability": 38.4,
-      "overall": 32.1
+      "overall": 39.7
     },
     "ranks": {
-      "air": 100,
+      "air": 108,
       "amenities": 113,
       "essentials": 118,
       "lifestyle": 100,
       "connectivity": 72,
       "density": 49,
-      "affordability": 76,
+      "affordability": 14,
       "walkability": 116
     },
     "percentile_blr": {
-      "air": 23.3,
+      "air": 17.1,
       "amenities": 13.2,
       "essentials": 9.3,
       "lifestyle": 23.3,
       "connectivity": 45.0,
       "density": 62.8,
-      "affordability": 41.9,
+      "affordability": 89.9,
       "walkability": 10.9
     },
-    "brag_label": "Density & Activity · #49 of 129",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 45% of Bangalore on transit access."
   },
   {
@@ -5099,8 +5180,8 @@
       "buses": 18
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 37.72,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 31.65,
       "rail_km": 14.33,
       "rent_2bhk": 16464,
@@ -5109,39 +5190,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 5.2,
       "essentials": 7.4,
       "lifestyle": 3.1,
       "connectivity": 20.8,
       "density": 32.6,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 26.2
+      "overall": 24.7
     },
     "ranks": {
-      "air": 31,
+      "air": 54,
       "amenities": 125,
       "essentials": 119,
       "lifestyle": 124,
       "connectivity": 126,
       "density": 129,
-      "affordability": 77,
+      "affordability": 61,
       "walkability": 117
     },
     "percentile_blr": {
-      "air": 76.7,
+      "air": 58.9,
       "amenities": 3.9,
       "essentials": 8.5,
       "lifestyle": 4.7,
       "connectivity": 3.1,
       "density": 0.8,
-      "affordability": 41.1,
+      "affordability": 53.5,
       "walkability": 10.1
     },
     "brag_label": "Essentials Coverage · #119 of 129",
@@ -5165,8 +5247,8 @@
       "buses": 0
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 17.08,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 37.43,
       "rail_km": 6.13,
       "rent_2bhk": 16464,
@@ -5175,39 +5257,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 0,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 6.0,
       "essentials": 2.7,
       "lifestyle": 9.3,
       "connectivity": 16.1,
       "density": 34.5,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 26.4,
-      "overall": 25.7
+      "overall": 24.2
     },
     "ranks": {
-      "air": 32,
+      "air": 55,
       "amenities": 123,
       "essentials": 124,
       "lifestyle": 115,
       "connectivity": 129,
       "density": 122,
-      "affordability": 78,
+      "affordability": 62,
       "walkability": 129
     },
     "percentile_blr": {
-      "air": 76.0,
+      "air": 58.1,
       "amenities": 5.4,
       "essentials": 4.7,
       "lifestyle": 11.6,
       "connectivity": 0.8,
       "density": 6.2,
-      "affordability": 40.3,
+      "affordability": 52.7,
       "walkability": 0.8
     },
     "brag_label": "Lifestyle Density · #115 of 129",
@@ -5231,8 +5314,8 @@
       "buses": 4
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 10.65,
+      "aqi": 126.2,
+      "station_distance_km": 10.034154873068442,
       "metro_km": 3.71,
       "rail_km": 1.9,
       "rent_2bhk": 14835.0,
@@ -5244,40 +5327,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 43.4,
+      "air_confident": false,
       "amenities": 21.5,
       "essentials": 29.5,
       "lifestyle": 13.6,
       "connectivity": 38.3,
       "density": 65.5,
-      "affordability": 79.3,
+      "affordability": 67.8,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 57.8
+      "overall": 43.9
     },
     "ranks": {
-      "air": 15,
+      "air": 22,
       "amenities": 104,
       "essentials": 92,
       "lifestyle": 111,
       "connectivity": 102,
       "density": 8,
-      "affordability": 27,
+      "affordability": 42,
       "walkability": 106
     },
     "percentile_blr": {
-      "air": 89.1,
+      "air": 83.7,
       "amenities": 20.2,
       "essentials": 29.5,
       "lifestyle": 14.7,
       "connectivity": 21.7,
       "density": 94.6,
-      "affordability": 79.8,
+      "affordability": 68.2,
       "walkability": 18.6
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
-    "subhead": "Your neighbourhood outperforms 89% of Bangalore on air quality."
+    "subhead": "Your neighbourhood outperforms 30% of Bangalore on essentials coverage."
   },
   {
     "pincode": "560108",
@@ -5297,8 +5380,8 @@
       "buses": 7
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 9.94,
+      "aqi": 167.9,
+      "station_distance_km": 10.319298833326663,
       "metro_km": 2.59,
       "rail_km": 10.06,
       "rent_2bhk": 9266.0,
@@ -5310,20 +5393,20 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 7.2,
       "essentials": 11.2,
       "lifestyle": 3.1,
       "connectivity": 33.2,
       "density": 56.5,
-      "affordability": 94.1,
+      "affordability": 94.2,
       "affordability_confident": true,
       "walkability": 38.4,
-      "overall": 32.6
+      "overall": 35.0
     },
     "ranks": {
-      "air": 101,
+      "air": 109,
       "amenities": 122,
       "essentials": 114,
       "lifestyle": 125,
@@ -5333,7 +5416,7 @@
       "walkability": 118
     },
     "percentile_blr": {
-      "air": 22.5,
+      "air": 16.3,
       "amenities": 6.2,
       "essentials": 12.4,
       "lifestyle": 3.9,
@@ -5363,8 +5446,8 @@
       "buses": 19
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 10.99,
+      "aqi": 94.5,
+      "station_distance_km": 11.608245934485554,
       "metro_km": 2.92,
       "rail_km": 2.35,
       "rent_2bhk": 10036.5,
@@ -5376,8 +5459,8 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 62.1,
+      "air_confident": false,
       "amenities": 42.2,
       "essentials": 36.4,
       "lifestyle": 48.1,
@@ -5386,10 +5469,10 @@
       "affordability": 93.4,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 61.5
+      "overall": 53.5
     },
     "ranks": {
-      "air": 16,
+      "air": 13,
       "amenities": 78,
       "essentials": 82,
       "lifestyle": 68,
@@ -5399,7 +5482,7 @@
       "walkability": 39
     },
     "percentile_blr": {
-      "air": 88.4,
+      "air": 90.7,
       "amenities": 40.3,
       "essentials": 37.2,
       "lifestyle": 48.1,
@@ -5409,7 +5492,7 @@
       "walkability": 70.5
     },
     "brag_label": "Top 10% Affordable Living in Bangalore",
-    "subhead": "Your neighbourhood outperforms 88% of Bangalore on air quality."
+    "subhead": "Your neighbourhood outperforms 48% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560087",
@@ -5429,8 +5512,8 @@
       "buses": 19
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 6.25,
+      "aqi": 60.0,
+      "station_distance_km": 5.8827642110766085,
       "metro_km": 5.52,
       "rail_km": 3.53,
       "rent_2bhk": 15317.0,
@@ -5442,40 +5525,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 82.4,
       "air_confident": true,
       "amenities": 69.8,
       "essentials": 63.6,
       "lifestyle": 76.0,
       "connectivity": 37.8,
       "density": 41.0,
-      "affordability": 77.7,
+      "affordability": 64.7,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 64.6
+      "overall": 60.0
     },
     "ranks": {
-      "air": 17,
+      "air": 4,
       "amenities": 37,
       "essentials": 48,
       "lifestyle": 32,
       "connectivity": 103,
       "density": 98,
-      "affordability": 29,
+      "affordability": 46,
       "walkability": 40
     },
     "percentile_blr": {
-      "air": 87.6,
+      "air": 97.7,
       "amenities": 72.1,
       "essentials": 63.6,
       "lifestyle": 76.0,
       "connectivity": 20.9,
       "density": 24.8,
-      "affordability": 78.3,
+      "affordability": 65.1,
       "walkability": 69.8
     },
-    "brag_label": "Top 25% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 88% of Bangalore on air quality."
+    "brag_label": "Top 5% Cleanest Air in Bangalore",
+    "subhead": "Your neighbourhood outperforms 98% of Bangalore on air quality."
   },
   {
     "pincode": "560083",
@@ -5495,8 +5578,8 @@
       "buses": 85
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 11.93,
+      "aqi": 167.9,
+      "station_distance_km": 13.125467469158314,
       "metro_km": 6.48,
       "rail_km": 14.3,
       "rent_2bhk": 15895.0,
@@ -5508,39 +5591,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 33.3,
       "essentials": 40.7,
       "lifestyle": 26.0,
       "connectivity": 40.8,
       "density": 37.0,
-      "affordability": 74.6,
+      "affordability": 60.1,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 34.7
+      "overall": 35.4
     },
     "ranks": {
-      "air": 102,
+      "air": 110,
       "amenities": 86,
       "essentials": 77,
       "lifestyle": 95,
       "connectivity": 93,
       "density": 113,
-      "affordability": 33,
+      "affordability": 52,
       "walkability": 69
     },
     "percentile_blr": {
-      "air": 21.7,
+      "air": 15.5,
       "amenities": 34.1,
       "essentials": 41.1,
       "lifestyle": 27.1,
       "connectivity": 28.7,
       "density": 13.2,
-      "affordability": 75.2,
+      "affordability": 60.5,
       "walkability": 47.3
     },
-    "brag_label": "Top 25% Affordable Living in Bangalore",
+    "brag_label": "Affordable Living · #52 of 129",
     "subhead": "Your neighbourhood outperforms 41% of Bangalore on essentials coverage."
   },
   {
@@ -5561,8 +5644,8 @@
       "buses": 19
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 20.04,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 7.95,
       "rail_km": 5.98,
       "rent_2bhk": 16464,
@@ -5571,39 +5654,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 1,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 2.9,
       "essentials": 2.7,
       "lifestyle": 3.1,
       "connectivity": 30.9,
       "density": 40.5,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 32.4,
-      "overall": 22.5
+      "overall": 27.8
     },
     "ranks": {
-      "air": 103,
+      "air": 56,
       "amenities": 126,
       "essentials": 125,
       "lifestyle": 126,
       "connectivity": 115,
       "density": 100,
-      "affordability": 79,
+      "affordability": 63,
       "walkability": 125
     },
     "percentile_blr": {
-      "air": 20.9,
+      "air": 57.4,
       "amenities": 3.1,
       "essentials": 3.9,
       "lifestyle": 3.1,
       "connectivity": 11.6,
       "density": 23.3,
-      "affordability": 39.5,
+      "affordability": 51.9,
       "walkability": 3.9
     },
     "brag_label": "Density & Activity · #100 of 129",
@@ -5627,49 +5711,51 @@
       "buses": 34
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 12.75,
+      "aqi": 167.9,
+      "station_distance_km": 10.064631144647832,
       "metro_km": 1.99,
       "rail_km": 3.7,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 18876,
+      "rent_match": "locality_inferred",
       "pop_density": 155879.03098946044,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.4
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 70.0,
       "essentials": 77.1,
       "lifestyle": 62.8,
       "connectivity": 53.7,
       "density": 50.0,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 32.2,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 45.4
+      "overall": 46.0
     },
     "ranks": {
-      "air": 104,
+      "air": 111,
       "amenities": 36,
       "essentials": 30,
       "lifestyle": 48,
       "connectivity": 60,
       "density": 65,
-      "affordability": 80,
+      "affordability": 88,
       "walkability": 41
     },
     "percentile_blr": {
-      "air": 20.2,
+      "air": 14.7,
       "amenities": 72.9,
       "essentials": 77.5,
       "lifestyle": 63.6,
       "connectivity": 54.3,
       "density": 50.4,
-      "affordability": 38.8,
+      "affordability": 32.6,
       "walkability": 69.0
     },
     "brag_label": "Top 25% Essentials Coverage in Bangalore",
@@ -5693,8 +5779,8 @@
       "buses": 37
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 14.51,
+      "aqi": 128.4,
+      "station_distance_km": 13.863286071349838,
       "metro_km": 3.86,
       "rail_km": 5.74,
       "rent_2bhk": 14492.5,
@@ -5706,40 +5792,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 42.1,
+      "air_confident": false,
       "amenities": 65.1,
       "essentials": 47.7,
       "lifestyle": 82.6,
       "connectivity": 42.2,
       "density": 42.1,
-      "affordability": 83.2,
+      "affordability": 71.7,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 65.4
+      "overall": 51.2
     },
     "ranks": {
-      "air": 18,
+      "air": 25,
       "amenities": 40,
       "essentials": 70,
       "lifestyle": 23,
       "connectivity": 92,
       "density": 94,
-      "affordability": 22,
+      "affordability": 37,
       "walkability": 42
     },
     "percentile_blr": {
-      "air": 86.8,
+      "air": 81.4,
       "amenities": 69.8,
       "essentials": 46.5,
       "lifestyle": 82.9,
       "connectivity": 29.5,
       "density": 27.9,
-      "affordability": 83.7,
+      "affordability": 72.1,
       "walkability": 68.2
     },
-    "brag_label": "Top 25% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 87% of Bangalore on air quality."
+    "brag_label": "Top 25% Lifestyle Density in Bangalore",
+    "subhead": "Your neighbourhood outperforms 83% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560076",
@@ -5759,8 +5845,8 @@
       "buses": 61
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.59,
+      "aqi": 150.9,
+      "station_distance_km": 6.094324613253305,
       "metro_km": 3.91,
       "rail_km": 11.4,
       "rent_2bhk": 18458.0,
@@ -5772,36 +5858,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": true,
       "amenities": 95.0,
       "essentials": 99.6,
       "lifestyle": 90.3,
       "connectivity": 43.0,
       "density": 41.9,
-      "affordability": 14.5,
+      "affordability": 33.7,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 43.6
+      "overall": 50.8
     },
     "ranks": {
-      "air": 105,
+      "air": 57,
       "amenities": 5,
       "essentials": 1,
       "lifestyle": 13,
       "connectivity": 86,
       "density": 95,
-      "affordability": 111,
+      "affordability": 86,
       "walkability": 43
     },
     "percentile_blr": {
-      "air": 19.4,
+      "air": 56.6,
       "amenities": 96.9,
       "essentials": 100.0,
       "lifestyle": 90.7,
       "connectivity": 34.1,
       "density": 27.1,
-      "affordability": 14.7,
+      "affordability": 34.1,
       "walkability": 67.4
     },
     "brag_label": "Bangalore's #1 Essentials Coverage",
@@ -5825,8 +5911,8 @@
       "buses": 17
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 4.79,
+      "aqi": 84.3,
+      "station_distance_km": 4.413992873416302,
       "metro_km": 2.16,
       "rail_km": 2.39,
       "rent_2bhk": 21251.0,
@@ -5838,40 +5924,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 68.1,
       "air_confident": true,
       "amenities": 75.4,
       "essentials": 69.0,
       "lifestyle": 81.8,
       "connectivity": 50.9,
       "density": 58.7,
-      "affordability": 11.3,
+      "affordability": 28.3,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 64.1
+      "overall": 59.6
     },
     "ranks": {
-      "air": 19,
+      "air": 9,
       "amenities": 30,
       "essentials": 41,
       "lifestyle": 24,
       "connectivity": 69,
       "density": 33,
-      "affordability": 115,
+      "affordability": 93,
       "walkability": 44
     },
     "percentile_blr": {
-      "air": 86.0,
+      "air": 93.8,
       "amenities": 77.5,
       "essentials": 69.0,
       "lifestyle": 82.2,
       "connectivity": 47.3,
       "density": 75.2,
-      "affordability": 11.6,
+      "affordability": 28.7,
       "walkability": 66.7
     },
-    "brag_label": "Top 25% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 86% of Bangalore on air quality."
+    "brag_label": "Top 10% Cleanest Air in Bangalore",
+    "subhead": "Your neighbourhood outperforms 94% of Bangalore on air quality."
   },
   {
     "pincode": "560081",
@@ -5891,8 +5977,8 @@
       "buses": 2
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 15.62,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 3.54,
       "rail_km": 1.69,
       "rent_2bhk": 8729.5,
@@ -5904,7 +5990,7 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 18.6,
       "essentials": 27.9,
@@ -5914,10 +6000,10 @@
       "affordability": 96.5,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 58.6
+      "overall": 42.7
     },
     "ranks": {
-      "air": 20,
+      "air": 58,
       "amenities": 108,
       "essentials": 93,
       "lifestyle": 116,
@@ -5927,7 +6013,7 @@
       "walkability": 107
     },
     "percentile_blr": {
-      "air": 85.3,
+      "air": 55.8,
       "amenities": 17.1,
       "essentials": 28.7,
       "lifestyle": 10.9,
@@ -5957,8 +6043,8 @@
       "buses": 24
     },
     "raw": {
-      "aqi": 143,
-      "station_distance_km": 21.88,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 4.19,
       "rail_km": 3.89,
       "rent_2bhk": 16464,
@@ -5967,39 +6053,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 3,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 1
     },
     "scores": {
-      "air": 33.5,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 14.7,
       "essentials": 15.9,
       "lifestyle": 13.6,
       "connectivity": 39.8,
       "density": 41.6,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 44.4,
-      "overall": 33.5
+      "overall": 32.8
     },
     "ranks": {
-      "air": 39,
+      "air": 59,
       "amenities": 114,
       "essentials": 110,
       "lifestyle": 112,
       "connectivity": 95,
       "density": 96,
-      "affordability": 81,
+      "affordability": 64,
       "walkability": 108
     },
     "percentile_blr": {
-      "air": 70.5,
+      "air": 55.0,
       "amenities": 12.4,
       "essentials": 15.5,
       "lifestyle": 14.0,
       "connectivity": 27.1,
       "density": 26.4,
-      "affordability": 38.0,
+      "affordability": 51.2,
       "walkability": 17.1
     },
     "brag_label": "Connectivity Hub · #95 of 129",
@@ -6023,8 +6110,8 @@
       "buses": 48
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 20.61,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 1.03,
       "rail_km": 4.09,
       "rent_2bhk": 12859.0,
@@ -6036,39 +6123,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 27.1,
       "essentials": 24.0,
       "lifestyle": 30.2,
       "connectivity": 65.4,
       "density": 43.2,
-      "affordability": 90.2,
+      "affordability": 84.9,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 41.6
+      "overall": 45.8
     },
     "ranks": {
-      "air": 106,
+      "air": 60,
       "amenities": 96,
       "essentials": 101,
       "lifestyle": 91,
       "connectivity": 18,
       "density": 90,
-      "affordability": 13,
+      "affordability": 20,
       "walkability": 70
     },
     "percentile_blr": {
-      "air": 18.6,
+      "air": 54.3,
       "amenities": 26.4,
       "essentials": 22.5,
       "lifestyle": 30.2,
       "connectivity": 86.8,
       "density": 31.0,
-      "affordability": 90.7,
+      "affordability": 85.3,
       "walkability": 46.5
     },
-    "brag_label": "Top 10% Affordable Living in Bangalore",
+    "brag_label": "Top 25% Connectivity Hub in Bangalore",
     "subhead": "Your neighbourhood outperforms 87% of Bangalore on transit access."
   },
   {
@@ -6089,52 +6176,54 @@
       "buses": 54
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 13.23,
+      "aqi": 167.9,
+      "station_distance_km": 10.726983831534689,
       "metro_km": 2.21,
       "rail_km": 2.83,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 14014,
+      "rent_match": "locality_inferred",
       "pop_density": 162499.67202361432,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.09
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 62.2,
       "essentials": 73.3,
       "lifestyle": 51.2,
       "connectivity": 58.8,
       "density": 51.1,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 77.1,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 44.8
+      "overall": 50.8
     },
     "ranks": {
-      "air": 107,
+      "air": 112,
       "amenities": 47,
       "essentials": 35,
       "lifestyle": 64,
       "connectivity": 42,
       "density": 61,
-      "affordability": 82,
+      "affordability": 30,
       "walkability": 17
     },
     "percentile_blr": {
-      "air": 17.8,
+      "air": 14.0,
       "amenities": 64.3,
       "essentials": 73.6,
       "lifestyle": 51.2,
       "connectivity": 68.2,
       "density": 53.5,
-      "affordability": 37.2,
+      "affordability": 77.5,
       "walkability": 87.6
     },
-    "brag_label": "Essentials Coverage · #35 of 129",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 74% of Bangalore on essentials coverage."
   },
   {
@@ -6155,8 +6244,8 @@
       "buses": 45
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 6.25,
+      "aqi": 168.0,
+      "station_distance_km": 4.687787122926732,
       "metro_km": 1.1,
       "rail_km": 5.49,
       "rent_2bhk": 21505.0,
@@ -6168,36 +6257,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 18.8,
       "air_confident": true,
       "amenities": 84.7,
       "essentials": 89.5,
       "lifestyle": 79.8,
       "connectivity": 61.4,
       "density": 52.2,
-      "affordability": 9.4,
+      "affordability": 26.0,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 46.5
+      "overall": 50.8
     },
     "ranks": {
-      "air": 108,
+      "air": 121,
       "amenities": 21,
       "essentials": 14,
       "lifestyle": 27,
       "connectivity": 28,
       "density": 57,
-      "affordability": 118,
+      "affordability": 97,
       "walkability": 45
     },
     "percentile_blr": {
-      "air": 17.1,
+      "air": 7.0,
       "amenities": 84.5,
       "essentials": 89.9,
       "lifestyle": 79.8,
       "connectivity": 79.1,
       "density": 56.6,
-      "affordability": 9.3,
+      "affordability": 25.6,
       "walkability": 65.9
     },
     "brag_label": "Top 25% Essentials Coverage in Bangalore",
@@ -6221,8 +6310,8 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 4.68,
+      "aqi": 178.4,
+      "station_distance_km": 2.2680135129052132,
       "metro_km": 0.91,
       "rail_km": 4.63,
       "rent_2bhk": 21505.0,
@@ -6234,36 +6323,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 12.7,
       "air_confident": true,
       "amenities": 57.0,
       "essentials": 51.2,
       "lifestyle": 62.8,
       "connectivity": 54.2,
       "density": 64.1,
-      "affordability": 9.4,
+      "affordability": 26.0,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 40.4
+      "overall": 43.3
     },
     "ranks": {
-      "air": 109,
+      "air": 126,
       "amenities": 56,
       "essentials": 64,
       "lifestyle": 49,
       "connectivity": 57,
       "density": 13,
-      "affordability": 119,
+      "affordability": 98,
       "walkability": 71
     },
     "percentile_blr": {
-      "air": 16.3,
+      "air": 3.1,
       "amenities": 57.4,
       "essentials": 51.2,
       "lifestyle": 62.8,
       "connectivity": 56.6,
       "density": 90.7,
-      "affordability": 8.5,
+      "affordability": 24.8,
       "walkability": 45.7
     },
     "brag_label": "Top 10% Density & Activity in Bangalore",
@@ -6287,8 +6376,8 @@
       "buses": 36
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 3.37,
+      "aqi": 124.0,
+      "station_distance_km": 5.892647011143714,
       "metro_km": 0.59,
       "rail_km": 7.21,
       "rent_2bhk": 13996.5,
@@ -6300,36 +6389,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 44.7,
       "air_confident": true,
       "amenities": 81.4,
       "essentials": 94.2,
       "lifestyle": 68.6,
       "connectivity": 61.9,
       "density": 44.6,
-      "affordability": 86.3,
+      "affordability": 77.9,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 53.6
+      "overall": 61.2
     },
     "ranks": {
-      "air": 110,
+      "air": 20,
       "amenities": 23,
       "essentials": 8,
       "lifestyle": 41,
       "connectivity": 26,
       "density": 85,
-      "affordability": 18,
+      "affordability": 29,
       "walkability": 46
     },
     "percentile_blr": {
-      "air": 15.5,
+      "air": 85.3,
       "amenities": 82.9,
       "essentials": 94.6,
       "lifestyle": 69.0,
       "connectivity": 80.6,
       "density": 34.9,
-      "affordability": 86.8,
+      "affordability": 78.3,
       "walkability": 65.1
     },
     "brag_label": "Top 10% Essentials Coverage in Bangalore",
@@ -6353,53 +6442,55 @@
       "buses": 20
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 10.39,
+      "aqi": 120.8,
+      "station_distance_km": 8.746724601020608,
       "metro_km": 3.42,
       "rail_km": 0.64,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 19338,
+      "rent_match": "locality_inferred",
       "pop_density": 289151.7362124307,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.89
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 46.6,
+      "air_confident": false,
       "amenities": 43.6,
       "essentials": 40.7,
       "lifestyle": 46.5,
       "connectivity": 50.1,
       "density": 57.3,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 31.4,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 60.3
+      "overall": 46.7
     },
     "ranks": {
-      "air": 21,
+      "air": 19,
       "amenities": 77,
       "essentials": 78,
       "lifestyle": 70,
       "connectivity": 71,
       "density": 38,
-      "affordability": 83,
+      "affordability": 89,
       "walkability": 47
     },
     "percentile_blr": {
-      "air": 84.5,
+      "air": 86.0,
       "amenities": 41.1,
       "essentials": 40.3,
       "lifestyle": 46.5,
       "connectivity": 45.7,
       "density": 71.3,
-      "affordability": 36.4,
+      "affordability": 31.8,
       "walkability": 64.3
     },
-    "brag_label": "Top 25% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 84% of Bangalore on air quality."
+    "brag_label": "Density & Activity · #38 of 129",
+    "subhead": "Your neighbourhood outperforms 46% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560091",
@@ -6419,52 +6510,54 @@
       "buses": 87
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 17.86,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 6.29,
       "rail_km": 7.34,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 13149,
+      "rent_match": "locality_inferred",
       "pop_density": 32040.708765803345,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.63
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 45.9,
       "essentials": 65.9,
       "lifestyle": 26.0,
       "connectivity": 42.5,
       "density": 40.2,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 82.6,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 35.4
+      "overall": 44.5
     },
     "ranks": {
-      "air": 111,
+      "air": 61,
       "amenities": 73,
       "essentials": 45,
       "lifestyle": 96,
       "connectivity": 90,
       "density": 101,
-      "affordability": 84,
+      "affordability": 23,
       "walkability": 72
     },
     "percentile_blr": {
-      "air": 14.7,
+      "air": 53.5,
       "amenities": 44.2,
       "essentials": 65.9,
       "lifestyle": 26.4,
       "connectivity": 31.0,
       "density": 22.5,
-      "affordability": 35.7,
+      "affordability": 82.9,
       "walkability": 45.0
     },
-    "brag_label": "Essentials Coverage · #45 of 129",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 66% of Bangalore on essentials coverage."
   },
   {
@@ -6485,49 +6578,51 @@
       "buses": 41
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 8.87,
+      "aqi": 167.9,
+      "station_distance_km": 6.955284592313938,
       "metro_km": 2.43,
       "rail_km": 2.84,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 15996,
+      "rent_match": "locality_inferred",
       "pop_density": 141277.872825777,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.73
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 76.0,
       "essentials": 79.5,
       "lifestyle": 72.5,
       "connectivity": 55.3,
       "density": 49.5,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 59.3,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 47.0
+      "overall": 51.0
     },
     "ranks": {
-      "air": 112,
+      "air": 113,
       "amenities": 29,
       "essentials": 27,
       "lifestyle": 36,
       "connectivity": 52,
       "density": 67,
-      "affordability": 85,
+      "affordability": 53,
       "walkability": 18
     },
     "percentile_blr": {
-      "air": 14.0,
+      "air": 13.2,
       "amenities": 78.3,
       "essentials": 79.8,
       "lifestyle": 72.9,
       "connectivity": 60.5,
       "density": 48.8,
-      "affordability": 34.9,
+      "affordability": 59.7,
       "walkability": 86.8
     },
     "brag_label": "Top 25% Essentials Coverage in Bangalore",
@@ -6551,52 +6646,54 @@
       "buses": 41
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 11.88,
+      "aqi": 167.9,
+      "station_distance_km": 10.207871320880319,
       "metro_km": 2.18,
       "rail_km": 2.23,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 12920,
+      "rent_match": "locality_inferred",
       "pop_density": 89855.18679724338,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.83
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 57.4,
       "essentials": 58.9,
       "lifestyle": 55.8,
       "connectivity": 59.1,
       "density": 46.2,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 84.1,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 42.8
+      "overall": 49.7
     },
     "ranks": {
-      "air": 113,
+      "air": 114,
       "amenities": 55,
       "essentials": 55,
       "lifestyle": 58,
       "connectivity": 40,
       "density": 79,
-      "affordability": 86,
+      "affordability": 21,
       "walkability": 73
     },
     "percentile_blr": {
-      "air": 13.2,
+      "air": 12.4,
       "amenities": 58.1,
       "essentials": 58.1,
       "lifestyle": 55.8,
       "connectivity": 69.8,
       "density": 39.5,
-      "affordability": 34.1,
+      "affordability": 84.5,
       "walkability": 44.2
     },
-    "brag_label": "Connectivity Hub · #40 of 129",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 70% of Bangalore on transit access."
   },
   {
@@ -6617,8 +6714,8 @@
       "buses": 40
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 19.44,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 5.62,
       "rail_km": 2.87,
       "rent_2bhk": 12450.5,
@@ -6630,39 +6727,39 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 74.4,
       "essentials": 78.7,
       "lifestyle": 70.2,
       "connectivity": 45.5,
       "density": 45.7,
-      "affordability": 91.0,
+      "affordability": 87.2,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 49.1
+      "overall": 53.5
     },
     "ranks": {
-      "air": 114,
+      "air": 62,
       "amenities": 31,
       "essentials": 28,
       "lifestyle": 40,
       "connectivity": 80,
       "density": 81,
-      "affordability": 12,
+      "affordability": 17,
       "walkability": 74
     },
     "percentile_blr": {
-      "air": 12.4,
+      "air": 52.7,
       "amenities": 76.7,
       "essentials": 79.1,
       "lifestyle": 69.8,
       "connectivity": 38.8,
       "density": 38.0,
-      "affordability": 91.5,
+      "affordability": 87.6,
       "walkability": 43.4
     },
-    "brag_label": "Top 10% Affordable Living in Bangalore",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 79% of Bangalore on essentials coverage."
   },
   {
@@ -6683,30 +6780,32 @@
       "buses": 29
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.65,
+      "aqi": 167.9,
+      "station_distance_km": 11.919665047858478,
       "metro_km": 1.81,
       "rail_km": 2.14,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 23046,
+      "rent_match": "locality_inferred",
       "pop_density": 362047.13189623674,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 1.78
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 22.5,
       "essentials": 27.9,
       "lifestyle": 17.1,
       "connectivity": 58.3,
       "density": 60.6,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 20.5,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 36.9
+      "overall": 36.1
     },
     "ranks": {
       "air": 115,
@@ -6715,7 +6814,7 @@
       "lifestyle": 108,
       "connectivity": 45,
       "density": 26,
-      "affordability": 87,
+      "affordability": 103,
       "walkability": 75
     },
     "percentile_blr": {
@@ -6725,7 +6824,7 @@
       "lifestyle": 17.1,
       "connectivity": 65.9,
       "density": 80.6,
-      "affordability": 33.3,
+      "affordability": 20.9,
       "walkability": 42.6
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -6749,8 +6848,8 @@
       "buses": 38
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 2.52,
+      "aqi": 164.4,
+      "station_distance_km": 2.402970695540367,
       "metro_km": 2.68,
       "rail_km": 6.31,
       "rent_2bhk": 27965.0,
@@ -6762,36 +6861,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 20.9,
       "air_confident": true,
       "amenities": 94.2,
       "essentials": 90.3,
       "lifestyle": 98.1,
       "connectivity": 46.6,
       "density": 52.4,
-      "affordability": 3.9,
+      "affordability": 11.6,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 44.9
+      "overall": 48.7
     },
     "ranks": {
-      "air": 116,
+      "air": 90,
       "amenities": 7,
       "essentials": 13,
       "lifestyle": 3,
       "connectivity": 77,
       "density": 56,
-      "affordability": 125,
+      "affordability": 115,
       "walkability": 19
     },
     "percentile_blr": {
-      "air": 10.9,
+      "air": 31.0,
       "amenities": 95.3,
       "essentials": 90.7,
       "lifestyle": 98.4,
       "connectivity": 41.1,
       "density": 57.4,
-      "affordability": 3.9,
+      "affordability": 11.6,
       "walkability": 86.0
     },
     "brag_label": "Bangalore's #3 Lifestyle Density",
@@ -6815,49 +6914,51 @@
       "buses": 28
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.78,
+      "aqi": 167.9,
+      "station_distance_km": 12.306094357570514,
       "metro_km": 3.28,
       "rail_km": 1.2,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 17809,
+      "rent_match": "locality_inferred",
       "pop_density": 222279.72184836247,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.51
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 66.9,
       "essentials": 58.9,
       "lifestyle": 74.8,
       "connectivity": 51.3,
       "density": 55.7,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 36.0,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 45.1
+      "overall": 46.2
     },
     "ranks": {
-      "air": 117,
+      "air": 116,
       "amenities": 38,
       "essentials": 56,
       "lifestyle": 33,
       "connectivity": 67,
       "density": 44,
-      "affordability": 88,
+      "affordability": 83,
       "walkability": 48
     },
     "percentile_blr": {
-      "air": 10.1,
+      "air": 10.9,
       "amenities": 71.3,
       "essentials": 57.4,
       "lifestyle": 75.2,
       "connectivity": 48.8,
       "density": 66.7,
-      "affordability": 32.6,
+      "affordability": 36.4,
       "walkability": 63.6
     },
     "brag_label": "Top 25% Lifestyle Density in Bangalore",
@@ -6881,8 +6982,8 @@
       "buses": 14
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.62,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 7.01,
       "rail_km": 9.02,
       "rent_2bhk": 9251.0,
@@ -6894,20 +6995,20 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 28.9,
+      "air_confident": false,
       "amenities": 17.4,
       "essentials": 14.0,
       "lifestyle": 20.9,
       "connectivity": 27.9,
       "density": 39.4,
-      "affordability": 94.9,
+      "affordability": 95.0,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 30.9
+      "overall": 35.7
     },
     "ranks": {
-      "air": 118,
+      "air": 63,
       "amenities": 111,
       "essentials": 111,
       "lifestyle": 103,
@@ -6917,7 +7018,7 @@
       "walkability": 109
     },
     "percentile_blr": {
-      "air": 9.3,
+      "air": 51.9,
       "amenities": 14.7,
       "essentials": 14.7,
       "lifestyle": 20.9,
@@ -6947,8 +7048,8 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 19.56,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 7.22,
       "rail_km": 6.93,
       "rent_2bhk": 12992.0,
@@ -6960,36 +7061,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 2.9,
       "essentials": 2.7,
       "lifestyle": 3.1,
       "connectivity": 27.1,
       "density": 47.8,
-      "affordability": 89.5,
+      "affordability": 83.3,
       "affordability_confident": true,
       "walkability": 32.4,
-      "overall": 28.1
+      "overall": 32.2
     },
     "ranks": {
-      "air": 119,
+      "air": 64,
       "amenities": 127,
       "essentials": 126,
       "lifestyle": 127,
       "connectivity": 121,
       "density": 73,
-      "affordability": 14,
+      "affordability": 22,
       "walkability": 126
     },
     "percentile_blr": {
-      "air": 8.5,
+      "air": 51.2,
       "amenities": 2.3,
       "essentials": 3.1,
       "lifestyle": 2.3,
       "connectivity": 7.0,
       "density": 44.2,
-      "affordability": 89.9,
+      "affordability": 83.7,
       "walkability": 3.1
     },
     "brag_label": "Top 25% Affordable Living in Bangalore",
@@ -7013,8 +7114,8 @@
       "buses": 17
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 5.57,
+      "aqi": 75.7,
+      "station_distance_km": 4.970108624734708,
       "metro_km": 1.44,
       "rail_km": 2.04,
       "rent_2bhk": 18680.0,
@@ -7026,40 +7127,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 73.1,
       "air_confident": true,
       "amenities": 63.0,
       "essentials": 72.5,
       "lifestyle": 53.5,
       "connectivity": 56.4,
       "density": 51.6,
-      "affordability": 13.7,
+      "affordability": 32.9,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 61.3
+      "overall": 58.3
     },
     "ranks": {
-      "air": 22,
+      "air": 7,
       "amenities": 45,
       "essentials": 36,
       "lifestyle": 62,
       "connectivity": 48,
       "density": 59,
-      "affordability": 112,
+      "affordability": 87,
       "walkability": 49
     },
     "percentile_blr": {
-      "air": 83.7,
+      "air": 95.3,
       "amenities": 65.9,
       "essentials": 72.9,
       "lifestyle": 52.7,
       "connectivity": 63.6,
       "density": 55.0,
-      "affordability": 14.0,
+      "affordability": 33.3,
       "walkability": 62.8
     },
-    "brag_label": "Top 25% Cleanest Air in Bangalore",
-    "subhead": "Your neighbourhood outperforms 84% of Bangalore on air quality."
+    "brag_label": "Top 5% Cleanest Air in Bangalore",
+    "subhead": "Your neighbourhood outperforms 95% of Bangalore on air quality."
   },
   {
     "pincode": "560092",
@@ -7079,49 +7180,51 @@
       "buses": 21
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 16.41,
+      "aqi": 167.9,
+      "station_distance_km": 14.160600537658803,
       "metro_km": 4.18,
       "rail_km": 1.88,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 14405,
+      "rent_match": "locality_inferred",
       "pop_density": 145211.45955451348,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 8,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.88
     },
     "scores": {
-      "air": 8.8,
+      "air": 18.9,
       "air_confident": false,
       "amenities": 86.8,
       "essentials": 84.1,
       "lifestyle": 89.5,
       "connectivity": 44.6,
       "density": 49.7,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 72.5,
+      "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 47.3
+      "overall": 52.8
     },
     "ranks": {
-      "air": 120,
+      "air": 117,
       "amenities": 19,
       "essentials": 21,
       "lifestyle": 14,
       "connectivity": 82,
       "density": 66,
-      "affordability": 89,
+      "affordability": 36,
       "walkability": 20
     },
     "percentile_blr": {
-      "air": 7.8,
+      "air": 10.1,
       "amenities": 86.0,
       "essentials": 84.5,
       "lifestyle": 89.9,
       "connectivity": 37.2,
       "density": 49.6,
-      "affordability": 31.8,
+      "affordability": 72.9,
       "walkability": 85.3
     },
     "brag_label": "Top 25% Lifestyle Density in Bangalore",
@@ -7145,8 +7248,8 @@
       "buses": 40
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 31.91,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 13.72,
       "rail_km": 7.13,
       "rent_2bhk": 16464,
@@ -7155,39 +7258,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 10.5,
       "essentials": 7.4,
       "lifestyle": 13.6,
       "connectivity": 33.3,
       "density": 38.3,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 24.5
+      "overall": 29.7
     },
     "ranks": {
-      "air": 121,
+      "air": 65,
       "amenities": 118,
       "essentials": 120,
       "lifestyle": 113,
       "connectivity": 110,
       "density": 108,
-      "affordability": 90,
+      "affordability": 65,
       "walkability": 119
     },
     "percentile_blr": {
-      "air": 7.0,
+      "air": 50.4,
       "amenities": 9.3,
       "essentials": 7.8,
       "lifestyle": 13.2,
       "connectivity": 15.5,
       "density": 17.1,
-      "affordability": 31.0,
+      "affordability": 50.4,
       "walkability": 8.5
     },
     "brag_label": "Density & Activity · #108 of 129",
@@ -7211,49 +7315,51 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 10.67,
+      "aqi": 167.9,
+      "station_distance_km": 8.155216360592023,
       "metro_km": 0.5,
       "rail_km": 2.99,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 14047,
+      "rent_match": "locality_inferred",
       "pop_density": 918371.6404077851,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 0.7
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 47.1,
       "essentials": 55.8,
       "lifestyle": 38.4,
       "connectivity": 61.2,
       "density": 66.6,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 74.0,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 44.5
+      "overall": 50.2
     },
     "ranks": {
-      "air": 122,
+      "air": 118,
       "amenities": 71,
       "essentials": 58,
       "lifestyle": 81,
       "connectivity": 30,
       "density": 4,
-      "affordability": 91,
+      "affordability": 34,
       "walkability": 76
     },
     "percentile_blr": {
-      "air": 6.2,
+      "air": 9.3,
       "amenities": 45.7,
       "essentials": 55.8,
       "lifestyle": 38.0,
       "connectivity": 77.5,
       "density": 97.7,
-      "affordability": 30.2,
+      "affordability": 74.4,
       "walkability": 41.9
     },
     "brag_label": "Top 5% Density & Activity in Bangalore",
@@ -7277,52 +7383,54 @@
       "buses": 23
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 26.74,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 7.53,
       "rail_km": 3.38,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 10534,
+      "rent_match": "locality_inferred",
       "pop_density": 32850.09116525775,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 4.32
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 8.3,
       "essentials": 7.4,
       "lifestyle": 9.3,
       "connectivity": 37.4,
       "density": 40.8,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 91.9,
+      "affordability_confident": true,
       "walkability": 38.4,
-      "overall": 25.3
+      "overall": 35.5
     },
     "ranks": {
-      "air": 123,
+      "air": 66,
       "amenities": 120,
       "essentials": 121,
       "lifestyle": 117,
       "connectivity": 104,
       "density": 99,
-      "affordability": 92,
+      "affordability": 11,
       "walkability": 120
     },
     "percentile_blr": {
-      "air": 5.4,
+      "air": 49.6,
       "amenities": 7.8,
       "essentials": 7.0,
       "lifestyle": 10.1,
       "connectivity": 20.2,
       "density": 24.0,
-      "affordability": 29.5,
+      "affordability": 92.2,
       "walkability": 7.8
     },
-    "brag_label": "Density & Activity · #99 of 129",
+    "brag_label": "Top 10% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 20% of Bangalore on transit access."
   },
   {
@@ -7343,49 +7451,51 @@
       "buses": 22
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 13.36,
+      "aqi": 167.9,
+      "station_distance_km": 10.648087630275546,
       "metro_km": 1.06,
       "rail_km": 2.47,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 24539,
+      "rent_match": "locality_inferred",
       "pop_density": 375776.64012135,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 7,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 2.43
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 61.6,
       "essentials": 63.6,
       "lifestyle": 59.7,
       "connectivity": 61.8,
       "density": 60.9,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 18.2,
+      "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 47.1
+      "overall": 46.1
     },
     "ranks": {
-      "air": 124,
+      "air": 119,
       "amenities": 49,
       "essentials": 49,
       "lifestyle": 53,
       "connectivity": 27,
       "density": 25,
-      "affordability": 93,
+      "affordability": 106,
       "walkability": 50
     },
     "percentile_blr": {
-      "air": 4.7,
+      "air": 8.5,
       "amenities": 62.8,
       "essentials": 62.8,
       "lifestyle": 59.7,
       "connectivity": 79.8,
       "density": 81.4,
-      "affordability": 28.7,
+      "affordability": 18.6,
       "walkability": 62.0
     },
     "brag_label": "Top 25% Density & Activity in Bangalore",
@@ -7409,8 +7519,8 @@
       "buses": 25
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 1.36,
+      "aqi": 48.3,
+      "station_distance_km": 2.144830520996203,
       "metro_km": 5.74,
       "rail_km": 3.48,
       "rent_2bhk": 22691.5,
@@ -7422,40 +7532,40 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 89.2,
       "air_confident": true,
       "amenities": 88.4,
       "essentials": 82.6,
       "lifestyle": 94.2,
       "connectivity": 39.9,
       "density": 42.9,
-      "affordability": 6.6,
+      "affordability": 21.3,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 61.4
+      "overall": 61.7
     },
     "ranks": {
-      "air": 23,
+      "air": 2,
       "amenities": 17,
       "essentials": 23,
       "lifestyle": 8,
       "connectivity": 94,
       "density": 91,
-      "affordability": 121,
+      "affordability": 102,
       "walkability": 21
     },
     "percentile_blr": {
-      "air": 82.9,
+      "air": 99.2,
       "amenities": 87.6,
       "essentials": 82.9,
       "lifestyle": 94.6,
       "connectivity": 27.9,
       "density": 30.2,
-      "affordability": 7.0,
+      "affordability": 21.7,
       "walkability": 84.5
     },
-    "brag_label": "Top 10% Lifestyle Density in Bangalore",
-    "subhead": "Your neighbourhood outperforms 95% of Bangalore on lifestyle density."
+    "brag_label": "Bangalore's #2 Cleanest Air",
+    "subhead": "Your neighbourhood outperforms 99% of Bangalore on air quality."
   },
   {
     "pincode": "560107",
@@ -7475,52 +7585,54 @@
       "buses": 9
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 23.84,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 3.59,
       "rail_km": 0.7,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 10671,
+      "rent_match": "locality_inferred",
       "pop_density": 190415.64181398926,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 3,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.22
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 16.1,
       "essentials": 11.2,
       "lifestyle": 20.9,
       "connectivity": 43.9,
       "density": 53.5,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 91.1,
+      "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 30.9
+      "overall": 41.0
     },
     "ranks": {
-      "air": 125,
+      "air": 67,
       "amenities": 112,
       "essentials": 115,
       "lifestyle": 104,
       "connectivity": 84,
       "density": 52,
-      "affordability": 94,
+      "affordability": 12,
       "walkability": 110
     },
     "percentile_blr": {
-      "air": 3.9,
+      "air": 48.8,
       "amenities": 14.0,
       "essentials": 11.6,
       "lifestyle": 20.2,
       "connectivity": 35.7,
       "density": 60.5,
-      "affordability": 27.9,
+      "affordability": 91.5,
       "walkability": 15.5
     },
-    "brag_label": "Density & Activity · #52 of 129",
+    "brag_label": "Top 10% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 36% of Bangalore on transit access."
   },
   {
@@ -7541,52 +7653,54 @@
       "buses": 37
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 27.69,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 14.75,
       "rail_km": 1.23,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 15884,
+      "rent_match": "locality_inferred",
       "pop_density": 22122.767458474726,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 5,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 2,
+      "rent_nearest_locality_km": 4.79
     },
     "scores": {
-      "air": 95.3,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 29.1,
       "essentials": 24.0,
       "lifestyle": 34.1,
       "connectivity": 42.7,
       "density": 39.1,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 62.4,
+      "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 51.9
+      "overall": 37.8
     },
     "ranks": {
-      "air": 24,
+      "air": 68,
       "amenities": 93,
       "essentials": 102,
       "lifestyle": 86,
       "connectivity": 89,
       "density": 105,
-      "affordability": 95,
+      "affordability": 49,
       "walkability": 97
     },
     "percentile_blr": {
-      "air": 82.2,
+      "air": 48.1,
       "amenities": 28.7,
       "essentials": 21.7,
       "lifestyle": 34.1,
       "connectivity": 31.8,
       "density": 19.4,
-      "affordability": 27.1,
+      "affordability": 62.8,
       "walkability": 25.6
     },
-    "brag_label": "Lifestyle Density · #86 of 129",
+    "brag_label": "Affordable Living · #49 of 129",
     "subhead": "Your neighbourhood outperforms 34% of Bangalore on lifestyle density."
   },
   {
@@ -7607,8 +7721,8 @@
       "buses": 69
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 24.48,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 13.67,
       "rail_km": 10.93,
       "rent_2bhk": 8200.5,
@@ -7620,7 +7734,7 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 30.4,
       "essentials": 34.9,
@@ -7630,10 +7744,10 @@
       "affordability": 97.3,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 55.8
+      "overall": 39.8
     },
     "ranks": {
-      "air": 25,
+      "air": 69,
       "amenities": 90,
       "essentials": 85,
       "lifestyle": 97,
@@ -7643,7 +7757,7 @@
       "walkability": 111
     },
     "percentile_blr": {
-      "air": 81.4,
+      "air": 47.3,
       "amenities": 31.0,
       "essentials": 34.9,
       "lifestyle": 25.6,
@@ -7673,8 +7787,8 @@
       "buses": 10
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 25.41,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 26.03,
       "rail_km": 1.58,
       "rent_2bhk": 13706.0,
@@ -7686,36 +7800,36 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 11.6,
       "essentials": 14.0,
       "lifestyle": 9.3,
       "connectivity": 31.2,
       "density": 38.6,
-      "affordability": 87.5,
+      "affordability": 79.1,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 36.0
+      "overall": 33.0
     },
     "ranks": {
-      "air": 33,
+      "air": 70,
       "amenities": 116,
       "essentials": 112,
       "lifestyle": 118,
       "connectivity": 114,
       "density": 107,
-      "affordability": 17,
+      "affordability": 28,
       "walkability": 112
     },
     "percentile_blr": {
-      "air": 75.2,
+      "air": 46.5,
       "amenities": 10.9,
       "essentials": 14.0,
       "lifestyle": 9.3,
       "connectivity": 12.4,
       "density": 17.8,
-      "affordability": 87.6,
+      "affordability": 79.1,
       "walkability": 14.0
     },
     "brag_label": "Top 25% Affordable Living in Bangalore",
@@ -7739,7 +7853,7 @@
       "buses": 2
     },
     "raw": {
-      "aqi": null,
+      "aqi": 150.9,
       "station_distance_km": null,
       "metro_km": 30.82,
       "rail_km": 1.32,
@@ -7749,39 +7863,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 3,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 50.0,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 30.2,
       "essentials": 32.6,
       "lifestyle": 27.9,
       "connectivity": 27.5,
       "density": 33.7,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 44.4,
-      "overall": 37.0
+      "overall": 32.3
     },
     "ranks": {
-      "air": 28,
+      "air": 71,
       "amenities": 92,
       "essentials": 88,
       "lifestyle": 94,
       "connectivity": 119,
       "density": 125,
-      "affordability": 96,
+      "affordability": 66,
       "walkability": 113
     },
     "percentile_blr": {
-      "air": 79.1,
+      "air": 45.7,
       "amenities": 29.5,
       "essentials": 32.6,
       "lifestyle": 27.9,
       "connectivity": 8.5,
       "density": 3.9,
-      "affordability": 26.4,
+      "affordability": 49.6,
       "walkability": 13.2
     },
     "brag_label": "Essentials Coverage · #88 of 129",
@@ -7805,8 +7920,8 @@
       "buses": 68
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 21.51,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 23.27,
       "rail_km": 4.47,
       "rent_2bhk": 16464,
@@ -7815,39 +7930,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 30.4,
       "essentials": 11.2,
       "lifestyle": 49.6,
       "connectivity": 39.0,
       "density": 34.0,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 36.5
+      "overall": 35.0
     },
     "ranks": {
-      "air": 34,
+      "air": 72,
       "amenities": 91,
       "essentials": 116,
       "lifestyle": 66,
       "connectivity": 99,
       "density": 124,
-      "affordability": 97,
+      "affordability": 67,
       "walkability": 121
     },
     "percentile_blr": {
-      "air": 74.4,
+      "air": 45.0,
       "amenities": 30.2,
       "essentials": 10.9,
       "lifestyle": 49.6,
       "connectivity": 24.0,
       "density": 4.7,
-      "affordability": 25.6,
+      "affordability": 48.8,
       "walkability": 7.0
     },
     "brag_label": "Lifestyle Density · #66 of 129",
@@ -7871,8 +7987,8 @@
       "buses": 58
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 25.77,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 3.79,
       "rail_km": 6.77,
       "rent_2bhk": 16464,
@@ -7881,39 +7997,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 1
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 2.9,
       "essentials": 2.7,
       "lifestyle": 3.1,
       "connectivity": 45.7,
       "density": 38.1,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 25.3
+      "overall": 30.6
     },
     "ranks": {
-      "air": 126,
+      "air": 73,
       "amenities": 128,
       "essentials": 127,
       "lifestyle": 128,
       "connectivity": 79,
       "density": 109,
-      "affordability": 98,
+      "affordability": 68,
       "walkability": 122
     },
     "percentile_blr": {
-      "air": 3.1,
+      "air": 44.2,
       "amenities": 1.6,
       "essentials": 2.3,
       "lifestyle": 1.6,
       "connectivity": 39.5,
       "density": 16.3,
-      "affordability": 24.8,
+      "affordability": 48.1,
       "walkability": 6.2
     },
     "brag_label": "Connectivity Hub · #79 of 129",
@@ -7937,8 +8054,8 @@
       "buses": 16
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 18.9,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 8.01,
       "rail_km": 5.61,
       "rent_2bhk": 6287.5,
@@ -7950,7 +8067,7 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 44.8,
       "essentials": 51.2,
@@ -7960,10 +8077,10 @@
       "affordability": 99.6,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 58.7
+      "overall": 42.7
     },
     "ranks": {
-      "air": 26,
+      "air": 74,
       "amenities": 75,
       "essentials": 65,
       "lifestyle": 82,
@@ -7973,7 +8090,7 @@
       "walkability": 98
     },
     "percentile_blr": {
-      "air": 80.6,
+      "air": 43.4,
       "amenities": 42.6,
       "essentials": 50.4,
       "lifestyle": 37.2,
@@ -8003,8 +8120,8 @@
       "buses": 9
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 23.16,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 12.17,
       "rail_km": 5.44,
       "rent_2bhk": 9180.0,
@@ -8016,7 +8133,7 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 18.0,
       "essentials": 19.0,
@@ -8026,10 +8143,10 @@
       "affordability": 95.7,
       "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 29.5
+      "overall": 34.3
     },
     "ranks": {
-      "air": 127,
+      "air": 75,
       "amenities": 110,
       "essentials": 107,
       "lifestyle": 109,
@@ -8039,7 +8156,7 @@
       "walkability": 105
     },
     "percentile_blr": {
-      "air": 2.3,
+      "air": 42.6,
       "amenities": 15.5,
       "essentials": 17.8,
       "lifestyle": 16.3,
@@ -8069,8 +8186,8 @@
       "buses": 6
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 32.93,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 26.67,
       "rail_km": 21.97,
       "rent_2bhk": 16464,
@@ -8079,39 +8196,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 1,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 2.9,
       "essentials": 2.7,
       "lifestyle": 3.1,
       "connectivity": 16.4,
       "density": 34.3,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 32.4,
-      "overall": 25.0
+      "overall": 23.4
     },
     "ranks": {
-      "air": 35,
+      "air": 76,
       "amenities": 129,
       "essentials": 128,
       "lifestyle": 129,
       "connectivity": 128,
       "density": 123,
-      "affordability": 99,
+      "affordability": 69,
       "walkability": 127
     },
     "percentile_blr": {
-      "air": 73.6,
+      "air": 41.9,
       "amenities": 0.8,
       "essentials": 1.6,
       "lifestyle": 0.8,
       "connectivity": 1.6,
       "density": 5.4,
-      "affordability": 24.0,
+      "affordability": 47.3,
       "walkability": 2.3
     },
     "brag_label": "Density & Activity · #123 of 129",
@@ -8135,8 +8253,8 @@
       "buses": 2
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 13.1,
+      "aqi": 143.9,
+      "station_distance_km": 12.74830638788344,
       "metro_km": 31.49,
       "rail_km": 3.33,
       "rent_2bhk": 16464,
@@ -8145,39 +8263,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 1,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
-      "air_confident": true,
+      "air": 33.0,
+      "air_confident": false,
       "amenities": 6.0,
       "essentials": 2.7,
       "lifestyle": 9.3,
       "connectivity": 21.9,
       "density": 36.2,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 32.4,
-      "overall": 27.3
+      "overall": 26.7
     },
     "ranks": {
-      "air": 36,
+      "air": 35,
       "amenities": 124,
       "essentials": 129,
       "lifestyle": 119,
       "connectivity": 125,
       "density": 116,
-      "affordability": 100,
+      "affordability": 70,
       "walkability": 128
     },
     "percentile_blr": {
-      "air": 72.9,
+      "air": 73.6,
       "amenities": 4.7,
       "essentials": 0.8,
       "lifestyle": 8.5,
       "connectivity": 3.9,
       "density": 10.9,
-      "affordability": 23.3,
+      "affordability": 46.5,
       "walkability": 1.6
     },
     "brag_label": "Density & Activity · #116 of 129",
@@ -8201,8 +8320,8 @@
       "buses": 4
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 16.47,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 33.1,
       "rail_km": 6.89,
       "rent_2bhk": 16464,
@@ -8211,39 +8330,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 8.3,
       "essentials": 7.4,
       "lifestyle": 9.3,
       "connectivity": 16.6,
       "density": 36.7,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 26.8
+      "overall": 25.2
     },
     "ranks": {
-      "air": 37,
+      "air": 77,
       "amenities": 121,
       "essentials": 122,
       "lifestyle": 120,
       "connectivity": 127,
       "density": 114,
-      "affordability": 101,
+      "affordability": 71,
       "walkability": 123
     },
     "percentile_blr": {
-      "air": 72.1,
+      "air": 41.1,
       "amenities": 7.0,
       "essentials": 6.2,
       "lifestyle": 7.8,
       "connectivity": 2.3,
       "density": 12.4,
-      "affordability": 22.5,
+      "affordability": 45.7,
       "walkability": 5.4
     },
     "brag_label": "Density & Activity · #114 of 129",
@@ -8267,8 +8387,8 @@
       "buses": 15
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 47.1,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 24.3,
       "rail_km": 3.1,
       "rent_2bhk": 16464,
@@ -8277,39 +8397,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 8.8,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 26.7,
       "essentials": 36.4,
       "lifestyle": 17.1,
       "connectivity": 29.5,
       "density": 35.3,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 27.0
+      "overall": 32.2
     },
     "ranks": {
-      "air": 128,
+      "air": 78,
       "amenities": 98,
       "essentials": 83,
       "lifestyle": 110,
       "connectivity": 117,
       "density": 119,
-      "affordability": 102,
+      "affordability": 72,
       "walkability": 77
     },
     "percentile_blr": {
-      "air": 1.6,
+      "air": 40.3,
       "amenities": 24.8,
       "essentials": 36.4,
       "lifestyle": 15.5,
       "connectivity": 10.1,
       "density": 8.5,
-      "affordability": 21.7,
+      "affordability": 45.0,
       "walkability": 41.1
     },
     "brag_label": "Essentials Coverage · #83 of 129",
@@ -8333,8 +8454,8 @@
       "buses": 28
     },
     "raw": {
-      "aqi": 137,
-      "station_distance_km": 27.65,
+      "aqi": 150.9,
+      "station_distance_km": null,
       "metro_km": 21.69,
       "rail_km": 11.74,
       "rent_2bhk": 16464,
@@ -8343,39 +8464,40 @@
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 2,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 0
     },
     "scores": {
-      "air": 37.1,
+      "air": 28.9,
       "air_confident": false,
       "amenities": 10.3,
       "essentials": 11.2,
       "lifestyle": 9.3,
       "connectivity": 27.1,
       "density": 35.1,
-      "affordability": 46.9,
+      "affordability": 50.4,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 29.3
+      "overall": 27.7
     },
     "ranks": {
-      "air": 38,
+      "air": 79,
       "amenities": 119,
       "essentials": 117,
       "lifestyle": 121,
       "connectivity": 122,
       "density": 120,
-      "affordability": 103,
+      "affordability": 73,
       "walkability": 124
     },
     "percentile_blr": {
-      "air": 71.3,
+      "air": 39.5,
       "amenities": 8.5,
       "essentials": 10.1,
       "lifestyle": 7.0,
       "connectivity": 6.2,
       "density": 7.8,
-      "affordability": 20.9,
+      "affordability": 44.2,
       "walkability": 4.7
     },
     "brag_label": "Essentials Coverage · #117 of 129",
@@ -8399,8 +8521,8 @@
       "buses": 44
     },
     "raw": {
-      "aqi": 38,
-      "station_distance_km": 13.16,
+      "aqi": 94.5,
+      "station_distance_km": 13.037782471164268,
       "metro_km": 12.08,
       "rail_km": 8.16,
       "rent_2bhk": 6863.5,
@@ -8412,8 +8534,8 @@
       "commute_under_30_pct": 65.93
     },
     "scores": {
-      "air": 95.3,
-      "air_confident": true,
+      "air": 62.1,
+      "air_confident": false,
       "amenities": 49.2,
       "essentials": 32.6,
       "lifestyle": 65.9,
@@ -8422,10 +8544,10 @@
       "affordability": 98.8,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 60.6
+      "overall": 52.7
     },
     "ranks": {
-      "air": 27,
+      "air": 14,
       "amenities": 67,
       "essentials": 89,
       "lifestyle": 45,
@@ -8435,7 +8557,7 @@
       "walkability": 78
     },
     "percentile_blr": {
-      "air": 79.8,
+      "air": 89.9,
       "amenities": 48.8,
       "essentials": 31.8,
       "lifestyle": 65.9,
@@ -8445,7 +8567,7 @@
       "walkability": 40.3
     },
     "brag_label": "Bangalore's #2 Affordable Living",
-    "subhead": "Your neighbourhood outperforms 80% of Bangalore on air quality."
+    "subhead": "Your neighbourhood outperforms 66% of Bangalore on lifestyle density."
   },
   {
     "pincode": "560056",
@@ -8465,52 +8587,54 @@
       "buses": 51
     },
     "raw": {
-      "aqi": 185,
-      "station_distance_km": 14.39,
+      "aqi": 167.9,
+      "station_distance_km": 12.110146701274168,
       "metro_km": 2.19,
       "rail_km": 2.1,
-      "rent_2bhk": 16464,
-      "rent_match": "city",
+      "rent_2bhk": 13655,
+      "rent_match": "locality_inferred",
       "pop_density": 70443.09376555058,
       "wpr": 46.41,
       "hh_size": 4.32,
       "five_min_city": 6,
-      "commute_under_30_pct": 65.93
+      "commute_under_30_pct": 65.93,
+      "rent_neighbors_used": 3,
+      "rent_nearest_locality_km": 3.14
     },
     "scores": {
-      "air": 8.8,
-      "air_confident": true,
+      "air": 18.9,
+      "air_confident": false,
       "amenities": 33.7,
       "essentials": 38.4,
       "lifestyle": 29.1,
       "connectivity": 61.1,
       "density": 44.8,
-      "affordability": 46.9,
-      "affordability_confident": false,
+      "affordability": 81.0,
+      "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 37.4
+      "overall": 43.9
     },
     "ranks": {
-      "air": 129,
+      "air": 120,
       "amenities": 85,
       "essentials": 80,
       "lifestyle": 92,
       "connectivity": 32,
       "density": 84,
-      "affordability": 104,
+      "affordability": 25,
       "walkability": 79
     },
     "percentile_blr": {
-      "air": 0.8,
+      "air": 7.8,
       "amenities": 34.9,
       "essentials": 38.8,
       "lifestyle": 29.5,
       "connectivity": 76.0,
       "density": 35.7,
-      "affordability": 20.2,
+      "affordability": 81.4,
       "walkability": 39.5
     },
-    "brag_label": "Top 25% Connectivity Hub in Bangalore",
+    "brag_label": "Top 25% Affordable Living in Bangalore",
     "subhead": "Your neighbourhood outperforms 76% of Bangalore on transit access."
   }
 ]

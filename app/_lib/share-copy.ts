@@ -32,12 +32,12 @@ export function compareShareText(args: {
   winner: string;
   loser: string;
   trashTalk: string;
-  pincodeA: string;
-  pincodeB: string;
+  /** Canonical slug pair, e.g. "indiranagar-vs-koramangala". */
+  pairSlug: string;
 }): { text: string; url: string; title: string } {
   const winner = clean(args.winner);
   const loser = clean(args.loser);
-  const url = `${PROD_BASE}/compare?a=${args.pincodeA}&b=${args.pincodeB}`;
+  const url = `${PROD_BASE}/compare/${args.pairSlug}`;
   return {
     title: `${winner} vs ${loser} — AreaIQ verdict`,
     text: `${winner} edges ${loser} on AreaIQ. ${args.trashTalk}`,
