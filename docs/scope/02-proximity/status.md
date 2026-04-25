@@ -11,6 +11,10 @@ Last updated: 2026-04-25.
 | Live | `/proximity` | Shipped 2026-04-25 — Phase A (real OSRM road-network routing + Nominatim geocoding). Tab live in shared TopNav. |
 | Lab preview | — | n/a — built directly on the canonical route. |
 
+## Known open bugs
+
+- **Address search dropdown not surfacing results to the user.** Reported 2026-04-25 at session close, both prod and localhost. Geocode action is verified working server-side (`npx convex run proximity:geocode '{"query":"Indiranagar"}'` returns 6 results), so the failure is in the client-side flow somewhere between `setSearchQuery` → debounce → `useAction` → `setSearchResults` → render. **First debug step**: temporarily add `console.log` in the `useEffect` of `proximity-client.tsx` (search for "geocode state") on (a) the `searchQuery changed` event, (b) the `firing geocode action` after debounce, (c) the `geocode returned` callback. Hard-refresh the page, type 4-5 chars, observe which log line never prints — that pinpoints the broken step. Suspect candidates in priority order: `useSearchParams()` causing client-side rendering opt-out without Suspense boundary in `app/proximity/page.tsx`; the URL-write `useEffect` re-renders interfering with the debounce; an unhandled error in the `pickGeocoded`/`pickPreset` analytics `track()` call swallowing later code.
+
 ## Stitch reference
 
 Local design files (used as starting point, adapted to project's Inter + amber + cream system):
@@ -63,6 +67,10 @@ Local design files (used as starting point, adapted to project's Inter + amber +
 
 ## Recent updates
 
+- 2026-04-25 — **Address search dropdown broken in browser** (open). Server-side geocode action fine. Debug path documented above. Defaulted office (Manyata) loads and ranking still works; only the typed-address autocomplete is silent. Session closed mid-debug with logs reverted.
+- 2026-04-25 — Removed the user-facing presets dropdown. Work Location is now a pure typeable address search; default initial value (Manyata) lives as an inline `DEFAULT_OFFICE` constant in the client. `OFFICE_PRESETS` array kept in `lib.ts` only to feed the `prewarmPresets` cache-warming action.
+- 2026-04-25 — Geocode multi-pass + alias dictionary (`BIAL`, `ORR`, `ECity`, `Forum`, `Phoenix`, etc. expand server-side before Nominatim). Limit bumped to 12, viewbox widened to BLR outer ring + airport, `bounded=0` with hard BLR-bbox filter.
+- 2026-04-25 — Office combobox UX: select-all on focus, dropdown opens only when actively searching (no presets-vs-search competition), tri-mode rendering (empty / typing-1-2 / typing-3+).
 - 2026-04-25 — **Phase A shipped.** Backend (`convex/proximity.ts`) + frontend live at `/proximity`. OSRM road-network commute matrix, Nominatim geocoding, 7-day cache with 6 presets pre-warmed (18/18 cells filled). Cards click and map pins double-click through to `/insights/[pincode]`.
 - 2026-04-25 — Design audit applied: stagger animation, active translate, inline grade ladder, tinted shadows, merged map chips, mobile map bump, route-status pip, skeleton loaders.
 - 2026-04-25 — UI freeze on the dummy build: typeable office input, slider, transport toggle, 5 priority chips (Walkability removed), commute-hours modal, ranked match cards, Leaflet map with double-click navigation. Commute math was straight-line × mode coefficient at this point.
