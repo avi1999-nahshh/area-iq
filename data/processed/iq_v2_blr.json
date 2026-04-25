@@ -40,7 +40,7 @@
       "affordability": 15.2,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 70.4
+      "overall": 69.4
     },
     "ranks": {
       "air": 1,
@@ -106,7 +106,7 @@
       "affordability": 19.1,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 68.7
+      "overall": 69.0
     },
     "ranks": {
       "air": 2,
@@ -172,7 +172,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 46.8
+      "overall": 43.7
     },
     "ranks": {
       "air": 40,
@@ -238,7 +238,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 53.0
+      "overall": 50.0
     },
     "ranks": {
       "air": 41,
@@ -304,7 +304,7 @@
       "affordability": 77.0,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 51.6
+      "overall": 48.6
     },
     "ranks": {
       "air": 42,
@@ -370,7 +370,7 @@
       "affordability": 12.9,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 47.8
+      "overall": 45.1
     },
     "ranks": {
       "air": 43,
@@ -436,7 +436,7 @@
       "affordability": 98.0,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 38.8
+      "overall": 35.6
     },
     "ranks": {
       "air": 44,
@@ -502,7 +502,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 86.4,
-      "overall": 62.2
+      "overall": 57.4
     },
     "ranks": {
       "air": 45,
@@ -568,7 +568,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 66.0
+      "overall": 67.7
     },
     "ranks": {
       "air": 3,
@@ -634,7 +634,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 39.8
+      "overall": 35.8
     },
     "ranks": {
       "air": 46,
@@ -700,7 +700,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 46.9
+      "overall": 41.8
     },
     "ranks": {
       "air": 47,
@@ -766,7 +766,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 56.6
+      "overall": 54.8
     },
     "ranks": {
       "air": 4,
@@ -832,7 +832,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 66.9
+      "overall": 65.6
     },
     "ranks": {
       "air": 5,
@@ -898,7 +898,7 @@
       "affordability": 5.1,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 49.7
+      "overall": 43.6
     },
     "ranks": {
       "air": 48,
@@ -964,7 +964,7 @@
       "affordability": 92.6,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 51.1
+      "overall": 47.7
     },
     "ranks": {
       "air": 49,
@@ -1030,7 +1030,7 @@
       "affordability": 17.6,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 52.6
+      "overall": 48.6
     },
     "ranks": {
       "air": 50,
@@ -1096,7 +1096,7 @@
       "affordability": 5.9,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 73.2
+      "overall": 73.1
     },
     "ranks": {
       "air": 6,
@@ -1162,7 +1162,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 59.7
+      "overall": 60.4
     },
     "ranks": {
       "air": 7,
@@ -1228,7 +1228,7 @@
       "affordability": 12.1,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 58.6
+      "overall": 57.2
     },
     "ranks": {
       "air": 8,
@@ -1294,7 +1294,7 @@
       "affordability": 3.9,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 49.7
+      "overall": 45.1
     },
     "ranks": {
       "air": 51,
@@ -1360,7 +1360,7 @@
       "affordability": 9.4,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 51.6
+      "overall": 46.2
     },
     "ranks": {
       "air": 52,
@@ -1426,7 +1426,7 @@
       "affordability": 78.5,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 42.7
+      "overall": 40.3
     },
     "ranks": {
       "air": 53,
@@ -1492,7 +1492,7 @@
       "affordability": 16.8,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 48.9
+      "overall": 45.3
     },
     "ranks": {
       "air": 54,
@@ -1558,7 +1558,7 @@
       "affordability": 88.7,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 55.1
+      "overall": 53.8
     },
     "ranks": {
       "air": 55,
@@ -1624,7 +1624,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 43.4
+      "overall": 40.7
     },
     "ranks": {
       "air": 56,
@@ -1690,7 +1690,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 56.0
+      "overall": 52.6
     },
     "ranks": {
       "air": 57,
@@ -1756,7 +1756,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 49.4
+      "overall": 46.6
     },
     "ranks": {
       "air": 58,
@@ -1822,7 +1822,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 48.1
+      "overall": 45.2
     },
     "ranks": {
       "air": 59,
@@ -1888,7 +1888,7 @@
       "affordability": 87.5,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 49.4
+      "overall": 46.6
     },
     "ranks": {
       "air": 60,
@@ -1954,7 +1954,7 @@
       "affordability": 84.8,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 61.7
+      "overall": 59.2
     },
     "ranks": {
       "air": 61,
@@ -2020,7 +2020,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 46.5
+      "overall": 42.6
     },
     "ranks": {
       "air": 62,
@@ -2086,7 +2086,7 @@
       "affordability": 91.8,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 50.1
+      "overall": 46.8
     },
     "ranks": {
       "air": 63,
@@ -2152,7 +2152,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 43.8
+      "overall": 41.1
     },
     "ranks": {
       "air": 64,
@@ -2218,7 +2218,7 @@
       "affordability": 2.0,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 43.1
+      "overall": 38.5
     },
     "ranks": {
       "air": 65,
@@ -2284,7 +2284,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 43.2
+      "overall": 39.4
     },
     "ranks": {
       "air": 66,
@@ -2350,7 +2350,7 @@
       "affordability": 84.8,
       "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 43.4
+      "overall": 41.8
     },
     "ranks": {
       "air": 67,
@@ -2416,7 +2416,7 @@
       "affordability": 0.4,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 47.8
+      "overall": 43.9
     },
     "ranks": {
       "air": 68,
@@ -2482,7 +2482,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 48.2
+      "overall": 45.5
     },
     "ranks": {
       "air": 69,
@@ -2548,7 +2548,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 47.4
+      "overall": 45.5
     },
     "ranks": {
       "air": 70,
@@ -2614,7 +2614,7 @@
       "affordability": 80.1,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 48.3
+      "overall": 45.9
     },
     "ranks": {
       "air": 71,
@@ -2680,7 +2680,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 53.3
+      "overall": 52.0
     },
     "ranks": {
       "air": 9,
@@ -2746,7 +2746,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 45.7
+      "overall": 43.7
     },
     "ranks": {
       "air": 72,
@@ -2812,7 +2812,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 52.7
+      "overall": 50.7
     },
     "ranks": {
       "air": 73,
@@ -2878,7 +2878,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 49.6
+      "overall": 45.7
     },
     "ranks": {
       "air": 74,
@@ -2944,7 +2944,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 46.9
+      "overall": 43.9
     },
     "ranks": {
       "air": 75,
@@ -3010,7 +3010,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 62.4
+      "overall": 62.8
     },
     "ranks": {
       "air": 10,
@@ -3076,7 +3076,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 49.8
+      "overall": 46.1
     },
     "ranks": {
       "air": 76,
@@ -3142,7 +3142,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 54.6
+      "overall": 50.9
     },
     "ranks": {
       "air": 77,
@@ -3208,7 +3208,7 @@
       "affordability": 2.7,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 54.4
+      "overall": 49.5
     },
     "ranks": {
       "air": 78,
@@ -3274,7 +3274,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 50.4,
-      "overall": 39.0
+      "overall": 36.7
     },
     "ranks": {
       "air": 79,
@@ -3340,7 +3340,7 @@
       "affordability": 9.4,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 53.1
+      "overall": 50.0
     },
     "ranks": {
       "air": 80,
@@ -3406,7 +3406,7 @@
       "affordability": 7.4,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 49.0
+      "overall": 46.4
     },
     "ranks": {
       "air": 81,
@@ -3472,7 +3472,7 @@
       "affordability": 18.4,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 59.7
+      "overall": 59.1
     },
     "ranks": {
       "air": 11,
@@ -3538,7 +3538,7 @@
       "affordability": 81.6,
       "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 38.2
+      "overall": 35.8
     },
     "ranks": {
       "air": 82,
@@ -3604,7 +3604,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 47.7
+      "overall": 44.9
     },
     "ranks": {
       "air": 83,
@@ -3670,7 +3670,7 @@
       "affordability": 81.6,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 36.3
+      "overall": 32.7
     },
     "ranks": {
       "air": 84,
@@ -3736,7 +3736,7 @@
       "affordability": 81.6,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 43.4
+      "overall": 40.9
     },
     "ranks": {
       "air": 85,
@@ -3802,7 +3802,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 49.3
+      "overall": 45.7
     },
     "ranks": {
       "air": 86,
@@ -3868,7 +3868,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 80.4,
-      "overall": 72.8
+      "overall": 71.8
     },
     "ranks": {
       "air": 12,
@@ -3934,7 +3934,7 @@
       "affordability": 1.2,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 44.5
+      "overall": 41.9
     },
     "ranks": {
       "air": 87,
@@ -4000,7 +4000,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 43.4
+      "overall": 40.9
     },
     "ranks": {
       "air": 88,
@@ -4066,7 +4066,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 55.6
+      "overall": 54.1
     },
     "ranks": {
       "air": 89,
@@ -4132,7 +4132,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 50.4,
-      "overall": 37.3
+      "overall": 34.7
     },
     "ranks": {
       "air": 90,
@@ -4198,7 +4198,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 42.5
+      "overall": 39.7
     },
     "ranks": {
       "air": 91,
@@ -4264,7 +4264,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 38.7
+      "overall": 35.2
     },
     "ranks": {
       "air": 92,
@@ -4330,7 +4330,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 58.1
+      "overall": 54.9
     },
     "ranks": {
       "air": 93,
@@ -4396,7 +4396,7 @@
       "affordability": 75.8,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 52.5
+      "overall": 52.3
     },
     "ranks": {
       "air": 13,
@@ -4462,7 +4462,7 @@
       "affordability": 75.8,
       "affordability_confident": true,
       "walkability": 80.4,
-      "overall": 54.2
+      "overall": 49.7
     },
     "ranks": {
       "air": 94,
@@ -4528,7 +4528,7 @@
       "affordability": 50.0,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 71.5
+      "overall": 72.3
     },
     "ranks": {
       "air": 14,
@@ -4594,7 +4594,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 32.3
+      "overall": 31.4
     },
     "ranks": {
       "air": 29,
@@ -4660,7 +4660,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 38.6
+      "overall": 38.7
     },
     "ranks": {
       "air": 30,
@@ -4726,7 +4726,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 50.4,
-      "overall": 39.1
+      "overall": 36.8
     },
     "ranks": {
       "air": 95,
@@ -4792,7 +4792,7 @@
       "affordability": 84.8,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 43.4
+      "overall": 41.0
     },
     "ranks": {
       "air": 96,
@@ -4858,7 +4858,7 @@
       "affordability": 16.0,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 44.7
+      "overall": 40.3
     },
     "ranks": {
       "air": 97,
@@ -4924,7 +4924,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 33.0
+      "overall": 28.7
     },
     "ranks": {
       "air": 98,
@@ -4990,7 +4990,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 50.4,
-      "overall": 30.5
+      "overall": 26.9
     },
     "ranks": {
       "air": 99,
@@ -5056,7 +5056,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 33.4
+      "overall": 32.1
     },
     "ranks": {
       "air": 100,
@@ -5122,7 +5122,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 28.0
+      "overall": 26.2
     },
     "ranks": {
       "air": 31,
@@ -5254,7 +5254,7 @@
       "affordability": 79.3,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 55.4
+      "overall": 57.8
     },
     "ranks": {
       "air": 15,
@@ -5320,7 +5320,7 @@
       "affordability": 94.1,
       "affordability_confident": true,
       "walkability": 38.4,
-      "overall": 33.5
+      "overall": 32.6
     },
     "ranks": {
       "air": 101,
@@ -5386,7 +5386,7 @@
       "affordability": 93.4,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 62.3
+      "overall": 61.5
     },
     "ranks": {
       "air": 16,
@@ -5452,7 +5452,7 @@
       "affordability": 77.7,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 64.8
+      "overall": 64.6
     },
     "ranks": {
       "air": 17,
@@ -5518,7 +5518,7 @@
       "affordability": 74.6,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 38.9
+      "overall": 34.7
     },
     "ranks": {
       "air": 102,
@@ -5584,7 +5584,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 32.4,
-      "overall": 24.1
+      "overall": 22.5
     },
     "ranks": {
       "air": 103,
@@ -5650,7 +5650,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 48.9
+      "overall": 45.4
     },
     "ranks": {
       "air": 104,
@@ -5782,7 +5782,7 @@
       "affordability": 14.5,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 47.3
+      "overall": 43.6
     },
     "ranks": {
       "air": 105,
@@ -5848,7 +5848,7 @@
       "affordability": 11.3,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 64.5
+      "overall": 64.1
     },
     "ranks": {
       "air": 19,
@@ -5914,7 +5914,7 @@
       "affordability": 96.5,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 56.1
+      "overall": 58.6
     },
     "ranks": {
       "air": 20,
@@ -5980,7 +5980,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 44.4,
-      "overall": 35.2
+      "overall": 33.5
     },
     "ranks": {
       "air": 39,
@@ -6046,7 +6046,7 @@
       "affordability": 90.2,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 45.1
+      "overall": 41.6
     },
     "ranks": {
       "air": 106,
@@ -6112,7 +6112,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 49.5
+      "overall": 44.8
     },
     "ranks": {
       "air": 107,
@@ -6178,7 +6178,7 @@
       "affordability": 9.4,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 50.0
+      "overall": 46.5
     },
     "ranks": {
       "air": 108,
@@ -6244,7 +6244,7 @@
       "affordability": 9.4,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 43.9
+      "overall": 40.4
     },
     "ranks": {
       "air": 109,
@@ -6310,7 +6310,7 @@
       "affordability": 86.3,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 56.0
+      "overall": 53.6
     },
     "ranks": {
       "air": 110,
@@ -6376,7 +6376,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 61.3
+      "overall": 60.3
     },
     "ranks": {
       "air": 21,
@@ -6442,7 +6442,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 39.5
+      "overall": 35.4
     },
     "ranks": {
       "air": 111,
@@ -6508,7 +6508,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 51.3
+      "overall": 47.0
     },
     "ranks": {
       "air": 112,
@@ -6574,7 +6574,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 46.0
+      "overall": 42.8
     },
     "ranks": {
       "air": 113,
@@ -6640,7 +6640,7 @@
       "affordability": 91.0,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 51.1
+      "overall": 49.1
     },
     "ranks": {
       "air": 114,
@@ -6706,7 +6706,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 41.1
+      "overall": 36.9
     },
     "ranks": {
       "air": 115,
@@ -6772,7 +6772,7 @@
       "affordability": 3.9,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 49.3
+      "overall": 44.9
     },
     "ranks": {
       "air": 116,
@@ -6838,7 +6838,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 48.7
+      "overall": 45.1
     },
     "ranks": {
       "air": 117,
@@ -6904,7 +6904,7 @@
       "affordability": 94.9,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 32.9
+      "overall": 30.9
     },
     "ranks": {
       "air": 118,
@@ -6970,7 +6970,7 @@
       "affordability": 89.5,
       "affordability_confident": true,
       "walkability": 32.4,
-      "overall": 28.7
+      "overall": 28.1
     },
     "ranks": {
       "air": 119,
@@ -7036,7 +7036,7 @@
       "affordability": 13.7,
       "affordability_confident": true,
       "walkability": 68.4,
-      "overall": 62.3
+      "overall": 61.3
     },
     "ranks": {
       "air": 22,
@@ -7102,7 +7102,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 74.4,
-      "overall": 51.4
+      "overall": 47.3
     },
     "ranks": {
       "air": 120,
@@ -7168,7 +7168,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 26.7
+      "overall": 24.5
     },
     "ranks": {
       "air": 121,
@@ -7234,7 +7234,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 47.5
+      "overall": 44.5
     },
     "ranks": {
       "air": 122,
@@ -7300,7 +7300,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 27.5
+      "overall": 25.3
     },
     "ranks": {
       "air": 123,
@@ -7366,7 +7366,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 68.4,
-      "overall": 50.5
+      "overall": 47.1
     },
     "ranks": {
       "air": 124,
@@ -7432,7 +7432,7 @@
       "affordability": 6.6,
       "affordability_confident": true,
       "walkability": 74.4,
-      "overall": 63.0
+      "overall": 61.4
     },
     "ranks": {
       "air": 23,
@@ -7498,7 +7498,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 44.4,
-      "overall": 33.1
+      "overall": 30.9
     },
     "ranks": {
       "air": 125,
@@ -7564,7 +7564,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 56.4,
-      "overall": 52.4
+      "overall": 51.9
     },
     "ranks": {
       "air": 24,
@@ -7630,7 +7630,7 @@
       "affordability": 97.3,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 53.7
+      "overall": 55.8
     },
     "ranks": {
       "air": 25,
@@ -7696,7 +7696,7 @@
       "affordability": 87.5,
       "affordability_confident": true,
       "walkability": 44.4,
-      "overall": 37.2
+      "overall": 36.0
     },
     "ranks": {
       "air": 33,
@@ -7762,7 +7762,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 44.4,
-      "overall": 37.9
+      "overall": 37.0
     },
     "ranks": {
       "air": 28,
@@ -7828,7 +7828,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 36.8
+      "overall": 36.5
     },
     "ranks": {
       "air": 34,
@@ -7894,7 +7894,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 27.6
+      "overall": 25.3
     },
     "ranks": {
       "air": 126,
@@ -7960,7 +7960,7 @@
       "affordability": 99.6,
       "affordability_confident": true,
       "walkability": 56.4,
-      "overall": 57.8
+      "overall": 58.7
     },
     "ranks": {
       "air": 26,
@@ -8026,7 +8026,7 @@
       "affordability": 95.7,
       "affordability_confident": true,
       "walkability": 50.4,
-      "overall": 32.6
+      "overall": 29.5
     },
     "ranks": {
       "air": 127,
@@ -8092,7 +8092,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 32.4,
-      "overall": 25.9
+      "overall": 25.0
     },
     "ranks": {
       "air": 35,
@@ -8158,7 +8158,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 32.4,
-      "overall": 28.0
+      "overall": 27.3
     },
     "ranks": {
       "air": 36,
@@ -8224,7 +8224,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 28.3
+      "overall": 26.8
     },
     "ranks": {
       "air": 37,
@@ -8290,7 +8290,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 32.4
+      "overall": 27.0
     },
     "ranks": {
       "air": 128,
@@ -8356,7 +8356,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 38.4,
-      "overall": 30.6
+      "overall": 29.3
     },
     "ranks": {
       "air": 38,
@@ -8422,7 +8422,7 @@
       "affordability": 98.8,
       "affordability_confident": true,
       "walkability": 62.4,
-      "overall": 60.5
+      "overall": 60.6
     },
     "ranks": {
       "air": 27,
@@ -8488,7 +8488,7 @@
       "affordability": 46.9,
       "affordability_confident": false,
       "walkability": 62.4,
-      "overall": 41.5
+      "overall": 37.4
     },
     "ranks": {
       "air": 129,

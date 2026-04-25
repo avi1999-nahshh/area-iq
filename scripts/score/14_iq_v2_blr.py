@@ -239,14 +239,20 @@ def score_one(p):
     walk_commute = p["_commute30"]  # already 0-100ish %
     walkability = walk_five * 0.6 + walk_commute * 0.4
 
-    # Overall composite, equal weights for the POC
+    # Overall composite for the POC.
+    # Walkability is weighted 0 — the composite (5-min-city × 0.6 + commute<30
+    # min × 0.4) reads as confusing in the report and is hidden from every
+    # user-facing surface. Score still computed and persisted for future use.
+    # Its old 15% has been redistributed: +4 each to air and amenities (the
+    # user's stated #1 + #2 priorities), +2 to connectivity, +3 to density,
+    # +2 to affordability. Weights now sum to 1.00 across the visible 5 dims.
     overall = (
-        air * 0.20
-        + amenities * 0.20
-        + connectivity * 0.20
-        + density_score * 0.15
-        + afford_s * 0.10
-        + walkability * 0.15
+        air * 0.24
+        + amenities * 0.24
+        + connectivity * 0.22
+        + density_score * 0.18
+        + afford_s * 0.12
+        + walkability * 0.0
     )
 
     return {
