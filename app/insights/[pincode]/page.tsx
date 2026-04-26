@@ -230,7 +230,7 @@ function Bragging({ d }: { d: IQv2 }) {
         </div>
 
         <p className={`${mono.className} mt-4 text-[11px] sm:text-xs tracking-[0.12em] uppercase text-slate-400 leading-relaxed`}>
-          Pincode {d.pincode} · {d.district}, {d.state} · Overall {overall}/100 · Sources: CPCB · OSM · Census 2011 · 99acres · Bengaluru Metro · BMTC
+          Pincode {d.pincode} · {d.district}, {d.state} · Overall {overall}/100 · Sources: OpenAQ · Sentinel-5P · OSM · Census 2011 · 99acres · Bengaluru Metro · BMTC
         </p>
       </section>
 
@@ -431,13 +431,16 @@ function lifestyleTitle(d: IQv2): string {
   return "Quiet Residential";
 }
 function airTitle(d: IQv2): string {
+  // CPCB bands (Indian standard) — matches the scoring curve in
+  // scripts/score/14_iq_v2_blr.py (_AIR_CURVE).
   const aqi = d.raw.aqi;
   if (aqi == null) return "Reading Unavailable";
-  if (aqi <= 50) return "Good Air";
-  if (aqi <= 100) return "Moderate";
-  if (aqi <= 150) return "Unhealthy for Sensitive Groups";
-  if (aqi <= 200) return "Unhealthy";
-  return "Very Unhealthy";
+  if (aqi <= 50) return "Good";
+  if (aqi <= 100) return "Satisfactory";
+  if (aqi <= 200) return "Moderate";
+  if (aqi <= 300) return "Poor";
+  if (aqi <= 400) return "Very Poor";
+  return "Severe";
 }
 function metroBlurb(d: IQv2): string {
   const km = d.raw.metro_km;
@@ -446,11 +449,7 @@ function metroBlurb(d: IQv2): string {
 }
 function airBlurb(d: IQv2): string {
   if (d.raw.aqi == null) return "AQI not available.";
-  const conf = d.scores.air_confident;
-  const dist = d.raw.station_distance_km;
-  return conf
-    ? `Pulled from a CPCB station ${dist?.toFixed(1)}km away.`
-    : `Closest CPCB station is ${dist?.toFixed(1)}km — treat as a city-wide read.`;
+  return "30-day Sentinel-5P satellite NO2 mosaic, calibrated against OpenAQ ground stations across Bangalore. Score capped at 70 — satellite is good for ranking, not for absolute claims.";
 }
 
 // ── tiny inline icons ────────────────────────────────────────────────

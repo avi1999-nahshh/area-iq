@@ -506,8 +506,8 @@ function BentoStrip({
           </h3>
           <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
             {aqiA != null && aqiB != null
-              ? `${aName} AQI ${Math.round(aqiA)} · ${bName} AQI ${Math.round(aqiB)} (IDW-blended).`
-              : "CPCB stations out of range."}
+              ? `${aName} AQI ${Math.round(aqiA)} · ${bName} AQI ${Math.round(aqiB)} (Sentinel-5P satellite, calibrated).`
+              : "AQI signal unavailable."}
           </p>
         </article>
       </div>

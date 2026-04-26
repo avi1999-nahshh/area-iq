@@ -28,7 +28,7 @@ export const DIM_LABELS: Record<DimKey, string> = {
 };
 
 export const DIM_DESCRIPTIONS: Record<DimKey, string> = {
-  air: "Local AQI, blended from the nearest CPCB stations within 15 km.",
+  air: "30-day Sentinel-5P satellite NO2 mosaic, calibrated against OpenAQ ground stations. Score capped at 70.",
   essentials: "Hospitals, schools, banks within the pincode.",
   lifestyle: "Cafés, restaurants, malls, parks — the going-out infrastructure.",
   connectivity: "Metro distance, bus stops, share of commutes under 30 minutes.",
