@@ -134,13 +134,27 @@ export function commuteMinutes(km: number, mode: Mode): number {
   return km / MODE_KMPM[mode];
 }
 
-// Default weight 1.0; selected priority chips bump to 2.0. Returns 0–100.
+// "Bangalore Pragmatist" baseline weights (mirrors /insights). When a user
+// ticks a priority chip on Reach, that dimension's baseline weight DOUBLES
+// — explicit "I care more about this" amplification on top of the editorial
+// default. Density is in the baseline (10%) but never user-selectable, so it
+// can't be doubled.
+const PRAGMATIST_BASELINE: Record<string, number> = {
+  connectivity: 25,
+  affordability: 20,
+  essentials: 18,
+  air: 15,
+  lifestyle: 12,
+  density: 10,
+};
+
+
 export function weightedScore(p: IQv2, priorities: Set<DimKey>): number {
   let num = 0;
   let den = 0;
-  for (const { key } of DIMS) {
-    const w = priorities.has(key) ? 2 : 1;
-    num += w * p.scores[key];
+  for (const [key, baseW] of Object.entries(PRAGMATIST_BASELINE)) {
+    const w = priorities.has(key as DimKey) ? baseW * 2 : baseW;
+    num += w * (p.scores[key as keyof IQv2["scores"]] as number);
     den += w;
   }
   return num / den;
