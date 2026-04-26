@@ -61,7 +61,10 @@ def seed_table(src: Path, table: str):
             tmp.write(json.dumps(_scrub(r), ensure_ascii=False) + "\n")
         tmp_path = tmp.name
 
+    import os
     cmd = ["npx", "convex", "import", "--replace", "--yes", "--table", table, tmp_path]
+    if os.environ.get("CONVEX_TARGET") == "prod":
+        cmd.insert(3, "--prod")
     print(f"  {table}: importing {len(records)} records...")
     try:
         result = subprocess.run(cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=600)
