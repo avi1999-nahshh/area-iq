@@ -449,7 +449,7 @@ function metroBlurb(d: IQv2): string {
 }
 function airBlurb(d: IQv2): string {
   if (d.raw.aqi == null) return "AQI not available.";
-  return "30-day Sentinel-5P satellite NO2 mosaic, calibrated against OpenAQ ground stations across Bangalore. Score capped at 70 — satellite is good for ranking, not for absolute claims.";
+  return "30-day Sentinel-5P satellite NO2 mosaic, calibrated against OpenAQ ground stations across Bangalore.";
 }
 
 // ── tiny inline icons ────────────────────────────────────────────────
