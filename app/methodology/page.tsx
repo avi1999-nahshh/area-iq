@@ -108,7 +108,7 @@ export default function MethodologyPage() {
                   <Stat mono={mono.className}>100%</Stat> have AQI, metro distance, and rent data
                 </li>
                 <li>
-                  <Stat mono={mono.className}>76%</Stat> have a CPCB air-monitoring station within 15km
+                  <Stat mono={mono.className}>129 / 129</Stat> have a per-pincode air score from Sentinel-5P satellite NO2, calibrated against 22 ground stations
                 </li>
                 <li>
                   <Stat mono={mono.className}>49%</Stat> have a locality-level rent match
@@ -150,13 +150,14 @@ export default function MethodologyPage() {
               <ul className="space-y-3 list-none pl-0">
                 <Rule
                   mono={mono.className}
-                  label="Air confidence"
+                  label="Air honesty cap"
                   body={
                     <>
-                      The Cleanest Air brag fires only if the nearest CPCB station is within{" "}
-                      <Stat mono={mono.className}>15km</Stat> AND the absolute AQI is{" "}
-                      <Stat mono={mono.className}>≤ 100</Stat> (the CPCB &ldquo;Moderate&rdquo;
-                      threshold). Otherwise we brag on the next-best dimension.
+                      Every pincode&apos;s air score comes from a 30-day Sentinel-5P satellite
+                      mosaic calibrated against ground stations. Satellite is good enough to
+                      <em> rank</em> pincodes by, not to make <em>absolute</em> claims. We
+                      cap the air score at <Stat mono={mono.className}>70</Stat> and never
+                      brag on air at all — the brag falls through to next-best dimension.
                     </>
                   }
                 />
@@ -292,9 +293,13 @@ export default function MethodologyPage() {
                   outside the OSM contributor base are missed.
                 </li>
                 <li>
-                  <strong>Air station distance.</strong> 76% of pincodes have a CPCB station
-                  within 15km; for the other 24% the air score is shown but the brag-label
-                  is suppressed (see Honesty rules).
+                  <strong>Air is satellite-only.</strong> Bangalore&apos;s ground network has
+                  ~25 stations on OpenAQ but only 16 of 129 polygons physically contain one,
+                  which created an unfair lottery. We dropped the ground-in-polygon tier and
+                  now score every pincode from a 30-day Sentinel-5P NO2 mosaic, linearly
+                  calibrated against 22 ground stations. Per-pincode air score is a defensible
+                  satellite-derived <em>gradient</em>, not a measurement — score is capped at
+                  70 and the air brag label is suppressed across the board.
                 </li>
                 <li>
                   <strong>No real-time traffic in Reach.</strong> We use real
@@ -443,8 +448,8 @@ function DimTable({ mono }: { mono: string }) {
   const rows: { dim: string; what: string; source: string }[] = [
     {
       dim: "Air",
-      what: "CPCB AQI from the nearest station ≤15km. PM2.5 weighted.",
-      source: "CPCB Sameer",
+      what: "30-day Sentinel-5P satellite NO2 mosaic, mean per pincode polygon, linearly calibrated against 22 OpenAQ ground stations. CPCB-band-aligned scoring curve (Good/Satisfactory/Moderate/Poor). Capped at 70 because the signal is satellite-derived, not direct ground truth.",
+      source: "Sentinel-5P (ESA Copernicus) + OpenAQ v3 (CPCB + KSPCB) for calibration",
     },
     {
       dim: "Essentials",
@@ -468,7 +473,7 @@ function DimTable({ mono }: { mono: string }) {
     },
     {
       dim: "Affordability",
-      what: "Inverted 99acres 2BHK rent percentile (locality match preferred, city median fallback)",
+      what: "Reasonable-rent bell curve over 2BHK ₹/month. Peaks at ₹15-22k (where most working Bangaloreans live), penalises both luxury (>₹30k) and suspiciously-cheap (<₹10k → too remote / poor amenities). Locality match preferred, city median fallback.",
       source: "99acres scrape",
     },
   ];
@@ -505,13 +510,18 @@ function DimTable({ mono }: { mono: string }) {
 }
 
 function WeightTable({ mono }: { mono: string }) {
+  // "Bangalore Pragmatist" weights — what working residents actually optimise
+  // for. Connectivity (commute) and affordability (rent) lead because they're
+  // the universal pain points in BLR.
   const rows: [string, number][] = [
-    ["Air", 24],
-    ["Amenities (Essentials + Lifestyle averaged)", 24],
-    ["Connectivity", 22],
-    ["Density & Activity", 18],
-    ["Affordability", 12],
+    ["Connectivity", 25],
+    ["Affordability", 20],
+    ["Essentials", 18],
+    ["Air", 15],
+    ["Lifestyle", 12],
+    ["Density & Activity", 10],
   ];
+  const maxW = Math.max(...rows.map(([, weight]) => weight));
   return (
     <div className="bg-white rounded-lg p-2 sm:p-3"
       style={{
@@ -526,10 +536,10 @@ function WeightTable({ mono }: { mono: string }) {
               <div className="w-20 sm:w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className={`h-full ${w === 0 ? "bg-gray-300" : "bg-amber-500"}`}
-                  style={{ width: `${(w / 24) * 100}%` }}
+                  style={{ width: `${(w / maxW) * 100}%` }}
                 />
               </div>
-              <span className={`${mono} text-sm font-bold tabular-nums w-10 text-right text-slate-900`}>
+              <span className={`${mono} text-sm font-bold tabular-nums w-12 text-right text-slate-900`}>
                 {w}%
               </span>
             </div>
@@ -543,10 +553,16 @@ function WeightTable({ mono }: { mono: string }) {
 function SourceTable({ mono }: { mono: string }) {
   const rows: { source: string; vintage: string; granularity: string; what: string }[] = [
     {
-      source: "CPCB Sameer",
-      vintage: "Live (hourly upstream, weekly pull)",
-      granularity: "Per monitoring station, joined by nearest distance",
-      what: "AQI, PM2.5",
+      source: "OpenAQ v3 (CPCB + KSPCB + community sensors)",
+      vintage: "Latest hourly per station, weekly pull",
+      granularity: "Stations whose lat/lng is inside the pincode polygon (no radius proxy)",
+      what: "AQI, PM2.5, PM10, NO2, SO2, O3 — CPCB sub-index per station",
+    },
+    {
+      source: "Sentinel-5P / TROPOMI (ESA Copernicus, via Earth Engine)",
+      vintage: "30-day rolling mosaic, cloud-fraction <0.3, mean per polygon",
+      granularity: "5.5 × 3.5 km native; mean reduced over each pincode polygon",
+      what: "Tropospheric NO2 column density → calibrated to AQI via linear fit against ground stations",
     },
     {
       source: "OpenStreetMap",

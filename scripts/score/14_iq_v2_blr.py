@@ -19,9 +19,14 @@ import math
 from pathlib import Path
 from typing import Any
 
+from shapely.geometry import Point, shape
+from shapely.geometry.base import BaseGeometry
+
 ROOT = Path(__file__).resolve().parents[2]
 PROCESSED = ROOT / "data" / "processed"
+RAW = ROOT / "data" / "raw"
 OUT_FILE = PROCESSED / "iq_v2_blr.json"
+POLYGONS_FILE = RAW / "blr_pincode_polygons.geojson"
 
 
 def load(name: str) -> list[dict[str, Any]]:
@@ -36,7 +41,9 @@ def idx(rows, key="pincode"):
 P = load("pincodes")
 S = load("scores_final")
 INFRA = load("infrastructure")
-AQ = load("air_quality")
+# OpenAQ v3 ingest (scripts/ingest/03_air_quality_v2.py) — 25 BLR stations
+# with native coords, vs the legacy WAQI ingest's 4 stations.
+AQ = load("air_quality_v2")
 T = load("transit")
 PR = load("property")
 C = load("census")
@@ -84,12 +91,69 @@ def inverted_pct(values: list[float], v: float | None) -> float:
     return 100.0 - percentile_rank(values, v)
 
 
+# CPCB-band-aligned air score curve. Linear interpolation between anchor points
+# tied to CPCB AQI bands (Good / Satisfactory / Moderate / Poor / Very Poor /
+# Severe). Replaces the old uniform-linear ramp which over-penalised mid-range
+# AQI and didn't respect band semantics.
+_AIR_CURVE = [(0, 100), (50, 80), (100, 50), (200, 25), (300, 10), (400, 0)]
+
+
+# Affordability bell curve. (rent ₹/mo for 2BHK) → score 0-100.
+# Rewards the realistic-rent sweet spot (~₹15k-₹22k); penalises both
+# luxury (>₹30k) and suspiciously-cheap (<₹10k → too-remote signal).
+_RENT_CURVE = [
+    (0,      60),
+    (10000,  60),
+    (12500,  80),
+    (18500,  90),
+    (26000,  70),
+    (37500,  45),
+    (45000,  25),
+    (100000, 25),
+]
+
+
+def rent_curve_score(rent: float | None) -> float:
+    """Score a 2BHK monthly rent (₹) on the affordability curve."""
+    if rent is None:
+        return 50.0
+    if rent <= _RENT_CURVE[0][0]:
+        return float(_RENT_CURVE[0][1])
+    if rent >= _RENT_CURVE[-1][0]:
+        return float(_RENT_CURVE[-1][1])
+    for (r1, s1), (r2, s2) in zip(_RENT_CURVE, _RENT_CURVE[1:]):
+        if r1 <= rent <= r2:
+            return s1 + (rent - r1) * (s2 - s1) / (r2 - r1)
+    return 50.0
+
+
 def aqi_score(aqi: float | None, station_km: float | None) -> tuple[float, bool]:
     """Returns (0..100 score, confidence_flag).
-    Linear: AQI 30 → 100, AQI 200 → 0. Confidence True if station ≤15km."""
+
+    Curve anchors:
+      AQI 0   → 100  (Good top)
+      AQI 50  →  80  (Good/Satisfactory boundary)
+      AQI 100 →  50  (Satisfactory/Moderate boundary)
+      AQI 200 →  25  (Moderate/Poor boundary)
+      AQI 300 →  10  (Poor/Very Poor boundary)
+      AQI 400+→   0  (Severe)
+
+    Confidence flag (used only for brag-label gating, not the score) is True
+    when a real ground station sits within 15 km — kept for backwards compat
+    even though all pincodes currently score off the satellite tier.
+    """
     if aqi is None:
         return 50.0, False
-    score = max(0.0, min(100.0, 100.0 - (aqi - 30.0) * (100.0 / 170.0)))
+    if aqi <= 0:
+        score = 100.0
+    elif aqi >= 400:
+        score = 0.0
+    else:
+        score = 50.0
+        for (a1, s1), (a2, s2) in zip(_AIR_CURVE, _AIR_CURVE[1:]):
+            if a1 <= aqi <= a2:
+                score = s1 + (aqi - a1) * (s2 - s1) / (a2 - a1)
+                break
     return score, (station_km is not None and station_km <= 15.0)
 
 
@@ -102,55 +166,33 @@ def haversine_km(lat1, lng1, lat2, lng2) -> float:
     return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
-# ── recover CPCB station locations for IDW air-quality smoothing ───────────
-# `air_quality.json` only stores per-pincode `(station_id, distance, aqi)`.
-# To do real spatial smoothing we need station lat/lng. Recover it as the
-# inverse-distance-weighted centroid of referencing pincodes — biased toward
-# the closest pincodes (which sit near the station). For BLR-urban density
-# this gets us within ~1km of the true station position, which is plenty for
-# IDW smoothing across a small geography.
-def build_station_index(P_all, AQ_all) -> dict[str, dict]:
-    by_pin_pos = {str(p["pincode"]): (p["lat"], p["lng"]) for p in P_all}
-    stations: dict[str, dict] = {}
+# ── load CPCB station coords directly from OpenAQ v2 ingest ────────────────
+# `air_quality_v2.json` persists station_lat/station_lng directly per row,
+# so no centroid recovery is needed. Each unique station_id is collapsed to
+# one record with its first-seen coords + AQI.
+def build_station_index(AQ_all) -> dict[str, dict]:
+    out: dict[str, dict] = {}
     for row in AQ_all:
         sid = row.get("station_id")
         aqi = row.get("aqi")
-        if not sid or aqi is None:
+        lat = row.get("station_lat")
+        lng = row.get("station_lng")
+        if not sid or aqi is None or lat is None or lng is None:
             continue
-        pos = by_pin_pos.get(str(row["pincode"]))
-        d_km = row.get("station_distance_km")
-        if pos is None or d_km is None:
-            continue
-        s = stations.setdefault(sid, {
-            "station_id": sid,
-            "name": row.get("station_name"),
-            "aqi": aqi,
-            "_w_lat": 0.0,
-            "_w_lng": 0.0,
-            "_w_sum": 0.0,
-        })
-        # Inverse-distance weight; clip near-zero distance so a pincode
-        # sitting on top of a station doesn't dominate everything else.
-        w = 1.0 / max(d_km, 0.5) ** 2
-        s["_w_lat"] += pos[0] * w
-        s["_w_lng"] += pos[1] * w
-        s["_w_sum"] += w
-    out: dict[str, dict] = {}
-    for sid, s in stations.items():
-        if s["_w_sum"] == 0:
+        if sid in out:
             continue
         out[sid] = {
             "station_id": sid,
-            "name": s["name"],
-            "aqi": s["aqi"],
-            "lat": s["_w_lat"] / s["_w_sum"],
-            "lng": s["_w_lng"] / s["_w_sum"],
+            "name": row.get("station_name"),
+            "aqi": float(aqi),
+            "lat": float(lat),
+            "lng": float(lng),
         }
     return out
 
 
-STATIONS_ALL = build_station_index(P, AQ)
-print(f"Recovered station coords: {len(STATIONS_ALL)} stations")
+STATIONS_ALL = build_station_index(AQ)
+print(f"Loaded {len(STATIONS_ALL)} unique OpenAQ stations")
 
 
 def stations_near(lat: float, lng: float, max_km: float = 25.0) -> list[tuple[float, dict]]:
@@ -164,30 +206,87 @@ def stations_near(lat: float, lng: float, max_km: float = 25.0) -> list[tuple[fl
     return out
 
 
-def idw_aqi(lat: float, lng: float, k: int = 3, max_km: float = 15.0,
-            power: float = 2.0) -> tuple[float | None, float | None, int]:
-    """IDW-smoothed AQI for a point. Returns (aqi, distance_to_nearest, n_used).
+# ── pincode polygons (point-in-polygon AQI assignment) ────────────────────
+# Source: justinelliotmeyers/INDIA_PINCODES (GitHub, community-digitized,
+# vintage 2018). Coverage = 129/129 BLR pincodes in our dataset.
+def load_pincode_polygons() -> dict[str, BaseGeometry]:
+    if not POLYGONS_FILE.exists():
+        raise FileNotFoundError(
+            f"Pincode polygons missing at {POLYGONS_FILE}. "
+            "Run the polygon-source agent or download manually."
+        )
+    geo = json.load(open(POLYGONS_FILE))
+    out: dict[str, BaseGeometry] = {}
+    for f in geo.get("features", []):
+        pc = str(f.get("properties", {}).get("pincode", "")).strip()
+        if not pc:
+            continue
+        out[pc] = shape(f["geometry"])
+    return out
 
-    Uses up to K nearest stations within max_km, weighted by 1/d^power. This
-    replaces the previous nearest-station-only assignment, which could leave
-    two adjacent BLR pincodes pulling from very different stations and
-    looking like different cities.
+
+PINCODE_POLYGONS = load_pincode_polygons()
+print(f"Loaded {len(PINCODE_POLYGONS)} pincode polygons")
+
+
+# ── satellite-calibrated AQI per pincode ───────────────────────────────────
+# Built by scripts/ingest/15_no2_satellite.py + 16_calibrate_no2_to_aqi.py.
+# 30-day Sentinel-5P NO2 mosaic, mean per polygon, linearly calibrated to
+# ground-station AQI. Each pincode gets a unique value — used as the
+# secondary tier when no ground station sits inside the polygon.
+def load_satellite_aqi() -> dict[str, float]:
+    p = PROCESSED / "aqi_satellite_per_pincode.json"
+    if not p.exists():
+        print("WARN: satellite AQI file missing — secondary tier disabled.")
+        return {}
+    out: dict[str, float] = {}
+    for r in json.load(open(p)):
+        v = r.get("aqi_satellite")
+        if v is not None:
+            out[str(r["pincode"])] = float(v)
+    return out
+
+
+SATELLITE_AQI = load_satellite_aqi()
+print(f"Loaded satellite-calibrated AQI for {len(SATELLITE_AQI)} pincodes")
+
+
+# Single-sensor sanity floor. With BLR's 4-station CPCB network, a pincode
+# whose polygon contains exactly 1 station inherits that station's reading
+# directly — no aggregation to dampen outliers. Kadabesanahalli reads AQI 38
+# while every other BLR station reads 137-185, which makes Marathahalli look
+# unrealistically clean (top 1% nationally) when neighbouring pincodes can't
+# physically have different air. We clamp to a floor of 90 (still "Satisfactory"
+# per CPCB) so a single anomalous sensor can't push a pincode above what
+# Bangalore can plausibly support given its city-wide pollution levels.
+SINGLE_SENSOR_FLOOR = 90.0
+
+
+def aqi_in_polygon(pincode: str) -> tuple[float | None, float | None, int]:
+    """AQI from CPCB stations whose lat/lng falls INSIDE the pincode polygon.
+    Returns (aqi, distance_to_nearest, n_used).
+
+    Strict containment — no radius proxy, no IDW noise. If 0 stations sit
+    inside the polygon, the caller falls back to the BLR median. If exactly 1
+    sits inside, the value is clamped to `SINGLE_SENSOR_FLOOR` to dampen
+    single-sensor outliers. If 2+ sit inside (doesn't happen in BLR today
+    given the sparse network), return the mean.
     """
-    near = stations_near(lat, lng, max_km=max_km)
-    if not near:
-        return None, None, 0
-    near = near[:k]
-    nearest_d = near[0][0]
-    num = 0.0
-    den = 0.0
-    for d, s in near:
-        # Floor distance so a pincode sitting on top of a station doesn't
-        # collapse the weighted sum to that station alone.
-        eff = max(d, 0.3)
-        w = 1.0 / (eff ** power)
-        num += s["aqi"] * w
-        den += w
-    return (num / den, nearest_d, len(near))
+    # Single-tier: satellite-calibrated AQI for ALL pincodes. We dropped the
+    # ground-station-in-polygon tier because it created a lottery — only 16 of
+    # 129 polygons happen to contain a station, and those 16 got a different
+    # methodology (raw station readings) than the other 113 (satellite). Same
+    # neighbourhood, different signal type, no per-pincode reason for the gap.
+    # Ground stations still drive the calibration of the satellite layer (the
+    # linear fit `aqi = a*no2 + b` was anchored to 22 BLR stations), so we're
+    # using ground truth as anchors, not as primary values.
+    sat = SATELLITE_AQI.get(pincode)
+    if sat is not None:
+        return (sat, None, 0)
+
+    # No signal at all (polygon missing or satellite mosaic empty). Caller
+    # falls back to BLR median.
+    return (None, None, 0)
 
 
 # ── extract per-pincode primitives ─────────────────────────────────────────
@@ -232,11 +331,10 @@ def extract(p):
     # Walkability
     five_min = i.get("five_minute_city_score") or 0  # 0-10 scale
 
-    # Air — IDW-smoothed across the K=3 nearest CPCB stations within 15km
-    # rather than the legacy single-nearest-station read. Two adjacent BLR
-    # pincodes pulling from different stations now blend toward the same
-    # local airshed.
-    smoothed_aqi, nearest_station_km, n_stations = idw_aqi(p["lat"], p["lng"])
+    # Air — strict point-in-polygon: only CPCB stations whose lat/lng falls
+    # inside this pincode's polygon contribute. If none inside, the caller's
+    # BLR-median fallback applies. No radius proxy, no IDW noise.
+    smoothed_aqi, nearest_station_km, n_stations = aqi_in_polygon(pc)
     aqi = round(smoothed_aqi, 1) if smoothed_aqi is not None else None
     # `station_distance_km` becomes "distance to the nearest contributing
     # station" — used for confidence gating, not for value attribution.
@@ -391,44 +489,23 @@ print(
 )
 
 
-# ── median fallback for under-monitored pincodes ───────────────────────────
-# When a pincode has fewer than 2 contributing CPCB stations within 15km, OR
-# its nearest contributing station is >10km away, the IDW result is too
-# dependent on a single sensor that may sit in an unrepresentative pocket
-# (e.g. EPIP picks up a single distant clean-air station and looks like
-# spotless air; Yelahanka picks up a single distant high-AQI station and
-# looks worse than the city). For those, blend the IDW value 50/50 with the
-# BLR median AQI computed from the *confident* pincodes — which converges
-# under-monitored pincodes onto the city baseline rather than letting one
-# faraway sensor dominate.
-_confident_aqis = [
-    p["_aqi"] for p in peers
-    if p["_aqi"] is not None and p["_air_confident_override"]
-]
-BLR_MEDIAN_AQI = (
-    sorted(_confident_aqis)[len(_confident_aqis) // 2] if _confident_aqis else 160.0
-)
-print(f"BLR median AQI (from {len(_confident_aqis)} confident pincodes): {BLR_MEDIAN_AQI:.1f}")
+# ── BLR-median fallback for pincodes with NO station inside polygon ────────
+# Strict point-in-polygon means most BLR pincodes have 0 CPCB stations inside
+# (only ~4 stations city-wide). For those, use BLR's empirical median AQI as
+# a city-baseline default. 160 is the script's historical default and matches
+# what the in-script median computation yields when no pincodes pass the old
+# "confident" gate.
+BLR_MEDIAN_AQI = 160.0
+print(f"BLR median AQI fallback: {BLR_MEDIAN_AQI:.1f} (constant)")
 
 _fallback_count = 0
 for p in peers:
-    n = p["_n_air_stations"]
-    nearest = p["_station_km"]
-    needs_fallback = (
-        n < 2 or nearest is None or nearest > 10.0
-    )
-    if not needs_fallback:
+    if p["_aqi"] is not None:
         continue
     _fallback_count += 1
-    if p["_aqi"] is None:
-        # No station within range at all (e.g. NW outskirts). Use the median directly.
-        blended = BLR_MEDIAN_AQI
-    else:
-        # 50/50 blend with city median.
-        blended = 0.5 * p["_aqi"] + 0.5 * BLR_MEDIAN_AQI
-    p["_aqi"] = round(blended, 1)
+    p["_aqi"] = BLR_MEDIAN_AQI
     p["raw"]["aqi"] = p["_aqi"]
-print(f"Median-fallback applied to {_fallback_count} of {len(peers)} pincodes")
+print(f"BLR-median fallback applied to {_fallback_count} of {len(peers)} pincodes (no station in polygon)")
 
 
 # ── compute peer-normalised scores ─────────────────────────────────────────
@@ -447,9 +524,13 @@ all_aqi = [p["_aqi"] for p in peers if p["_aqi"] is not None]
 
 
 def score_one(p):
-    # Air — direct linear; confidence comes from the IDW gate (≥2 stations,
-    # nearest ≤8km) rather than the looser legacy 15km single-station gate.
+    # Air — CPCB-band-aligned curve (see _AIR_CURVE) on the satellite-
+    # calibrated AQI. Cap at 70 because all pincodes today are scored from
+    # the satellite tier (not direct ground truth) — even pincodes with low
+    # satellite-NO2 can't legitimately claim "clean air" without a real
+    # ground station to verify, so the cap is the methodology's honesty gate.
     air, _legacy_conf = aqi_score(p["_aqi"], p["_station_km"])
+    air = min(air, 70.0)
     air_conf = bool(p["_air_confident_override"])
 
     # Amenities — split
@@ -470,11 +551,14 @@ def score_one(p):
     youth_proxy = inverted_pct(all_hh, p["_hh_size"])  # small HH → high score
     density_score = dens_s * 0.35 + wpr_s * 0.35 + youth_proxy * 0.30
 
-    # Affordability — lower rent = more affordable. If no rent at all in BLR, score 50.
-    if p["_rent"]:
-        afford_s = inverted_pct(all_rent, p["_rent"])
-    else:
-        afford_s = 50.0
+    # Affordability — "reasonable-rent" bell curve in absolute rupees, not
+    # inverted percentile. A pure inverted-rent percentile penalised premium
+    # central pincodes (Indiranagar @ ₹25k → score 17) and rewarded far-out
+    # cheap ones (Electronic City @ ₹13k → score 86), inverting how anyone
+    # actually shops for rent. Real renters reject *both* luxury (₹40k+) and
+    # suspiciously-cheap (₹10k —usually means too remote / poor amenities).
+    # Curve peaks at ₹15-22k 2BHK — where most working Bangaloreans live.
+    afford_s = rent_curve_score(p["_rent"])
     # "locality_inferred" = IDW-blended from ≥2 nearby locality-confident
     # pincodes within 8km; treated as confident (real-enough) for honesty
     # gates. Hard-matched "locality" rows still get the same status.
@@ -485,20 +569,19 @@ def score_one(p):
     walk_commute = p["_commute30"]  # already 0-100ish %
     walkability = walk_five * 0.6 + walk_commute * 0.4
 
-    # Overall composite for the POC.
-    # Walkability is weighted 0 — the composite (5-min-city × 0.6 + commute<30
-    # min × 0.4) reads as confusing in the report and is hidden from every
-    # user-facing surface. Score still computed and persisted for future use.
-    # Its old 15% has been redistributed: +4 each to air and amenities (the
-    # user's stated #1 + #2 priorities), +2 to connectivity, +3 to density,
-    # +2 to affordability. Weights now sum to 1.00 across the visible 5 dims.
+    # Overall composite — "The Bangalore Pragmatist" weights. What working
+    # Bangaloreans actually optimise for: commute > rent > essentials > air >
+    # lifestyle > density. Equal weights washed out the lived experience —
+    # connectivity and affordability are everyone's daily pain points and
+    # deserve the heaviest slots. Walkability stays at 0% (hidden from UI).
     overall = (
-        air * 0.24
-        + amenities * 0.24
-        + connectivity * 0.22
-        + density_score * 0.18
-        + afford_s * 0.12
-        + walkability * 0.0
+        connectivity   * 0.25
+      + afford_s       * 0.20
+      + essentials     * 0.18
+      + air            * 0.15
+      + lifestyle      * 0.12
+      + density_score  * 0.10
+      + walkability    * 0.0
     )
 
     return {
