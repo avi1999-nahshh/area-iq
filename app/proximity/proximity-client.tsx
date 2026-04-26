@@ -10,6 +10,7 @@ import { api } from "@/convex/_generated/api";
 import type { IQv2 } from "@/app/insights/lib";
 import { displayName } from "@/app/insights/blr-aliases";
 import { ShareButton } from "@/app/_components/share-button";
+import { FeedbackStrip } from "@/app/_components/feedback-strip";
 import { proximityShareText } from "@/app/_lib/share-copy";
 import { track } from "@/app/_lib/track";
 import {
@@ -584,6 +585,8 @@ export function ProximityClient({ pincodes }: Props) {
           )}
         </div>
       </section>
+
+      <FeedbackStrip surface="reach" monoClass={mono.className} context={office.label} />
 
       {hoursModalOpen && (
         <HoursModal

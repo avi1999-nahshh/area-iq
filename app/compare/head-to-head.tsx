@@ -8,6 +8,7 @@ import type { IQv2 } from "@/app/insights/lib";
 import { BragChip } from "@/app/insights/brag-chip";
 import { displayName } from "@/app/insights/blr-aliases";
 import { ShareButton } from "@/app/_components/share-button";
+import { FeedbackStrip } from "@/app/_components/feedback-strip";
 import { compareShareText } from "@/app/_lib/share-copy";
 import { track } from "@/app/_lib/track";
 import { computeVerdict, type DimRow } from "./verdict";
@@ -121,6 +122,8 @@ export function HeadToHead({ a, b, shareUrl }: Props) {
 
       {/* CTA links */}
       <CtaRow a={a} b={b} />
+
+      <FeedbackStrip surface="compare" monoClass="font-mono" context={pairSlug} />
 
       <CardStaggerStyle />
     </div>

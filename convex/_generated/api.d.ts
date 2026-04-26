@@ -9,6 +9,8 @@
  */
 
 import type * as area from "../area.js";
+import type * as crons from "../crons.js";
+import type * as feedback from "../feedback.js";
 import type * as proximity from "../proximity.js";
 import type * as waitlist from "../waitlist.js";
 
@@ -20,6 +22,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   area: typeof area;
+  crons: typeof crons;
+  feedback: typeof feedback;
   proximity: typeof proximity;
   waitlist: typeof waitlist;
 }>;

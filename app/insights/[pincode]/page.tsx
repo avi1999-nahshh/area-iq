@@ -8,6 +8,7 @@ import { displayName } from "../blr-aliases";
 import { BragChip } from "../brag-chip";
 import { FlippableCard } from "./flippable-card";
 import { ShareButton } from "../../_components/share-button";
+import { FeedbackStrip } from "../../_components/feedback-strip";
 import { insightsShareText } from "../../_lib/share-copy";
 
 const sans = Geist({ subsets: ["latin"] });
@@ -233,6 +234,8 @@ function Bragging({ d }: { d: IQv2 }) {
           Pincode {d.pincode} · {d.district}, {d.state} · Overall {overall}/100 · Sources: OpenAQ · Sentinel-5P · OSM · Census 2011 · 99acres · Bengaluru Metro · BMTC
         </p>
       </section>
+
+      <FeedbackStrip surface="insights" monoClass={mono.className} context={d.pincode} />
 
       <footer className="mt-16 pt-6 border-t border-gray-200/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
         <span className="font-semibold text-slate-900">Area<span className="text-amber-500">IQ</span></span>

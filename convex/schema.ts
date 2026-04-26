@@ -236,4 +236,22 @@ export default defineSchema({
     pincodes: v.array(v.string()),
     computedAt: v.number(),
   }).index("by_bucket", ["bucketKey"]),
+
+  // ── feedback ─────────────────────────────────────────
+  feedback: defineTable({
+    surface: v.string(), // "reach" | "compare" | "insights" | "landing"
+    sentiment: v.union(
+      v.literal("up"),
+      v.literal("down"),
+      v.literal("text"),
+    ),
+    comment: v.optional(v.string()),
+    email: v.optional(v.string()),
+    context: v.optional(v.string()),
+    user_agent: v.optional(v.string()),
+    digestSentAt: v.optional(v.number()),
+    createdAt: v.number(),
+  })
+    .index("by_created", ["createdAt"])
+    .index("by_undigested", ["digestSentAt", "createdAt"]),
 });

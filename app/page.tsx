@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import { UseCaseRotator } from "./_components/use-case-rotator";
+import { FeedbackStrip } from "./_components/feedback-strip";
 import { TopNav } from "./insights/top-nav";
 import { FlippableCard } from "./insights/[pincode]/flippable-card";
 import { getIQv2 } from "./insights/lib";
@@ -132,6 +133,10 @@ export default function Home() {
             </Link>
           </p>
         </section>
+
+        <div id="feedback">
+          <FeedbackStrip surface="landing" monoClass={mono.className} />
+        </div>
       </main>
 
       <footer className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 border-t border-gray-200/70 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
@@ -143,6 +148,7 @@ export default function Home() {
           <FooterLink href="/compare">Compare</FooterLink>
           <FooterLink href="/proximity">Reach</FooterLink>
           <FooterLink href="/methodology">Methodology</FooterLink>
+          <FooterLink href="#feedback">Feedback</FooterLink>
           <span aria-hidden className="text-slate-300">·</span>
           <span className={mono.className}>Bangalore · {new Date().getFullYear()}</span>
         </nav>
