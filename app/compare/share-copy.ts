@@ -116,7 +116,10 @@ export function pickShareLine(pairSlug: string, ctx: CopyContext): string {
     bank = AIR_HEAVY;
   } else if (ctx.delta >= 20) {
     bank = BLOWOUT;
-  } else if (ctx.delta >= 10) {
+  } else if (ctx.delta >= 8) {
+    // 8-point gap on a 100-point scale is a clear win, not a "barely".
+    // Used to be 10+; lowered to 8 so genuine wins stop sounding like
+    // photo finishes ("X squeaks past Y", "X stays in the chat").
     bank = COMFORTABLE;
   } else {
     bank = TIGHT;
